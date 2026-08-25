@@ -95,10 +95,10 @@ runSelf(variable output)
 
 ### Run Shortcut
 
-Run Shortcut with name `shortcutName`, providing it with `input`.
+Run a shortcut from this shortcut, with optional input.
 
 ```
-run(text shortcutName, variable input)
+run(text shortcutName, variable ?input)
 ```
 
 ---

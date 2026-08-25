@@ -270,7 +270,7 @@ killApp(text appID)
 Open an app.
 
 ```
-openApp(text appID)
+openApp(text appID, bool ?slideOver)
 ```
 
 ---

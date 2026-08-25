@@ -205,7 +205,7 @@ getWebPageDetail(variable webpage, webpageDetail detail)
 Run some custom JavaScript on the current webpage in Safari.
 
 ```
-runJavaScriptOnWebpage(text javascript)
+runJavaScriptOnWebpage(text javascript, &variable ?input)
 ```
 
 ---

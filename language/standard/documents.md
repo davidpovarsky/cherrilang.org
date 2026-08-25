@@ -300,10 +300,10 @@ reveal(&variable files)
 
 ### Save File
 
-Save contents to a file at the specified path.
+Save `content` to `path`, optionally into a referenced `folder`.
 
 ```
-saveFile(text path, &variable content, bool ?overwrite = false)
+saveFile(text path, &variable content, bool ?overwrite = false, &variable ?folder)
 ```
 
 ---

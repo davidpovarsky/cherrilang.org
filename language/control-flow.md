@@ -32,6 +32,18 @@ languages.
 
 The first operand of the if statement must be a variable. The second can optionally be a variable.
 
+### Legacy Comparison Behavior
+
+Precede the first condition with the optional `legacy` keyword to emit `WFConditionalLegacyComparisonBehavior` on the conditional action, matching how modern Shortcuts clients re-save older conditionals:
+
+```ruby
+if legacy @intVar == 5 {
+
+}
+```
+
+Output is unchanged unless the keyword is used. Malformed usage (for example `if legacy {` with no condition) is a compile-time error.
+
 ### Conditional Operators
 
 - `==` Is
