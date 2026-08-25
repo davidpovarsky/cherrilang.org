@@ -29,7 +29,7 @@ nav_order: 5
 Base 64 decodes input.
 
 ```
-base64Decode(variable input): variable
+base64Decode(variable input, text ?lineBreakMode): variable
 ```
 
 ---
@@ -39,7 +39,7 @@ base64Decode(variable input): variable
 Base 64 encodes input.
 
 ```
-base64Encode(variable encodeInput): text
+base64Encode(variable encodeInput, text ?lineBreakMode): text
 ```
 
 ---
