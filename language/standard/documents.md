@@ -71,6 +71,26 @@ Add `input` to books. `input` is expected to be a PDF or epub file.
 addToBooks(variable input)
 ```
 
+---
+
+### Play Audiobook
+
+Plays an audiobook in Books. `target` is expected to be a book or audiobook reference.
+
+```
+playAudiobook(variable target)
+```
+
+---
+
+### Open Book
+
+Opens a book in Books. `target` is expected to be a book reference.
+
+```
+openBook(variable target)
+```
+
 ## Editing
 
 ### Markup

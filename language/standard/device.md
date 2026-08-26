@@ -275,6 +275,16 @@ openApp(text appID, bool ?slideOver)
 
 ---
 
+### Search Spotlight
+
+Opens Spotlight search, optionally with search criteria.
+
+```
+searchSpotlight(text criteria)
+```
+
+---
+
 ### Quit All Apps
 
 Quits all apps. Allows exceptions.

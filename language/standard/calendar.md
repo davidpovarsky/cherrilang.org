@@ -404,6 +404,16 @@ openRemindersList(variable list)
 removeReminders(variable reminders)
 ```
 
+---
+
+### Create Reminders List
+
+Creates a new list in Reminders.
+
+```
+createRemindersList()
+```
+
 ## Timers
 
 ### Start Timer
@@ -418,4 +428,26 @@ enum timeDuration {
 }
 
 startTimer(timeDuration ?duration = qty(0, "min"))
+```
+
+---
+
+## Stopwatch
+
+### Start Stopwatch
+
+Starts the stopwatch.
+
+```
+startStopwatch()
+```
+
+---
+
+### Stop Stopwatch
+
+Stops the stopwatch.
+
+```
+stopStopwatch()
 ```
