@@ -96,7 +96,17 @@ enum repeatMode {
     'All',
 }
 
-playMusic(variable music, shuffleMode ?shuffle, repeatMode ?repeat)
+playMusic(&variable music, shuffleMode ?shuffle, repeatMode ?repeat)
+```
+
+---
+
+### Search iTunes
+
+Search for music or media on iTunes.
+
+```
+searchiTunes(text query, number ?limit)
 ```
 
 ---
@@ -215,6 +225,16 @@ togglePlayPause()
 
 ```
 addToPlaylist(text playlistName, variable songs)
+```
+
+---
+
+### Create Playlist
+
+Create a new music playlist.
+
+```
+createPlaylist(text name, text ?author)
 ```
 
 ---

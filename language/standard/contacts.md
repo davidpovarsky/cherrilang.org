@@ -34,6 +34,16 @@ newContact(text firstName, text lastName, text phoneNumber, text emailAddress, t
 
 ---
 
+### Contacts
+
+Select contacts or specify a contact.
+
+```
+selectContacts(variable ?contact)
+```
+
+---
+
 ### Filter Contacts
 
 ```

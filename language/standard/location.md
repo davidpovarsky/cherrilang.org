@@ -72,7 +72,7 @@ getLocationDetail(variable location, locationDetail detail)
 Create a location value.
 
 ```
-location(variable location)
+location(text location)
 ```
 
 ## Addresses
@@ -97,6 +97,26 @@ streetAddress(text addressLine2, text addressLine2, text city, text state, text 
 
 ## Maps
 
+### Get Directions
+
+Get directions to a destination.
+
+```
+getDirections(variable ?destination)
+```
+
+---
+
+### Get Distance
+
+Get distance to a destination.
+
+```
+getDistance(variable ?destination, text ?mode)
+```
+
+---
+
 ### Get Halfway Point
 
 Get the halfway point between two locations.
@@ -113,6 +133,16 @@ Get a link for a location.
 
 ```
 getMapsLink(variable location)
+```
+
+---
+
+### Get Travel Time
+
+Get travel time to a destination.
+
+```
+getTravelTime(variable ?destination, variable ?customLocation)
 ```
 
 ---

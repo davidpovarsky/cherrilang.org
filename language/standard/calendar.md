@@ -96,6 +96,16 @@ addCalendar(text name)
 
 ---
 
+### Add Event
+
+Add a new calendar event.
+
+```
+addEvent(text title, variable ?startDate, variable ?endDate, bool ?allDay, text ?location)
+```
+
+---
+
 ### Edit Event
 
 Edit a detail of an event. Provide an event, a detail to modify, and a new value for that detail.
@@ -159,8 +169,6 @@ getEventDetail(variable event, eventDetail detail)
 ### Get Upcoming Events
 
 Get upcoming events from the calendars on this device.
-
-dateSpecifier values observed in real exports: `'Today'`, `'Specified Day'`. When dateSpecifier is `'Specified Day'` provide specifiedDate as a locale-formatted date string. Calendar filtering is not yet supported: the observed calendar payload embeds device-generated picker data that cannot be reproduced from source alone.
 
 ```
 getUpcomingEvents(number ?count, text ?dateSpecifier, text ?specifiedDate): variable
@@ -312,6 +320,26 @@ enum holidayYear {
 getHolidayDate(holiday holiday, eventOccurrenceMode ?occurrenceMode = "Next Occurrence", holidayYear ?forYear): date
 ```
 
+---
+
+### Get Time Between Dates
+
+Get the time between two dates.
+
+```
+enum timeBetweenDatesUnit {
+    'Minutes',
+    'Hours',
+    'Days',
+    'Weeks',
+    'Months',
+    'Years',
+    'Seconds',
+}
+
+getTimeBetweenDates(variable ?startDate, variable ?endDate, timeBetweenDatesUnit ?unit): number
+```
+
 ## Formatting
 
 ### Format Date
@@ -390,6 +418,26 @@ addQuickReminder()
 
 ---
 
+### Add Reminder
+
+Add a new reminder.
+
+```
+addReminder(text title, bool ?alert)
+```
+
+---
+
+### Create Reminders List
+
+Creates a new list in Reminders.
+
+```
+createRemindersList()
+```
+
+---
+
 ### Open Reminders List
 
 ```
@@ -403,34 +451,6 @@ openRemindersList(variable list)
 ```
 removeReminders(variable reminders)
 ```
-
----
-
-### Create Reminders List
-
-Creates a new list in Reminders.
-
-```
-createRemindersList()
-```
-
-## Timers
-
-### Start Timer
-
-Creates a new timer.
-
-```
-enum timeDuration {
-    'hr',
-    'min',
-    'sec',
-}
-
-startTimer(timeDuration ?duration = qty(0, "min"))
-```
-
----
 
 ## Stopwatch
 
@@ -450,4 +470,20 @@ Stops the stopwatch.
 
 ```
 stopStopwatch()
+```
+
+## Timers
+
+### Start Timer
+
+Creates a new timer.
+
+```
+enum timeDuration {
+    'hr',
+    'min',
+    'sec',
+}
+
+startTimer(timeDuration ?duration = qty(0, "min"))
 ```

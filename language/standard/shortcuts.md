@@ -32,6 +32,16 @@ createShortcutLink(variable shortcut)
 
 ---
 
+### Get App Store Detail
+
+Get a detail about an App Store app.
+
+```
+getAppStoreDetail(variable app, text detail)
+```
+
+---
+
 ### Get Shortcut Detail
 
 Get a detail about a Shortcut.

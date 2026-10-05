@@ -62,7 +62,27 @@ getObjectOfClass(text class, variable from)
 Get the type of input.
 
 ```
+getType(variable input, text ?fileType): text
+```
+
+---
+
+### Get Type
+
+Get the type of input.
+
+```
 typeOf(variable input): text
+```
+
+---
+
+### Get Variable
+
+Retrieves the value of a variable.
+
+```
+getVariable(variable variable): variable
 ```
 
 ---
@@ -73,16 +93,6 @@ Clear the current output.
 
 ```
 nothing()
-```
-
----
-
-### Number
-
-Create a number value.
-
-```
-number(variable number): number
 ```
 
 ---
@@ -115,124 +125,6 @@ Wait for the user to return to Shortcuts.
 waitToReturn()
 ```
 
-## Notifications
-
-### Alert
-
-Shows an alert with text and optional title and an OK button to proceed.
-
-```
-alert(text alert, text ?title)
-```
-
----
-
-### Ask for Input
-
-Ask for input with prompt, with optional inputType and defaultValue.
-
-```
-enum inputType {
-    'Text',
-    'Number',
-    'URL',
-    'Date',
-    'Time',
-    'Date and Time',
-}
-
-prompt(text prompt, inputType ?inputType = "Text", text ?defaultValue, text ?multiline = true)
-```
-
----
-
-### Confirm
-
-Shows an alert with text and optional title. It displays an OK button to proceed, and a cancel button that stops the Shortcut.
-
-```
-confirm(text alert, text ?title)
-```
-
----
-
-### Show Notification
-
-Shows a custom notification message.
-
-```
-showNotification(text body, text ?title, bool ?playSound = true, variable ?attachment)
-```
-
-## Output
-
-### Content Graph
-
-Display input as a content graph.
-
-```
-contentGraph(variable input)
-```
-
----
-
-### Must Output
-
-Stop and output `output`. Respond with response if there is nowhere to output.
-
-```
-mustOutput(text output, text response)
-```
-
----
-
-### Output or Copy to Clipboard
-
-Stop and output `output`. Copy to the clipboard if there is nowhere to output.
-
-```
-outputOrClipboard(text output)
-```
-
----
-
-### Quick Look
-
-Preview `input` in Quick Look.
-
-```
-quicklook(variable input)
-```
-
----
-
-### Show Result
-
-Show `input`.
-
-```
-show(text input)
-```
-
----
-
-### Stop and Output
-
-Stop and output `output`. Do nothing if there is nowhere to output.
-
-```
-output(text output)
-```
-
-## Search
-
-### Search/Spotlight
-
-Get results from search on iOS or iPadOS, and Spotlight on macOS.
-
-```
-search(text query, number ?limit = 5, array ?resultType = [Calendar Events Contacts Mail Messages Notes Photos Reminders Voice Recordings Bookmarks]): array
-```
 ## Dictionaries
 
 ### Get Dictionary
@@ -373,6 +265,55 @@ Create an immutable array of text.
 list(text ...listItem)
 ```
 
+## Notifications
+
+### Alert
+
+Shows an alert with text and optional title and an OK button to proceed.
+
+```
+alert(text alert, text ?title)
+```
+
+---
+
+### Ask for Input
+
+Ask for input with prompt, with optional inputType and defaultValue.
+
+```
+enum inputType {
+    'Text',
+    'Number',
+    'URL',
+    'Date',
+    'Time',
+    'Date and Time',
+}
+
+prompt(text prompt, inputType ?inputType = "Text", text ?defaultValue, text ?multiline = true, bool ?allowsDecimal = true, bool ?allowsNegative = true)
+```
+
+---
+
+### Confirm
+
+Shows an alert with text and optional title. It displays an OK button to proceed, and a cancel button that stops the Shortcut.
+
+```
+confirm(text alert, text ?title)
+```
+
+---
+
+### Show Notification
+
+Shows a custom notification message.
+
+```
+showNotification(text body, text ?title, bool ?playSound = true, variable ?attachment)
+```
+
 ## Numbers
 
 ### Format Number
@@ -413,3 +354,72 @@ Returns a random number between `min` and `max`.
 randomNumber(number min, number max): number
 ```
 
+## Output
+
+### Content Graph
+
+Display input as a content graph.
+
+```
+contentGraph(variable input)
+```
+
+---
+
+### Must Output
+
+Stop and output `output`. Respond with response if there is nowhere to output.
+
+```
+mustOutput(text output, text response)
+```
+
+---
+
+### Output or Copy to Clipboard
+
+Stop and output `output`. Copy to the clipboard if there is nowhere to output.
+
+```
+outputOrClipboard(text output)
+```
+
+---
+
+### Quick Look
+
+Preview `input` in Quick Look.
+
+```
+quicklook(variable input)
+```
+
+---
+
+### Show Result
+
+Show `input`.
+
+```
+show(text input)
+```
+
+---
+
+### Stop and Output
+
+Stop and output `output`. Do nothing if there is nowhere to output.
+
+```
+output(text output)
+```
+
+## Search
+
+### Search/Spotlight
+
+Get results from search on iOS or iPadOS, and Spotlight on macOS.
+
+```
+search(text query, number ?limit = 5, array ?resultType = [Calendar Events Contacts Mail Messages Notes Photos Reminders Voice Recordings Bookmarks]): array
+```

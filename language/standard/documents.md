@@ -73,22 +73,22 @@ addToBooks(variable input)
 
 ---
 
-### Play Audiobook
-
-Plays an audiobook in Books. `target` is expected to be a book or audiobook reference.
-
-```
-playAudiobook(variable target)
-```
-
----
-
 ### Open Book
 
 Opens a book in Books. `target` is expected to be a book reference.
 
 ```
 openBook(variable target)
+```
+
+---
+
+### Play Audiobook
+
+Plays an audiobook in Books. `target` is expected to be a book or audiobook reference.
+
+```
+playAudiobook(variable target)
 ```
 
 ## Editing
@@ -129,6 +129,16 @@ Delete a file or multiple files.
 
 ```
 deleteFiles(&variable input, bool ?immediately = false)
+```
+
+---
+
+### File
+
+Insert a `#ref` to a file.
+
+```
+file(&variable file): variable
 ```
 
 ---
@@ -234,12 +244,12 @@ getFileLink(variable file)
 
 ---
 
-### Get Folder Contacts
+### Get Folder Contents
 
-Get contents of folder.
+Get contents of a folder.
 
 ```
-getFolderContents(variable folder, bool ?recursive = false)
+getFolderContents(&variable folder, bool ?recursive = false)
 ```
 
 ---
@@ -355,26 +365,6 @@ Prompt the user to select one or optionally multiple folders.
 ```
 selectFolder(bool ?selectMultiple = false)
 ```
-
-### Get Folder Contents
-
-Get contents of a folder.
-
-```
-getFolderContents(&variable folder, bool ?recursive = false)
-```
-
----
-
-### File
-
-Insert a `#ref` to a file.
-
-```
-file(&variable file): variable
-```
-
----
 
 ## Notes
 
