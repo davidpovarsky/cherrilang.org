@@ -7,6 +7,9 @@ has_children: true
 
 # Documentation
 
+{: .note }
+This section documents the legacy upstream Cherri v1 syntax. For the active **Cherri Language v2.0** guide, please visit the [Language v2.0 Guide](/fork-language/).
+
 Welcome to the Cherri programming language documentation!
 
 Thanks for taking an interest in the Cherri programming language. Cherri is designed to be easy to learn and use, and it's likely very similar to a programming language you may already be familiar with.
