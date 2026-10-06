@@ -15,7 +15,7 @@ Cherri v2.0 is an expressive, safe, strongly-typed language for authoring native
 ## Highlights of Language v2.0
 
 - **Clean Modern Syntax**: Declarative `let` (immutable) and `var` (mutable) bindings instead of `@variables`.
-- **First-Class Interpolation**: Clean `"Hello, \(name)!"` string interpolation preserving Apple's `WFTextTokenAttachment` natively.
+- **First-Class Interpolation**: Clean `f"Hello, {name}!"` string interpolation preserving Apple's `WFTextTokenAttachment` natively.
 - **Strong Static Typing**: Type checking with clear, actionable diagnostics (`E_TYPE_MISMATCH`, `E_UNDEFINED_SYMBOL`, `E_ARG_UNKNOWN`, etc.).
 - **Deterministic Action Binding**: Positional, named, and primary parameters resolved deterministically against the Action Registry.
 - **Rich Control Flow**: `if` / `else if` / `else`, `repeat(n)`, `for item in list`, and `menu` statements.
