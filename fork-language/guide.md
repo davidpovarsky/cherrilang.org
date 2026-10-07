@@ -132,10 +132,11 @@ Native Apple Shortcuts content items:
 Actions in Cherri v2 accept an optional primary argument without label, followed by named arguments:
 ```cherri
 // Primary argument + named arguments
+let photo = none
 resizeImage(photo, width: 800, height: 600)
 
 // Named arguments only
-alert(message: "Operation completed!", title: "Success")
+alert(alert: "Operation completed!", title: "Success")
 
 // Unlabeled primary argument
 show("Hello from Cherri v2!")
@@ -157,6 +158,7 @@ let finalPrice = calculateDiscount(100, percentage: 15)
 
 ### Conditionals (`if` / `else`)
 ```cherri
+let count = 5
 if count > 10 {
     show("More than 10 items")
 } else if count > 0 {
@@ -168,6 +170,7 @@ if count > 10 {
 
 ### Value-Producing `if`
 ```cherri
+let count = 5
 let statusText = if count > 0 {
     yield f"{count} items remaining"
 } else {
