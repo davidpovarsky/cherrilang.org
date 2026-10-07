@@ -266,6 +266,17 @@ toggleCellularData()
 ```
 toggleWifi()
 ```
+
+## Silent Mode
+
+### Set Silent Mode
+
+Turns silent mode on or off. The state is the integer observed in real exports (`0` seen); the full domain is unverified.
+
+```
+setSilentMode(number state)
+```
+
 ## Multitasking
 
 ### Set Multitasking Mode

@@ -270,7 +270,17 @@ killApp(text appID)
 Open an app.
 
 ```
-openApp(text appID)
+openApp(text appID, bool ?slideOver)
+```
+
+---
+
+### Search Spotlight
+
+Opens Spotlight search, optionally with search criteria.
+
+```
+searchSpotlight(text criteria)
 ```
 
 ---

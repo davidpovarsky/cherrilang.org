@@ -156,6 +156,18 @@ getEventDetail(variable event, eventDetail detail)
 
 ---
 
+### Get Upcoming Events
+
+Get upcoming events from the calendars on this device.
+
+dateSpecifier values observed in real exports: `'Today'`, `'Specified Day'`. When dateSpecifier is `'Specified Day'` provide specifiedDate as a locale-formatted date string. Calendar filtering is not yet supported: the observed calendar payload embeds device-generated picker data that cannot be reproduced from source alone.
+
+```
+getUpcomingEvents(number ?count, text ?dateSpecifier, text ?specifiedDate): variable
+```
+
+---
+
 ### Open Event in Calendar
 
 Show `event` in the calendar app.
@@ -392,6 +404,16 @@ openRemindersList(variable list)
 removeReminders(variable reminders)
 ```
 
+---
+
+### Create Reminders List
+
+Creates a new list in Reminders.
+
+```
+createRemindersList()
+```
+
 ## Timers
 
 ### Start Timer
@@ -406,4 +428,26 @@ enum timeDuration {
 }
 
 startTimer(timeDuration ?duration = qty(0, "min"))
+```
+
+---
+
+## Stopwatch
+
+### Start Stopwatch
+
+Starts the stopwatch.
+
+```
+startStopwatch()
+```
+
+---
+
+### Stop Stopwatch
+
+Stops the stopwatch.
+
+```
+stopStopwatch()
 ```
