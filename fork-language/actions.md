@@ -9,7 +9,7 @@ permalink: /fork-language/actions
 
 **Language Version:** 2.0  
 **Catalog Schema:** 3.0  
-**Schema Fingerprint:** `2dd0e6f6b06ec67733494bbec0bdeb9663b95398edab9a282b62505159d2a80a`  
+**Schema Fingerprint:** `06e315d07d6dfca5107edb9d705a7b4d20b95e37bf510a4b177ab498b8e3678d`  
 **Total Actions:** 461  
 
 This documentation is generated automatically from the canonical Cherri v2 ActionSchema registry.
@@ -188,6 +188,7 @@ startStopwatch()
 
 **Title:** Stop Stopwatch  
 **Apple Identifier:** `com.apple.clock.StopStopwatchIntent`  
+**Returns:** `Void`  
 
 Stops the stopwatch.
 
@@ -629,6 +630,7 @@ labelFile(file: AnyContent, color: Text)
 
 **Title:** Open Book  
 **Apple Identifier:** `com.apple.iBooksX.OpenBookIntent`  
+**Returns:** `Void`  
 
 Opens a book in Books. `target` is expected to be a book reference.
 
@@ -648,6 +650,7 @@ openBook(target: AnyContent)
 
 **Title:** Play Audiobook  
 **Apple Identifier:** `com.apple.iBooksX.PlayAudiobookIntent`  
+**Returns:** `Void`  
 
 Plays an audiobook in Books. `target` is expected to be a book or audiobook reference.
 
@@ -843,11 +846,12 @@ addWeatherLocation(location: AnyContent)
 
 **Title:** Adjust Date  
 **Apple Identifier:** `is.workflow.actions.adjustdate`  
+**Returns:** `Date`  
 
 Adjust a date or get the start of a time period.
 
 ```cherri
-adjustDate(date: Text, operation: Text, unit?: Unknown)
+adjustDate(date: Text, operation: Text, unit?: Unknown) -> Date
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -1511,11 +1515,12 @@ cropImage(image: AnyContent, width?: Text = "100", height?: Text = "100", positi
 
 **Title:** Current Date  
 **Apple Identifier:** `is.workflow.actions.date`  
+**Returns:** `Date`  
 
 Get the current date.
 
 ```cherri
-currentDate()
+currentDate() -> Date
 ```
 
 ---
@@ -1707,6 +1712,7 @@ dismissSiri()
 
 **Title:** Display Sleep  
 **Apple Identifier:** `is.workflow.actions.displaysleep`  
+**Returns:** `Void`  
 
 Only puts the Mac display to sleep, device remains awake.
 
@@ -2693,11 +2699,12 @@ getExternalIP(type: Text) -> Text
 
 **Title:** Get File  
 **Apple Identifier:** `is.workflow.actions.documentpicker.open`  
+**Returns:** `File`  
 
 Get file from a path in the Shortcuts folder or within a `#ref` to a folder.
 
 ```cherri
-getFile(path: Text, folder?: AnyContent, errorIfNotFound?: Bool = "true")
+getFile(path: Text, folder?: AnyContent, errorIfNotFound?: Bool = "true") -> File
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -2832,11 +2839,12 @@ getHalfwayPoint(firstLocation: AnyContent, secondLocation: AnyContent)
 
 **Title:** Get Holiday Date  
 **Apple Identifier:** `is.workflow.actions.date`  
+**Returns:** `Date`  
 
 Get the date of a holiday, optionally specifically for a few past or future years.
 
 ```cherri
-getHolidayDate(holiday: Text, occurrenceMode?: Text = "Next Occurrence", forYear?: Text)
+getHolidayDate(holiday: Text, occurrenceMode?: Text = "Next Occurrence", forYear?: Text) -> Date
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -3274,11 +3282,12 @@ getOrientation() -> Text
 
 **Title:** Get Parent Directory  
 **Apple Identifier:** `is.workflow.actions.getparentdirectory`  
+**Returns:** `File`  
 
 Get the parent directory of the input directory.
 
 ```cherri
-getParentDirectory(input: AnyContent)
+getParentDirectory(input: AnyContent) -> File
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -4027,11 +4036,12 @@ makeArchive(files: AnyContent, format?: Text = ".zip", name?: Text)
 
 **Title:** Make Disk Image  
 **Apple Identifier:** `is.workflow.actions.makediskimage`  
+**Returns:** `File`  
 
 Create a new disk image.
 
 ```cherri
-makeDiskImage(name: Text, contents: AnyContent, encrypt?: Bool = "false")
+makeDiskImage(name: Text, contents: AnyContent, encrypt?: Bool = "false") -> File
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -4190,11 +4200,12 @@ makeShortcut(name: Text, open?: Bool = "true")
 
 **Title:** Make Sized Disk Image  
 **Apple Identifier:** `is.workflow.actions.makediskimage`  
+**Returns:** `File`  
 
 Create a new disk image of a specific size.
 
 ```cherri
-makeSizedDiskImage(name: Text, contents: AnyContent, diskSize?: Unknown = "[{number 1} {text GB}]", encrypt?: Bool = "false")
+makeSizedDiskImage(name: Text, contents: AnyContent, diskSize?: Unknown = "[{number 1} {text GB}]", encrypt?: Bool = "false") -> File
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -4367,6 +4378,7 @@ number(number: AnyContent) -> Number
 
 **Title:** Open File  
 **Apple Identifier:** `is.workflow.actions.openin`  
+**Returns:** `Void`  
 
 Open a file.
 
@@ -5463,11 +5475,12 @@ selectFile(selectMultiple: Bool)
 
 **Title:** Select Folder  
 **Apple Identifier:** `is.workflow.actions.file.select`  
+**Returns:** `File`  
 
 Prompt the user to select one or optionally multiple folders.
 
 ```cherri
-selectFolder(selectMultiple: Bool)
+selectFolder(selectMultiple: Bool) -> File
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -6204,12 +6217,12 @@ share(input: AnyContent)
 Show `input`.
 
 ```cherri
-show(input: Text)
+show(input: AnyContent)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
 |-----------|------|----------|---------|----------|---------|
-| `input` | `Text` | Yes | - | `Text` | - |
+| `input` | `AnyContent` | Yes | - | `Text` | - |
 
 ---
 
@@ -6351,6 +6364,7 @@ skipFwd()
 
 **Title:** Sleep  
 **Apple Identifier:** `is.workflow.actions.sleep`  
+**Returns:** `Void`  
 
 Puts the Mac to sleep.
 
@@ -6401,6 +6415,7 @@ splitPDF(pdf: AnyContent) -> List<AnyContent>
 
 **Title:** Start Screensaver  
 **Apple Identifier:** `is.workflow.actions.startscreensaver`  
+**Returns:** `Void`  
 ```cherri
 startScreensaver()
 ```
@@ -6546,8 +6561,9 @@ stripMediaMetadata(media: AnyContent)
 
 **Title:** Take Interactive Screenshot  
 **Apple Identifier:** `is.workflow.actions.takescreenshot`  
+**Returns:** `Image`  
 ```cherri
-takeInteractiveScreenshot(selection: Text)
+takeInteractiveScreenshot(selection: Text) -> Image
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -7106,6 +7122,7 @@ urlEncode(input: Text) -> Text
 
 **Title:** Vibrate Device  
 **Apple Identifier:** `is.workflow.actions.vibrate`  
+**Returns:** `Void`  
 
 Vibrate the device. Only applies to Apple devices with the haptic engine.
 
@@ -7119,6 +7136,7 @@ vibrate()
 
 **Title:** Wait  
 **Apple Identifier:** `is.workflow.actions.delay`  
+**Returns:** `Void`  
 
 Wait a specified number of seconds.
 
@@ -7136,6 +7154,7 @@ wait(seconds: Number)
 
 **Title:** Wait to Return  
 **Apple Identifier:** `is.workflow.actions.waittoreturn`  
+**Returns:** `Void`  
 
 Wait for the user to return to Shortcuts.
 
@@ -7278,6 +7297,7 @@ setFocusMode(focusMode: Text, until?: Text = "Turned Off", time?: Text, event?: 
 
 **Title:** Set Silent Mode  
 **Apple Identifier:** `com.apple.ShortcutsActions.SetSilentModeAction`  
+**Returns:** `Void`  
 
 Turns silent mode on or off.
 
