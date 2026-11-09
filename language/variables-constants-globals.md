@@ -141,18 +141,35 @@ Array constants are not allowed, as creating an array value involves adding to a
 
 ## Globals
 
-Globals are case-sensitive.
+Globals are case-sensitive. In Cherri v2, globals use PascalCase without an `@` prefix.
+
+### Cherri v2.0 Syntax (Recommended)
+
+```cherri
+let input = ShortcutInput
+let date = CurrentDate
+let clipboard = Clipboard
+let device = Device
+```
+
+In f-strings:
+
+```cherri
+let message = f"Received: {ShortcutInput}"
+```
+
+> **Naming Rule:**
+> - `ShortcutInput` is the correct canonical name (PascalCase, no `@` prefix).
+> - `@shortcutInput` is rejected as legacy syntax (`E_LEGACY_SYNTAX`).
+> - `shortcutInput` is rejected as an unknown identifier (`E_UNKNOWN_NAME`).
+
+### Legacy Cherri Syntax (`--legacy`)
 
 ```ruby
 @input = ShortcutInput
 @date = CurrentDate
 @clipboard = Clipboard
 @device = Device
-```
-
-However, you can also inline a global variable in text, just like other variables.
-
-```ruby
 @shortcutInput = "{ShortcutInput}"
 ```
 
