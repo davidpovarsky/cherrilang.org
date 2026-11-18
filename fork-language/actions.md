@@ -10,7 +10,7 @@ permalink: /fork-language/actions
 
 **Language Version:** 2.0  
 **Catalog Schema:** 3.0  
-**Schema Fingerprint:** `6eb0ef0129bba916af7cfdeae85bdbb2e42245390ccaa1137670aeb46cb62cce`  
+**Schema Fingerprint:** `9f86a7ea68cbad58b6d262e458759d54f1f1089876fede3dcdc9b8ee4f2087b2`  
 **Total Actions:** 505  
 
 This documentation is generated automatically from the canonical Cherri v2 ActionSchema registry.
@@ -5453,13 +5453,14 @@ randomNumber(min: Number, max: Number) -> Number
 **Apple Identifier:** `is.workflow.actions.rawaction`  
 **Returns:** `AnyContent`  
 ```cherri
-rawAction(identifier: Text, parameters?: Map<Text, AnyContent>) -> AnyContent
+rawAction(identifier: Text, parameters?: Map<Text, AnyContent>, envelope?: Map<Text, AnyContent>) -> AnyContent
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
 |-----------|------|----------|---------|----------|---------|
 | `identifier` | `Text` | Yes | - | `` | - |
 | `parameters` | `Map<Text, AnyContent>` | No | - | `` | - |
+| `envelope` | `Map<Text, AnyContent>` | No | - | `` | - |
 
 ---
 

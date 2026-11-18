@@ -10,6 +10,8 @@ permalink: /fork-language/
 
 Welcome to the Cherri Language v2.0 active authoring guide.
 
+The default public authoring path is V2. Existing Legacy programs remain available through the explicit --lang=legacy route; this section documents V2.
+
 Cherri v2.0 is an expressive, safe, strongly-typed language for authoring native Apple Shortcuts. It replaces legacy ad-hoc syntax with formal lexical and grammar rules, first-class interpolation, block-scoped variables, static typing, and direct native plist preservation.
 
 ## Highlights of Language v2.0
@@ -24,7 +26,7 @@ Cherri v2.0 is an expressive, safe, strongly-typed language for authoring native
 ## Key Sections
 
 - [Language Guide](/fork-language/guide) - Comprehensive language reference, syntax, types, control flow, functions, and diagnostics.
-- [Actions Reference](/fork-language/actions) - Machine-verified reference of all 461 actions with typed parameters and examples.
+- [Actions Reference](/fork-language/actions) - Generated reference for 505 canonical definitions: 497 callable entries and 8 compiler constructs. The 15 compiler macros are listed separately; catalog membership does not certify Apple runtime behavior.
 - [Migration Guide](/fork-language/migration) - Guide for migrating existing Cherri v1 shortcuts to v2.0.
 
 {: .note }
