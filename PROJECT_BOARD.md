@@ -14,6 +14,8 @@ Potential improvements, features, optimizations, or architectural ideas.
 
 ## Discoveries & Tips
 
+- 2026-11-18: GitHub runner context is unavailable in jobs.<job_id>.env and is available in steps.env. Bind compiler cache paths at their consuming steps; otherwise workflow validation can fail before any job or log exists. Official context table: https://docs.github.com/en/actions/reference/workflows-and-actions/contexts#context-availability . Preserve the local snippet result separately from a GitHub workflow result.
+
 Useful technical discoveries, undocumented behavior, shortcuts, implementation tricks, platform behavior, or reusable knowledge discovered while working.
 
 ## Experiments / Investigations
