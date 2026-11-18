@@ -45,8 +45,8 @@ The migration tool automatically:
 
 ### Variable Declarations
 
-**Cherri v1 (Legacy):**
-```cherri
+**Cherri v1 (Legacy reference):**
+```cherri-legacy
 @name = "Alice"
 const greeting = "Hello"
 @count = 0
@@ -65,8 +65,8 @@ count = count + 1
 
 ### String Interpolation
 
-**Cherri v1 (Legacy):**
-```cherri
+**Cherri v1 (Legacy reference):**
+```cherri-legacy
 @city = "Tel Aviv"
 show("Welcome to {city}!")
 ```
@@ -83,13 +83,14 @@ Plain strings `"Welcome to {city}!"` now preserve literal braces. To interpolate
 
 ### Action Calls & Named Arguments
 
-**Cherri v1 (Legacy):**
-```cherri
+**Cherri v1 (Legacy reference):**
+```cherri-legacy
 resizeImage(@photo, 800, 600)
 ```
 
 **Cherri v2.0 (Modern):**
 ```cherri
+let photo = selectPhotos()
 resizeImage(photo, width: 800, height: 600)
 ```
 
@@ -99,14 +100,15 @@ In Cherri v2, the primary argument is passed positionally and subsequent argumen
 
 ### Indexing
 
-**Cherri v1 (Legacy):**
-```cherri
+**Cherri v1 (Legacy reference):**
+```cherri-legacy
 @first = @list[1] // 1-based indexing
 ```
 
 **Cherri v2.0 (Modern):**
 ```cherri
-let first = list[0] // 0-based indexing
+let values = ["first", "second"]
+let first = values[0] // 0-based indexing
 ```
 
 Collections and lists now consistently use standard **0-based indexing**.
@@ -124,3 +126,14 @@ If you attempt to compile Cherri v1 code with `cherri` v2.0, the compiler will e
 | `#include "..."` | `E_LEGACY_SYNTAX` | Remove `#include` |
 
 Run `cherri check <file>` to view all diagnostics with file locations and remediation hints.
+
+## Executable migration diagnostic
+
+The following example intentionally uses historical syntax on the default V2
+path. It is tested for the exact diagnostic below. Use the explicitly selected
+`--lang=legacy` path only when you intend to compile a Legacy program.
+
+<!-- cherri-test: diagnostic E_LEGACY_SYNTAX -->
+```cherri
+@value = "historical"
+```

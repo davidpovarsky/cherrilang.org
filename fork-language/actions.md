@@ -47,7 +47,7 @@ This documentation is generated automatically from the canonical Cherri v2 Actio
 Create an immutable array of text.
 
 ```cherri
-list(listItem: Text, listItem: Text)
+list(listItem: Text)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -64,7 +64,7 @@ list(listItem: Text, listItem: Text)
 Ask for input with prompt, with optional inputType and defaultValue.
 
 ```cherri
-prompt(prompt: Text, inputType?: Text = "Text", defaultValue?: Text, multiline?: Bool = "true", allowsDecimal?: Bool = "true", allowsNegative?: Bool = "true")
+prompt(prompt: Text, inputType?: Text = "Text", defaultValue?: Text, multiline?: Bool = true, allowsDecimal?: Bool = true, allowsNegative?: Bool = true)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -123,7 +123,7 @@ makeVCard(title: Text, subtitle: Text, base64Image?: Text)
 Creates an alarm at a specific time with a name, snooze allowance, and applicable weekdays.
 
 ```cherri
-createAlarm(name: Text, time: Text, allowsSnooze?: Bool = "true", repeatWeekdays?: List<AnyContent>)
+createAlarm(name: Text, time: Text, allowsSnooze?: Bool = true, repeatWeekdays?: List<AnyContent>)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -250,7 +250,7 @@ stopStopwatch()
 Toggle an alarm.
 
 ```cherri
-toggleAlarm(alarm: AnyContent, showWhenRun?: Bool = "true")
+toggleAlarm(alarm: AnyContent, showWhenRun?: Bool = true)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -270,7 +270,7 @@ toggleAlarm(alarm: AnyContent, showWhenRun?: Bool = "true")
 Turn off an alarm.
 
 ```cherri
-turnOffAlarm(alarm: AnyContent, showWhenRun?: Bool = "true")
+turnOffAlarm(alarm: AnyContent, showWhenRun?: Bool = true)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -290,7 +290,7 @@ turnOffAlarm(alarm: AnyContent, showWhenRun?: Bool = "true")
 Turn on an alarm.
 
 ```cherri
-turnOnAlarm(alarm: AnyContent, showWhenRun?: Bool = "true")
+turnOnAlarm(alarm: AnyContent, showWhenRun?: Bool = true)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -312,7 +312,7 @@ turnOnAlarm(alarm: AnyContent, showWhenRun?: Bool = "true")
 Create an email address value.
 
 ```cherri
-emailAddress(email: Text, email: Text)
+emailAddress(email: Text)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -329,7 +329,7 @@ emailAddress(email: Text, email: Text)
 Create a new contact.
 
 ```cherri
-newContact(firstName: Text, lastName: Text, phoneNumber: Text, emailAddress: Text, company: Text, notes: Text, prompt?: Bool = "false", photo?: AnyContent)
+newContact(firstName: Text, lastName: Text, phoneNumber: Text, emailAddress: Text, company: Text, notes: Text, prompt?: Bool = false, photo?: AnyContent)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -353,7 +353,7 @@ newContact(firstName: Text, lastName: Text, phoneNumber: Text, emailAddress: Tex
 Create a phone number value.
 
 ```cherri
-phoneNumber(number: Text, number: Text)
+phoneNumber(number: Text)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -460,7 +460,7 @@ setVariable()
 Hide multiple apps. Allows exception.
 
 ```cherri
-hideAllApps(except: Text, except?: Text)
+hideAllApps(except?: Text)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -494,7 +494,7 @@ hideApp(appID: Text)
 Kills all apps. Allows exceptions.
 
 ```cherri
-killAllApps(except: Text, except?: Text)
+killAllApps(except?: Text)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -546,7 +546,7 @@ openApp(appID: Text, slideOver?: Bool)
 Quits all apps. Allows exceptions.
 
 ```cherri
-quitAllApps(except: Text, except?: Text)
+quitAllApps(except?: Text)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -641,7 +641,7 @@ filterFiles(files: AnyContent, filter?: AnyContent, limit?: Number, sortBy?: Tex
 Get a file from a folder. Prepend path with a `~` to access the home folder on macOS.
 
 ```cherri
-getFileFromFolder(folder: Text, path: Text, errorIfNotFound?: Bool = "true")
+getFileFromFolder(folder: Text, path: Text, errorIfNotFound?: Bool = true)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -828,7 +828,7 @@ addQuickReminder()
 Add a new reminder.
 
 ```cherri
-addReminder(title: Text, alert?: Bool, list?: AnyContent, alertCondition?: Text, alertLocation?: AnyContent, alertPerson?: AnyContent, alertRadius?: Text, alertTime?: AnyContent, priority?: Text = "None", urgent?: Bool = "false", flagged?: Bool = "false", url?: Text, images?: AnyContent, parentTask?: AnyContent, tags?: Text, notes?: Text)
+addReminder(title: Text, alert?: Bool, list?: AnyContent, alertCondition?: Text, alertLocation?: AnyContent, alertPerson?: AnyContent, alertRadius?: Text, alertTime?: AnyContent, priority?: Text = "None", urgent?: Bool = false, flagged?: Bool = false, url?: Text, images?: AnyContent, parentTask?: AnyContent, tags?: Text, notes?: Text)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -877,7 +877,7 @@ addToBooks(input: AnyContent)
 Add a frame to a GIF.
 
 ```cherri
-addToGIF(image: AnyContent, gif: AnyContent, delay?: Text = "0.25", autoSize?: Bool = "true", width?: Text, height?: Text)
+addToGIF(image: AnyContent, gif: AnyContent, delay?: Text = "0.25", autoSize?: Bool = true, width?: Text, height?: Text)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -1059,7 +1059,7 @@ appendNote(note: Text, input: Text)
 Append text to a file.
 
 ```cherri
-appendToFile(filePath: Text, text: AnyContent, newLine?: Bool = "true", targetFile?: AnyContent)
+appendToFile(filePath: Text, text: AnyContent, newLine?: Bool = true, targetFile?: AnyContent)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -1079,7 +1079,7 @@ appendToFile(filePath: Text, text: AnyContent, newLine?: Bool = "true", targetFi
 Ask Chat GPT using a prompt. Follow up will open a follow-up prompt to the model.
 
 ```cherri
-askChatGPT(prompt: Text, followUp?: Bool = "false", resultType?: Text = "Automatic")
+askChatGPT(prompt: Text, followUp?: Bool = false, resultType?: Text = "Automatic")
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -1098,7 +1098,7 @@ askChatGPT(prompt: Text, followUp?: Bool = "false", resultType?: Text = "Automat
 Ask a private cloud compute LLM using a prompt. Follow up will open a follow-up prompt to the model.
 
 ```cherri
-askCloudLLM(prompt: Text, followUp?: Bool = "false", resultType?: Text = "Automatic")
+askCloudLLM(prompt: Text, followUp?: Bool = false, resultType?: Text = "Automatic")
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -1117,7 +1117,7 @@ askCloudLLM(prompt: Text, followUp?: Bool = "false", resultType?: Text = "Automa
 Ask an On-Device LLM using a prompt. Follow up will open a follow-up prompt to the model.
 
 ```cherri
-askDeviceModel(prompt: Text, followUp?: Bool = "false", resultType?: Text = "Automatic")
+askDeviceModel(prompt: Text, followUp?: Bool = false, resultType?: Text = "Automatic")
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -1136,7 +1136,7 @@ askDeviceModel(prompt: Text, followUp?: Bool = "false", resultType?: Text = "Aut
 Ask a Cloud AI model using a prompt. Follow up will open a follow-up prompt to the model.
 
 ```cherri
-askLLM(prompt: Text, model?: Text = "Private Cloud Compute", followUp?: Bool = "false", resultType?: Text = "Automatic")
+askLLM(prompt: Text, model?: Text = "Private Cloud Compute", followUp?: Bool = false, resultType?: Text = "Automatic")
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -1156,7 +1156,7 @@ askLLM(prompt: Text, model?: Text = "Private Cloud Compute", followUp?: Bool = "
 Ask a Private Cloud AI model using a prompt. Follow up will open a follow-up prompt to the model. Allow search uses Broad World Knowledge, allowing the model to search the web for up-to-date information.
 
 ```cherri
-askModel(prompt: Text, followUp?: Bool = "false", allowSearch?: Bool = "false", resultType?: Text = "Automatic")
+askModel(prompt: Text, followUp?: Bool = false, allowSearch?: Bool = false, resultType?: Text = "Automatic")
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -1176,7 +1176,7 @@ askModel(prompt: Text, followUp?: Bool = "false", allowSearch?: Bool = "false", 
 Ask a Private Cloud Pro AI model with increased reasoning using a prompt. May require subscription. Follow up will open a follow-up prompt to the model. Allow search uses Broad World Knowledge, allowing the model to search the web for up-to-date information.
 
 ```cherri
-askProModel(prompt: Text, followUp?: Bool = "false", allowSearch?: Bool = "false", resultType?: Text = "Automatic")
+askProModel(prompt: Text, followUp?: Bool = false, allowSearch?: Bool = false, resultType?: Text = "Automatic")
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -1327,7 +1327,7 @@ ceil(number: Number, roundTo?: Text = "Integer", powerOfTen?: Number) -> Number
 Prompts the user to choose from a list.
 
 ```cherri
-chooseFromList(list: AnyContent, prompt?: Text, selectMultiple?: Bool = "false", selectAll?: Bool = "false")
+chooseFromList(list: AnyContent, prompt?: Text, selectMultiple?: Bool = false, selectAll?: Bool = false)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -1357,7 +1357,7 @@ clearUpNext()
 **Title:** Combine Images  
 **Apple Identifier:** `is.workflow.actions.image.combine`  
 ```cherri
-combineImages(images: AnyContent, mode?: Text = "Vertically", spacing?: Number = "1")
+combineImages(images: AnyContent, mode?: Text = "Vertically", spacing?: Number = 1)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -1460,7 +1460,7 @@ contentGraph(input: AnyContent)
 Convert image to another format, compression quality, and/or remove metadata.
 
 ```cherri
-convertImage(image: AnyContent, format: Text, quality?: Number, preserveMetadata?: Bool = "true") -> Image
+convertImage(image: AnyContent, format: Text, quality?: Number, preserveMetadata?: Bool = true) -> Image
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -1500,7 +1500,7 @@ convertTimeZone(date: AnyContent, sourceTimeZone: Text, destinationTimeZone: Tex
 Convert image to a JPEG.
 
 ```cherri
-convertToJPEG(image: AnyContent, compressionQuality?: Number, preserveMetadata?: Bool = "true")
+convertToJPEG(image: AnyContent, compressionQuality?: Number, preserveMetadata?: Bool = true)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -1759,7 +1759,7 @@ define(word: Text) -> Text
 Delete a file or multiple files.
 
 ```cherri
-deleteFiles(input: AnyContent, immediately?: Bool = "false")
+deleteFiles(input: AnyContent, immediately?: Bool = false)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -1791,7 +1791,7 @@ deletePhotos(photos: AnyContent)
 Delete previously stored content, optionally globally or specific to the Shortcut.
 
 ```cherri
-deleteStoredValue(key: Text, global?: Bool = "false")
+deleteStoredValue(key: Text, global?: Bool = false)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -1910,7 +1910,7 @@ encodeAudio(audio: AnyContent, format?: Text = "M4A", speed?: Text = "Normal")
 Encode a video to a different format, size and/or speed.
 
 ```cherri
-encodeVideo(video: AnyContent, size?: Text = "Passthrough", speed?: Text = "Normal", preserveTransparency?: Bool = "false", mediaSpeed?: Text)
+encodeVideo(video: AnyContent, size?: Text = "Passthrough", speed?: Text = "Normal", preserveTransparency?: Bool = false, mediaSpeed?: Text)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -2056,7 +2056,7 @@ fileSize(file: Text, format: Text)
 Filter articles with various filters.
 
 ```cherri
-filterArticles(articles: AnyContent, filter?: AnyContent, sortBy?: Text, sortOrder?: Text, limit?: Number) -> List<AnyContent>
+filterArticles(articles?: AnyContent, filter?: AnyContent, sortBy?: Text, sortOrder?: Text, limit?: Number) -> List<AnyContent>
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -2074,7 +2074,7 @@ filterArticles(articles: AnyContent, filter?: AnyContent, sortBy?: Text, sortOrd
 **Title:** Filter Contacts  
 **Apple Identifier:** `is.workflow.actions.filter.contacts`  
 ```cherri
-filterContacts(contacts: AnyContent, filter?: AnyContent, sortBy?: Text, sortOrder?: Text = "A to Z", limit?: Number)
+filterContacts(contacts?: AnyContent, filter?: AnyContent, sortBy?: Text, sortOrder?: Text = "A to Z", limit?: Number)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -2096,7 +2096,7 @@ filterContacts(contacts: AnyContent, filter?: AnyContent, sortBy?: Text, sortOrd
 Filter connected displays.
 
 ```cherri
-filterDisplays(displays: AnyContent, filter?: AnyContent, sortBy?: Text, sortOrder?: Text, limit?: Number) -> List<AnyContent>
+filterDisplays(displays?: AnyContent, filter?: AnyContent, sortBy?: Text, sortOrder?: Text, limit?: Number) -> List<AnyContent>
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -2118,7 +2118,7 @@ filterDisplays(displays: AnyContent, filter?: AnyContent, sortBy?: Text, sortOrd
 Filter event attendees with various filters.
 
 ```cherri
-filterEventAttendees(attendees: AnyContent, filter?: AnyContent, sortBy?: Text, sortOrder?: Text, limit?: Number) -> List<AnyContent>
+filterEventAttendees(attendees?: AnyContent, filter?: AnyContent, sortBy?: Text, sortOrder?: Text, limit?: Number) -> List<AnyContent>
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -2140,7 +2140,7 @@ filterEventAttendees(attendees: AnyContent, filter?: AnyContent, sortBy?: Text, 
 Filter events from calendars.
 
 ```cherri
-filterEvents(events: AnyContent, filter?: AnyContent, sortBy?: Text, sortOrder?: Text, limit?: Number) -> List<AnyContent>
+filterEvents(events?: AnyContent, filter?: AnyContent, sortBy?: Text, sortOrder?: Text, limit?: Number) -> List<AnyContent>
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -2162,7 +2162,7 @@ filterEvents(events: AnyContent, filter?: AnyContent, sortBy?: Text, sortOrder?:
 Filter images with various filters.
 
 ```cherri
-filterImages(images: AnyContent, filter?: AnyContent, sortBy?: Text, sortOrder?: Text, limit?: Number) -> List<AnyContent>
+filterImages(images?: AnyContent, filter?: AnyContent, sortBy?: Text, sortOrder?: Text, limit?: Number) -> List<AnyContent>
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -2184,7 +2184,7 @@ filterImages(images: AnyContent, filter?: AnyContent, sortBy?: Text, sortOrder?:
 Filter locations with various filters.
 
 ```cherri
-filterLocations(locations: AnyContent, filter?: AnyContent, sortBy?: Text, sortOrder?: Text, limit?: Number) -> List<AnyContent>
+filterLocations(locations?: AnyContent, filter?: AnyContent, sortBy?: Text, sortOrder?: Text, limit?: Number) -> List<AnyContent>
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -2206,7 +2206,7 @@ filterLocations(locations: AnyContent, filter?: AnyContent, sortBy?: Text, sortO
 Filter music with various filters.
 
 ```cherri
-filterMusic(music: AnyContent, filter?: AnyContent, sortBy?: Text, sortOrder?: Text, limit?: Number) -> List<AnyContent>
+filterMusic(music?: AnyContent, filter?: AnyContent, sortBy?: Text, sortOrder?: Text, limit?: Number) -> List<AnyContent>
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -2228,7 +2228,7 @@ filterMusic(music: AnyContent, filter?: AnyContent, sortBy?: Text, sortOrder?: T
 Filter photos from library.
 
 ```cherri
-filterPhotos(photos: AnyContent, filter?: AnyContent, sortBy?: Text, sortOrder?: Text, limit?: Number) -> List<AnyContent>
+filterPhotos(photos?: AnyContent, filter?: AnyContent, sortBy?: Text, sortOrder?: Text, limit?: Number) -> List<AnyContent>
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -2250,7 +2250,7 @@ filterPhotos(photos: AnyContent, filter?: AnyContent, sortBy?: Text, sortOrder?:
 Filter reminders from lists.
 
 ```cherri
-filterReminders(reminders: AnyContent, filter?: AnyContent, sortBy?: Text, sortOrder?: Text, limit?: Number) -> List<AnyContent>
+filterReminders(reminders?: AnyContent, filter?: AnyContent, sortBy?: Text, sortOrder?: Text, limit?: Number) -> List<AnyContent>
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -2272,7 +2272,7 @@ filterReminders(reminders: AnyContent, filter?: AnyContent, sortBy?: Text, sortO
 Filter VPN configurations.
 
 ```cherri
-filterVPNs(vpns: AnyContent, filter?: AnyContent, sortBy?: Text, sortOrder?: Text, limit?: Number) -> List<AnyContent>
+filterVPNs(vpns?: AnyContent, filter?: AnyContent, sortBy?: Text, sortOrder?: Text, limit?: Number) -> List<AnyContent>
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -2357,7 +2357,7 @@ flashlightOff()
 Turn on the flashlight on the device with optional brightness setting.
 
 ```cherri
-flashlightOn(brightness: Number)
+flashlightOn(brightness?: Number = 0.5)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -2451,7 +2451,7 @@ formatDate(date: Date, dateFormat?: Text = "Short", customDateFormat?: Text) -> 
 Format number based on decimal place.
 
 ```cherri
-formatNumber(number: Number, decimalPlaces?: Number = "2") -> Number
+formatNumber(number: Number, decimalPlaces?: Number = 2) -> Number
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -2683,7 +2683,7 @@ getAppStoreDetail(app: AnyContent, detail: Text)
 Get list of applications.
 
 ```cherri
-getApps(apps: AnyContent, filter?: AnyContent, sortBy?: Text, sortOrder?: Text, limit?: Number) -> List<AnyContent>
+getApps(apps?: AnyContent, filter?: AnyContent, sortBy?: Text, sortOrder?: Text, limit?: Number) -> List<AnyContent>
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -2833,7 +2833,7 @@ getContacts(input: AnyContent) -> List<AnyContent>
 Get the active/current application.
 
 ```cherri
-getCurrentApp(scope: Text) -> AnyContent
+getCurrentApp(scope?: Text = "Current") -> AnyContent
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -2847,7 +2847,7 @@ getCurrentApp(scope: Text) -> AnyContent
 **Title:** Get Current Location  
 **Apple Identifier:** `is.workflow.actions.getcurrentlocation`  
 ```cherri
-getCurrentLocation(accuracy: Text)
+getCurrentLocation(accuracy?: Text)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -2864,7 +2864,7 @@ getCurrentLocation(accuracy: Text)
 Gets the currently playing song.
 
 ```cherri
-getCurrentSong(subject: Text)
+getCurrentSong(subject?: Text)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -2894,7 +2894,7 @@ getCurrentURL()
 Get the current weather for a location.
 
 ```cherri
-getCurrentWeather(location: Text)
+getCurrentWeather(location?: Text = "Current Location")
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -2942,7 +2942,7 @@ getDeviceDetail(detail: Text)
 **Title:** Get Website & App Activity  
 **Apple Identifier:** `com.apple.intelligenceplatform.IntelligencePlatform.IntelligencePlatformDataActionsAppIntentsExtension.CalculateAppUsageIntent`  
 ```cherri
-getDeviceUsage(usageType: Text, device?: AnyContent, during?: Text = "today", startTime?: Text, startTime?: Text)
+getDeviceUsage(usageType?: Text = "all", device?: AnyContent, during?: Text = "today", startTime?: Text, startTime?: Text)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -2981,7 +2981,7 @@ getDictionary(input: AnyContent) -> Map<Text, AnyContent>
 Get directions to a destination.
 
 ```cherri
-getDirections(destination: AnyContent, app?: Text, mode?: Text, startLocation?: AnyContent)
+getDirections(destination?: AnyContent, app?: Text, mode?: Text, startLocation?: AnyContent)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -3001,7 +3001,7 @@ getDirections(destination: AnyContent, app?: Text, mode?: Text, startLocation?: 
 Get distance to a destination.
 
 ```cherri
-getDistance(destination: AnyContent, mode?: Text, unit?: Text, avoidHighways?: Bool = "false", avoidTolls?: Bool = "false", startLocation?: AnyContent, accuracy?: Text)
+getDistance(destination?: AnyContent, mode?: Text, unit?: Text, avoidHighways?: Bool = false, avoidTolls?: Bool = false, startLocation?: AnyContent, accuracy?: Text)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -3132,7 +3132,7 @@ getEventDetail(event: AnyContent, detail: Text)
 Get the users external IP address.
 
 ```cherri
-getExternalIP(type: Text) -> Text
+getExternalIP(type?: Text = "IPv4") -> Text
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -3150,7 +3150,7 @@ getExternalIP(type: Text) -> Text
 Get file from a path in the Shortcuts folder or within a `#ref` to a folder.
 
 ```cherri
-getFile(path: Text, folder?: AnyContent, errorIfNotFound?: Bool = "true", getFolderContents?: Bool = "false") -> File
+getFile(path: Text, folder?: AnyContent, errorIfNotFound?: Bool = true, getFolderContents?: Bool = false) -> File
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -3236,7 +3236,7 @@ getFocusMode()
 Get contents of a folder.
 
 ```cherri
-getFolderContents(folder: AnyContent, recursive?: Bool = "false")
+getFolderContents(folder: AnyContent, recursive?: Bool = false)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -3254,7 +3254,7 @@ getFolderContents(folder: AnyContent, recursive?: Bool = "false")
 Gets a number of GIFs from Giphy for a search query.
 
 ```cherri
-getGifs(query: Text, gifs?: Number = "1", selectMultiple?: Bool = "false")
+getGifs(query: Text, gifs?: Number = 1, selectMultiple?: Bool = false)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -3449,7 +3449,7 @@ getLatestLivePhotos(count: Number)
 **Title:** Get Latest Photos  
 **Apple Identifier:** `is.workflow.actions.getlastphoto`  
 ```cherri
-getLatestPhotos(count: Number, includeScreenshots?: Bool = "true")
+getLatestPhotos(count: Number, includeScreenshots?: Bool = true)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -3535,7 +3535,7 @@ getListItems(list: AnyContent, start: Number, end: Number) -> List<AnyContent>
 Get the users local IP address.
 
 ```cherri
-getLocalIP(type: Text) -> Text
+getLocalIP(type?: Text = "IPv4") -> Text
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -3654,7 +3654,7 @@ getMusicDetail(music: AnyContent, detail: Text)
 Get the name of an item.
 
 ```cherri
-getName(item: AnyContent, getWebPageTitle?: Bool = "false")
+getName(item: AnyContent, getWebPageTitle?: Bool = false)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -4029,7 +4029,7 @@ getShortcutDetail(shortcut: AnyContent, detail: Text)
 Get all of the Shortcuts on the device.
 
 ```cherri
-getShortcuts(folder: Text) -> List<AnyContent>
+getShortcuts(folder?: Text) -> List<AnyContent>
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -4046,7 +4046,7 @@ getShortcuts(folder: Text) -> List<AnyContent>
 Get previously stored content, optionally globally or specific to the Shortcut.
 
 ```cherri
-getStoredValue(key: Text, global?: Bool = "false")
+getStoredValue(key: Text, global?: Bool = false)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -4098,7 +4098,7 @@ getTextFromImage(image: AnyContent) -> Text
 Get the time between two dates.
 
 ```cherri
-getTimeBetweenDates(startDate: AnyContent, endDate?: AnyContent, unit?: Text) -> Number
+getTimeBetweenDates(startDate?: AnyContent, endDate?: AnyContent, unit?: Text) -> Number
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -4117,7 +4117,7 @@ getTimeBetweenDates(startDate: AnyContent, endDate?: AnyContent, unit?: Text) ->
 Get travel time to a destination.
 
 ```cherri
-getTravelTime(destination: AnyContent, customLocation?: AnyContent, mode?: Text, avoidHighways?: Bool = "false", avoidTolls?: Bool = "false")
+getTravelTime(destination?: AnyContent, customLocation?: AnyContent, mode?: Text, avoidHighways?: Bool = false, avoidTolls?: Bool = false)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -4211,7 +4211,7 @@ getURLs(input: Text) -> List<AnyContent>
 Get upcoming events from the calendars on this device.
 
 ```cherri
-getUpcomingEvents(count: Number, dateSpecifier?: Text, specifiedDate?: Text) -> AnyContent
+getUpcomingEvents(count?: Number, dateSpecifier?: Text, specifiedDate?: Text) -> AnyContent
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -4231,7 +4231,7 @@ getUpcomingEvents(count: Number, dateSpecifier?: Text, specifiedDate?: Text) -> 
 Get upcoming reminders.
 
 ```cherri
-getUpcomingReminders(list: AnyContent, count?: Number = "1") -> List<AnyContent>
+getUpcomingReminders(list?: AnyContent, count?: Number = 1) -> List<AnyContent>
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -4350,7 +4350,7 @@ getWeatherDetail(weather: AnyContent, detail: Text)
 Get various types of weather forecast for a location.
 
 ```cherri
-getWeatherForecast(type: Text, location?: Text = "Current Location", customLocation?: Text)
+getWeatherForecast(type?: Text = "Daily", location?: Text = "Current Location", customLocation?: Text)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -4517,7 +4517,7 @@ lightMode()
 Transcribes user recorded audio to text, optionally in another language.
 
 ```cherri
-listen(stopListening: Text, language?: Text) -> Text
+listen(stopListening?: Text = "After Pause", language?: Text) -> Text
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -4664,7 +4664,7 @@ makeArchive(files: AnyContent, format?: Text = ".zip", name?: Text)
 Create a new disk image.
 
 ```cherri
-makeDiskImage(name: Text, contents: AnyContent, encrypt?: Bool = "false") -> File
+makeDiskImage(name: Text, contents: AnyContent, encrypt?: Bool = false) -> File
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -4702,7 +4702,7 @@ makeGIF(input: AnyContent, delay?: Text = "0.3", loops?: Number, width?: Text, h
 Make HTML from Rich Text.
 
 ```cherri
-makeHTML(input: Text, makeFullDocument?: Bool = "false") -> Text
+makeHTML(input: Text, makeFullDocument?: Bool = false) -> Text
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -4774,7 +4774,7 @@ makeMarkdown(richText: Text) -> Text
 Make a PDF file using the provided input.
 
 ```cherri
-makePDF(input: AnyContent, includeMargin?: Bool = "false", mergeBehavior?: Text = "Append", pages?: Text, singlePage?: Number, rangeStart?: Number, rangeEnd?: Number)
+makePDF(input: AnyContent, includeMargin?: Bool = false, mergeBehavior?: Text = "Append", pages?: Text, singlePage?: Number, rangeStart?: Number, rangeEnd?: Number)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -4794,7 +4794,7 @@ makePDF(input: AnyContent, includeMargin?: Bool = "false", mergeBehavior?: Text 
 **Title:** Make QR Code  
 **Apple Identifier:** `is.workflow.actions.generatebarcode`  
 ```cherri
-makeQRCode(input: Text, errorCorrection?: Text = "Medium", foregroundColor?: Unknown = "[{float 0} {float 0} {float 0} {float 1}]", backgroundColor?: Unknown = "[{float 2} {float 2} {float 2} {float 1}]", rounded?: Bool = "false")
+makeQRCode(input: Text, errorCorrection?: Text = "Medium", foregroundColor?: Unknown = "[{float 0} {float 0} {float 0} {float 1}]", backgroundColor?: Unknown = "[{float 2} {float 2} {float 2} {float 1}]", rounded?: Bool = false)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -4815,7 +4815,7 @@ makeQRCode(input: Text, errorCorrection?: Text = "Medium", foregroundColor?: Unk
 Create a shortcut.
 
 ```cherri
-makeShortcut(name: Text, open?: Bool = "true")
+makeShortcut(name: Text, open?: Bool = true)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -4834,7 +4834,7 @@ makeShortcut(name: Text, open?: Bool = "true")
 Create a new disk image of a specific size.
 
 ```cherri
-makeSizedDiskImage(name: Text, contents: AnyContent, diskSize?: Unknown = "[{number 1} {text GB}]", encrypt?: Bool = "false") -> File
+makeSizedDiskImage(name: Text, contents: AnyContent, diskSize?: Unknown = "[{number 1} {text GB}]", encrypt?: Bool = false) -> File
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -4872,7 +4872,7 @@ makeSpokenAudio(text: Text, rate?: Number, pitch?: Number, language?: Text, voic
 **Title:** Make Video From GIF  
 **Apple Identifier:** `is.workflow.actions.makevideofromgif`  
 ```cherri
-makeVideoFromGIF(gif: AnyContent, loops?: Number = "1")
+makeVideoFromGIF(gif: AnyContent, loops?: Number = 1)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -4926,7 +4926,7 @@ maskImage(image: AnyContent, type: Text, radius?: Text)
 Use regular expressions to match text. Use raw text (single quotes) to match using an regular expression with braces to avoid conflicts with the regular expression syntax.
 
 ```cherri
-matchText(regexPattern: Text, text: Text, caseSensitive?: Bool = "true")
+matchText(regexPattern: Text, text: Text, caseSensitive?: Bool = true)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -4964,7 +4964,7 @@ mountDiskImage(diskImage: AnyContent) -> AnyContent
 Move a file or folder to a new destination folder.
 
 ```cherri
-moveFile(file: AnyContent, folder: AnyContent, replaceExisting?: Bool = "false") -> AnyContent
+moveFile(file: AnyContent, folder: AnyContent, replaceExisting?: Bool = false) -> AnyContent
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -4983,7 +4983,7 @@ moveFile(file: AnyContent, folder: AnyContent, replaceExisting?: Bool = "false")
 Move a window to a defined position.
 
 ```cherri
-moveWindow(window: AnyContent, position: Text, bringToFront?: Bool = "true", display?: Text, x?: Number, y?: Number)
+moveWindow(window: AnyContent, position: Text, bringToFront?: Bool = true, display?: Text, x?: Number, y?: Number)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -5055,7 +5055,7 @@ number(number: AnyContent) -> Number
 Open a file.
 
 ```cherri
-openFile(file: AnyContent, askWhenRun?: Bool = "false", app?: Text, selectedApp?: AnyContent)
+openFile(file: AnyContent, askWhenRun?: Bool = false, app?: Text, selectedApp?: AnyContent)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -5225,7 +5225,7 @@ overlayImage(image: AnyContent, overlayImage: AnyContent)
 Overlay text on top of an image.
 
 ```cherri
-overlayText(image: AnyContent, text: Text, position?: Text = "Center", font?: Text, fontSize?: Number = "36", alignment?: Text = "Center", x?: Number, y?: Number, percentageX?: Number, percentageY?: Number, offset?: Number, percentageOffset?: Number, percentageFontSize?: Number, color?: AnyContent, rotation?: Number, outlineEnabled?: Bool, strokeWidth?: Number, percentageStrokeWidth?: Number, strokeColor?: AnyContent, boxWidth?: Number, percentageBoxWidth?: Number, sizingMethod?: Text) -> AnyContent
+overlayText(image: AnyContent, text: Text, position?: Text = "Center", font?: Text, fontSize?: Number = 36, alignment?: Text = "Center", x?: Number, y?: Number, percentageX?: Number, percentageY?: Number, offset?: Number, percentageOffset?: Number, percentageFontSize?: Number, color?: AnyContent, rotation?: Number, outlineEnabled?: Bool, strokeWidth?: Number, percentageStrokeWidth?: Number, strokeColor?: AnyContent, boxWidth?: Number, percentageBoxWidth?: Number, sizingMethod?: Text) -> AnyContent
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -5263,7 +5263,7 @@ overlayText(image: AnyContent, text: Text, position?: Text = "Center", font?: Te
 Press pause.
 
 ```cherri
-pause(route: AnyContent)
+pause(route?: AnyContent)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -5280,7 +5280,7 @@ pause(route: AnyContent)
 Press play.
 
 ```cherri
-play(route: AnyContent)
+play(route?: AnyContent)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -5382,7 +5382,7 @@ playSound(input: AnyContent)
 Prepend text to a file.
 
 ```cherri
-prependToFile(filePath: Text, text: AnyContent, newLine?: Bool = "true", targetFile?: AnyContent)
+prependToFile(filePath: Text, text: AnyContent, newLine?: Bool = true, targetFile?: AnyContent)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -5419,7 +5419,7 @@ print(input: AnyContent)
 Preview `input` in Quick Look.
 
 ```cherri
-quicklook(input: AnyContent, fullScreen?: Bool = "false")
+quicklook(input: AnyContent, fullScreen?: Bool = false)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -5485,7 +5485,7 @@ reboot()
 Prompt the user to record audio.
 
 ```cherri
-recordAudio(quality: Text, start?: Text = "On Tap", end?: Text, interval?: Text)
+recordAudio(quality?: Text = "Normal", start?: Text = "On Tap", end?: Text, interval?: Text)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -5502,7 +5502,7 @@ recordAudio(quality: Text, start?: Text = "On Tap", end?: Text, interval?: Text)
 **Title:** Remove Image Background  
 **Apple Identifier:** `is.workflow.actions.image.removebackground`  
 ```cherri
-removeBackground(image: AnyContent, crop?: Bool = "false")
+removeBackground(image: AnyContent, crop?: Bool = false)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -5538,7 +5538,7 @@ removeContactDetail(contact: AnyContent, detail: Text)
 Remove an event.
 
 ```cherri
-removeEvents(events: AnyContent, includeFutureEvents?: Bool = "false")
+removeEvents(events: AnyContent, includeFutureEvents?: Bool = false)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -5633,7 +5633,7 @@ renameAlbum(album: AnyContent, newTitle: Text)
 Replace `find` in `subject`, optionally using a regular expression or case insensitive search. Use raw text (single quotes) to match using an regular expression with braces to avoid conflicts with the regular expression syntax.
 
 ```cherri
-replaceText(find: Text, replacement: Text, subject: Text, caseSensitive?: Bool = "true", regExp?: Bool = "false") -> Text
+replaceText(find: Text, replacement: Text, subject: Text, caseSensitive?: Bool = true, regExp?: Bool = false) -> Text
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -5703,7 +5703,7 @@ resizeImageByPercent(image: AnyContent, percentage: AnyContent) -> Image
 Resize a window to defined size.
 
 ```cherri
-resizeWindow(window: AnyContent, configuration: Text, bringToFront?: Bool = "true", width?: Number, height?: Number)
+resizeWindow(window: AnyContent, configuration: Text, bringToFront?: Bool = true, width?: Number, height?: Number)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -5858,7 +5858,7 @@ runSSHScript(script: Text, input: AnyContent, host: Text, port: Text, user: Text
 **Title:** Run Shell Script  
 **Apple Identifier:** `is.workflow.actions.runshellscript`  
 ```cherri
-runShellScript(script: Text, input?: AnyContent, shell?: Text = "/bin/zsh", inputMode?: Text = "to stdin", runAsRoot?: Bool = "false")
+runShellScript(script: Text, input?: AnyContent, shell?: Text = "/bin/zsh", inputMode?: Text = "to stdin", runAsRoot?: Bool = false)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -5879,7 +5879,7 @@ runShellScript(script: Text, input?: AnyContent, shell?: Text = "/bin/zsh", inpu
 Save `content` to `path`, optionally into a referenced `folder`.
 
 ```cherri
-saveFile(path: Text, content: AnyContent, overwrite?: Bool = "false", folder?: AnyContent)
+saveFile(path: Text, content: AnyContent, overwrite?: Bool = false, folder?: AnyContent)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -5899,7 +5899,7 @@ saveFile(path: Text, content: AnyContent, overwrite?: Bool = "false", folder?: A
 Prompt the user to choose a location to save the file.
 
 ```cherri
-saveFilePrompt(file: AnyContent, overwrite?: Bool = "false")
+saveFilePrompt(file: AnyContent, overwrite?: Bool = false)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -5932,7 +5932,7 @@ savePhoto(image: AnyContent, album?: Text = "Recents")
 Save a file to Dropbox. Requires user to setup Dropbox account in Shortcuts app.
 
 ```cherri
-saveToDropbox(file: AnyContent, path: Text, overwrite?: Bool = "false")
+saveToDropbox(file: AnyContent, path: Text, overwrite?: Bool = false)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -5951,7 +5951,7 @@ saveToDropbox(file: AnyContent, path: Text, overwrite?: Bool = "false")
 Prompt to save a file to Dropbox. Requires user to setup Dropbox account in Shortcuts app.
 
 ```cherri
-saveToDropboxPrompt(file: AnyContent, overwrite?: Bool = "false")
+saveToDropboxPrompt(file: AnyContent, overwrite?: Bool = false)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -5970,7 +5970,7 @@ saveToDropboxPrompt(file: AnyContent, overwrite?: Bool = "false")
 Scan or extract a barcode or QR code from an image or camera.
 
 ```cherri
-scanBarcode(extract: Bool, image?: AnyContent) -> List<AnyContent>
+scanBarcode(extract?: Bool = false, image?: AnyContent) -> List<AnyContent>
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -5989,7 +5989,7 @@ scanBarcode(extract: Bool, image?: AnyContent) -> List<AnyContent>
 Get results from search on iOS or iPadOS, and Spotlight on macOS.
 
 ```cherri
-search(query: Text, limit?: Number = "5", resultType?: List<AnyContent> = "[Calendar Events Contacts Mail Messages Notes Photos Reminders Voice Recordings Bookmarks]") -> List<AnyContent>
+search(query: Text, limit?: Number = 5, resultType?: List<AnyContent> = "[Calendar Events Contacts Mail Messages Notes Photos Reminders Voice Recordings Bookmarks]") -> List<AnyContent>
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -6026,7 +6026,7 @@ searchAppStore(query: Text, country?: Text, attribute?: Text, entity?: Text, lim
 Gets GIFs from Giphy for a search query.
 
 ```cherri
-searchGiphy(query: Text, selectMultiple?: Bool = "false")
+searchGiphy(query: Text, selectMultiple?: Bool = false)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -6166,7 +6166,7 @@ searchiTunes(query: Text, limit?: Number, country?: Text, attribute?: Text, enti
 Seek the currently playing media.
 
 ```cherri
-seek(timeInterval: Unknown, behavior?: Text = "To Time", route?: AnyContent)
+seek(timeInterval?: Unknown = "[{number 0} {text sec}]", behavior?: Text = "To Time", route?: AnyContent)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -6185,7 +6185,7 @@ seek(timeInterval: Unknown, behavior?: Text = "To Time", route?: AnyContent)
 Prompt the user to select a contact or multiple contacts. Returns selected contact.
 
 ```cherri
-selectContact(multiple: Bool)
+selectContact(multiple?: Bool = false)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -6202,7 +6202,7 @@ selectContact(multiple: Bool)
 Select contacts or specify a contact.
 
 ```cherri
-selectContacts(contact: AnyContent)
+selectContacts(contact?: AnyContent)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -6232,7 +6232,7 @@ selectEmailAddress()
 Prompt the user to select one or optionally multiple files.
 
 ```cherri
-selectFile(selectMultiple: Bool)
+selectFile(selectMultiple?: Bool = false)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -6250,7 +6250,7 @@ selectFile(selectMultiple: Bool)
 Prompt the user to select one or optionally multiple folders.
 
 ```cherri
-selectFolder(selectMultiple: Bool) -> File
+selectFolder(selectMultiple?: Bool = false) -> File
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -6267,7 +6267,7 @@ selectFolder(selectMultiple: Bool) -> File
 Prompt the user to select music.
 
 ```cherri
-selectMusic(selectMultiple: Bool)
+selectMusic(selectMultiple?: Bool = false)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -6297,7 +6297,7 @@ selectPhoneNumber()
 Prompt the user to select from their photo library.
 
 ```cherri
-selectPhotos(selectMultiple: Bool, types?: Text)
+selectPhotos(selectMultiple?: Bool = false, types?: Text)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -6315,7 +6315,7 @@ selectPhotos(selectMultiple: Bool, types?: Text)
 Send an email to a contact.
 
 ```cherri
-sendEmail(contact: AnyContent, from: Text, subject: Text, body: Text, prompt?: Bool = "true", draft?: Bool = "false", cc?: AnyContent, bcc?: AnyContent, account?: AnyContent)
+sendEmail(contact: AnyContent, from: Text, subject: Text, body: Text, prompt?: Bool = true, draft?: Bool = false, cc?: AnyContent, bcc?: AnyContent, account?: AnyContent)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -6340,7 +6340,7 @@ sendEmail(contact: AnyContent, from: Text, subject: Text, body: Text, prompt?: B
 Send an SMS/iMessage to a contact.
 
 ```cherri
-sendMessage(contact: AnyContent, message: Text, prompt?: Bool = "true", prefix?: Text)
+sendMessage(contact: AnyContent, message: Text, prompt?: Bool = true, prefix?: Text)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -6360,7 +6360,7 @@ sendMessage(contact: AnyContent, message: Text, prompt?: Bool = "true", prefix?:
 Set the AirDrop receiving setting.
 
 ```cherri
-setAirdropReceiving(state: Text)
+setAirdropReceiving(state?: Text = "Everyone")
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -6422,7 +6422,7 @@ setAutoAnswerCalls(status: Bool)
 Set the background sound that plays.
 
 ```cherri
-setBackgroundSound(sound: Text)
+setBackgroundSound(sound?: Text = "BalancedNoise")
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -6523,7 +6523,7 @@ setClassicInvert(status: Bool)
 Set the contents of the clipboard.
 
 ```cherri
-setClipboard(value: AnyContent, local?: Bool = "false", expire?: Text)
+setClipboard(value: AnyContent, local?: Bool = false, expire?: Text)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -6720,7 +6720,7 @@ setMonoAudio(status: Bool)
 Set the name of an item.
 
 ```cherri
-setName(item: AnyContent, name: Text, includeFileExtension?: Bool = "false")
+setName(item: AnyContent, name: Text, includeFileExtension?: Bool = false)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -6879,7 +6879,7 @@ setSmartInvert(status: Bool)
 **Title:** Set Sound Recognition  
 **Apple Identifier:** `com.apple.AccessibilityUtilities.AXSettingsShortcuts.AXToggleSoundDetectionIntent`  
 ```cherri
-setSoundRecognition(operation: Text)
+setSoundRecognition(operation?: Text = "activate")
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -6893,7 +6893,7 @@ setSoundRecognition(operation: Text)
 **Title:** Set Stage Manager  
 **Apple Identifier:** `is.workflow.actions.stagemanager.set`  
 ```cherri
-setStageManager(status: Bool, showDock?: Bool = "true", showRecentApps?: Bool = "true")
+setStageManager(status: Bool, showDock?: Bool = true, showRecentApps?: Bool = true)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -7169,7 +7169,7 @@ showIniTunes(product: AnyContent)
 Shows a custom notification message.
 
 ```cherri
-showNotification(body: Text, title?: Text, playSound?: Bool = "true", attachment?: AnyContent)
+showNotification(body: Text, title?: Text, playSound?: Bool = true, attachment?: AnyContent)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -7233,7 +7233,7 @@ shutdown()
 Go to the previous song.
 
 ```cherri
-skipBack(route: AnyContent)
+skipBack(route?: AnyContent)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -7250,7 +7250,7 @@ skipBack(route: AnyContent)
 Go to the next song.
 
 ```cherri
-skipFwd(route: AnyContent)
+skipFwd(route?: AnyContent)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -7281,7 +7281,7 @@ sleep()
 Speaks the provided text, optionally in another language.
 
 ```cherri
-speak(prompt: Text, waitUntilFinished?: Bool = "true", language?: Text, rate?: Number, pitch?: Number, voice?: Text)
+speak(prompt: Text, waitUntilFinished?: Bool = true, language?: Text, rate?: Number, pitch?: Number, voice?: Text)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -7332,7 +7332,7 @@ startScreensaver()
 Prompt the user to play music for Shazam to recognize. Returns Shazam result.
 
 ```cherri
-startShazam(show: Bool, showError?: Bool = "true")
+startShazam(show?: Bool = true, showError?: Bool = true)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -7350,7 +7350,7 @@ startShazam(show: Bool, showError?: Bool = "true")
 Creates a new timer.
 
 ```cherri
-startTimer(duration: Unknown)
+startTimer(duration?: Unknown = "[{number 0} {text min}]")
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -7398,7 +7398,7 @@ stop()
 Store content by a key, optionally globally or specific to the Shortcut.
 
 ```cherri
-storeValue(key: Text, value: Text, global?: Bool = "false")
+storeValue(key: Text, value: Text, global?: Bool = false)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -7417,7 +7417,7 @@ storeValue(key: Text, value: Text, global?: Bool = "false")
 Create a location value with an address.
 
 ```cherri
-streetAddress(addressLine2: Text, city: Text, state: Text, country: Text, zipCode: Number)
+streetAddress(addressLine2: Text, addressLine2: Text, city: Text, state: Text, country: Text, zipCode: Number)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -7465,7 +7465,7 @@ stripMediaMetadata(media: AnyContent)
 **Apple Identifier:** `is.workflow.actions.takescreenshot`  
 **Returns:** `Image`  
 ```cherri
-takeInteractiveScreenshot(selection: Text) -> Image
+takeInteractiveScreenshot(selection?: Text = "Window") -> Image
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -7482,7 +7482,7 @@ takeInteractiveScreenshot(selection: Text) -> Image
 Prompt the user to take one or more photos.
 
 ```cherri
-takePhoto(count: Number, showPreview?: Bool = "true", camera?: Text = "Back")
+takePhoto(count?: Number = 1, showPreview?: Bool = true, camera?: Text = "Back")
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -7498,7 +7498,7 @@ takePhoto(count: Number, showPreview?: Bool = "true", camera?: Text = "Back")
 **Title:** Take Screenshot  
 **Apple Identifier:** `is.workflow.actions.takescreenshot`  
 ```cherri
-takeScreenshot(mainMonitorOnly: Bool)
+takeScreenshot(mainMonitorOnly?: Bool = false)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -7515,7 +7515,7 @@ takeScreenshot(mainMonitorOnly: Bool)
 Prompt the user to start recording a video.
 
 ```cherri
-takeVideo(camera: Text, quality?: Text = "High", recordingStart?: Text = "Immediately")
+takeVideo(camera?: Text = "Front", quality?: Text = "High", recordingStart?: Text = "Immediately")
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -7689,7 +7689,7 @@ toggleDND()
 Toggle the flashlight on the device with optional brightness setting.
 
 ```cherri
-toggleFlashlight(brightness: Number)
+toggleFlashlight(brightness?: Number = 0.5)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -7723,7 +7723,7 @@ toggleLEDFlash()
 **Title:** Toggle Left-Right Balance  
 **Apple Identifier:** `com.apple.AccessibilityUtilities.AXSettingsShortcuts.AXSetLeftRightBalanceIntent`  
 ```cherri
-toggleLeftRightBalance(value: Number)
+toggleLeftRightBalance(value?: Number)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -7797,7 +7797,7 @@ toggleOrientationLock()
 **Title:** Toggle Play/Pause  
 **Apple Identifier:** `is.workflow.actions.pausemusic`  
 ```cherri
-togglePlayPause(route: AnyContent)
+togglePlayPause(route?: AnyContent)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -7854,7 +7854,7 @@ toggleSmartInvert()
 **Title:** Toggle Stage Manager  
 **Apple Identifier:** `is.workflow.actions.stagemanager.set`  
 ```cherri
-toggleStageManager(showDock: Bool, showRecentApps?: Bool = "true")
+toggleStageManager(showDock?: Bool = true, showRecentApps?: Bool = true)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -8060,7 +8060,7 @@ urlEncode(input: Text) -> Text
 Vibrate the device. Only applies to Apple devices with the haptic engine.
 
 ```cherri
-vibrate(hapticType: Text)
+vibrate(hapticType?: Text)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -8130,7 +8130,7 @@ generateImage(prompt: Text, image?: AnyContent, style?: Text = "animation", save
 **Title:** Get Windows  
 **Apple Identifier:** `is.workflow.actions.filter.windows`  
 ```cherri
-getWindows(windows: AnyContent, filter?: AnyContent, sortBy?: Text, orderBy?: Text, limit?: Number)
+getWindows(windows?: AnyContent, filter?: AnyContent, sortBy?: Text, orderBy?: Text, limit?: Number)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -8197,7 +8197,7 @@ measurement(magnitude: Text, unitType: Text, unit: Text)
 Plays a recording in Voice Memos.
 
 ```cherri
-playVoiceMemo(playbackType: Text, recording?: AnyContent)
+playVoiceMemo(playbackType?: Text, recording?: AnyContent)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -8217,7 +8217,7 @@ playVoiceMemo(playbackType: Text, recording?: AnyContent)
 Creates a new recording in Voice Memos.
 
 ```cherri
-recordVoiceMemo(name: Text)
+recordVoiceMemo(name?: Text)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -8253,7 +8253,7 @@ stopVoiceMemoRecording()
 Get text from PDF.
 
 ```cherri
-getPDFText(pdfFile: AnyContent, richText?: Bool = "false", combinePages?: Bool = "true", headerText?: Text, footerText?: Text)
+getPDFText(pdfFile: AnyContent, richText?: Bool = false, combinePages?: Bool = true, headerText?: Text, footerText?: Text)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -8276,7 +8276,7 @@ getPDFText(pdfFile: AnyContent, richText?: Bool = "false", combinePages?: Bool =
 Set a default focus mode on or off. If setting to on, optionally set until with optional arguments for time or event.
 
 ```cherri
-setFocusMode(focusMode: Text, until?: Text = "Turned Off", time?: Text, event?: AnyContent)
+setFocusMode(focusMode?: Text = "Do Not Disturb", until?: Text = "Turned Off", time?: Text, event?: AnyContent)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -8316,7 +8316,7 @@ setSilentMode(state: Number)
 Set the multitasking mode to Stage Manager. Applies to iPadOS and macOS only.
 
 ```cherri
-setStageManagerMultitasking(automaticallyShowAndHideDock: Bool, showRecentApps?: Bool)
+setStageManagerMultitasking(automaticallyShowAndHideDock?: Bool, showRecentApps?: Bool)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -8336,7 +8336,7 @@ setStageManagerMultitasking(automaticallyShowAndHideDock: Bool, showRecentApps?:
 Set the multitasking mode to windowed. Applies to iPadOS and macOS only.
 
 ```cherri
-setWindowedMultitasking(automaticallyShowAndHideDock: Bool)
+setWindowedMultitasking(automaticallyShowAndHideDock?: Bool)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -8355,7 +8355,7 @@ setWindowedMultitasking(automaticallyShowAndHideDock: Bool)
 Toggle a focus mode.
 
 ```cherri
-toggleFocusMode(focusMode: Text)
+toggleFocusMode(focusMode?: Text = "Do Not Disturb")
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -8444,7 +8444,7 @@ runSelf(output: AnyContent)
 Uses Match Text to check if text is within subject.
 
 ```cherri
-containsText(subject: Text, text: Text, caseSensitive?: Bool = "true")
+containsText(subject: Text, text: Text, caseSensitive?: Bool = true)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -8525,7 +8525,7 @@ transcribeText(audio: AnyContent) -> Text
 Add a link to the reading list.
 
 ```cherri
-addToReadingList(url: Text, url: Text)
+addToReadingList(url: Text)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -8560,7 +8560,7 @@ openCustomXCallbackURL(url: Text, successKey?: Text, cancelKey?: Text, errorKey?
 Create a URL value.
 
 ```cherri
-url(url: Text, url: Text)
+url(url: Text)
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -8605,7 +8605,7 @@ debugClearLogs()
 Return one local JSON/text File without saving, sharing or uploading. Fully redacts payloads by default. Explicit redactSensitive:false exports only Text as base64-encoded UTF-8; other payloads report UNSUPPORTED_PAYLOAD_TYPE. Dates/labels are not collected; includeDates:true is rejected. Options are compile-time literals. Native runtime acceptance remains required.
 
 ```cherri
-debugExport(format: Text, includeDates?: Bool = "false", includeTypes?: Bool = "true", redactSensitive?: Bool = "true") -> File
+debugExport(format?: Text = "json", includeDates?: Bool = false, includeTypes?: Bool = true, redactSensitive?: Bool = true) -> File
 ```
 
 | Parameter | Type | Optional | Literal required | Default |
@@ -8620,7 +8620,7 @@ debugExport(format: Text, includeDates?: Bool = "false", includeTypes?: Bool = "
 Combine the execution-local QA trace buffer into a deterministic JSON envelope for QA inspection or callback export without mutating __cherri_debug_log.
 
 ```cherri
-debugExportTrace(runId: text) -> text
+debugExportTrace(runId?: text = "cherri-qa-run") -> text
 ```
 
 | Parameter | Type | Optional | Literal required | Default |
@@ -8632,7 +8632,7 @@ debugExportTrace(runId: text) -> text
 Preview native objects with optional Creation Date names or display text with showLogsAsText.
 
 ```cherri
-debugFinish(withDates: bool, showLogsAsText?: bool = "false")
+debugFinish(withDates?: bool = false, showLogsAsText?: bool = false)
 ```
 
 | Parameter | Type | Optional | Literal required | Default |
@@ -8645,7 +8645,7 @@ debugFinish(withDates: bool, showLogsAsText?: bool = "false")
 Append previous native output without coercion. Optional withDates captures original Creation Date at source; showLogs previews native objects (with Set Name by Creation Date when enabled); showLogsAsText opts into Combine Text or dated text rows.
 
 ```cherri
-debugLog(withDates: bool, showLogs?: bool = "false", showLogsAsText?: bool = "false") -> text
+debugLog(withDates?: bool = false, showLogs?: bool = false, showLogsAsText?: bool = false) -> text
 ```
 
 | Parameter | Type | Optional | Literal required | Default |
@@ -8659,7 +8659,7 @@ debugLog(withDates: bool, showLogs?: bool = "false", showLogsAsText?: bool = "fa
 Alias for debugLog with optional withDates/showLogs/showLogsAsText.
 
 ```cherri
-debugLogPrevious(withDates: bool, showLogs?: bool = "false", showLogsAsText?: bool = "false") -> text
+debugLogPrevious(withDates?: bool = false, showLogs?: bool = false, showLogsAsText?: bool = false) -> text
 ```
 
 | Parameter | Type | Optional | Literal required | Default |
@@ -8673,7 +8673,7 @@ debugLogPrevious(withDates: bool, showLogs?: bool = "false", showLogsAsText?: bo
 Preview native objects, naming items by Creation Date when enabled; use showLogsAsText for text formatting.
 
 ```cherri
-debugShowLogs(withDates: bool, showLogsAsText?: bool = "false")
+debugShowLogs(withDates?: bool = false, showLogsAsText?: bool = false)
 ```
 
 | Parameter | Type | Optional | Literal required | Default |
@@ -8749,7 +8749,7 @@ measure(label: text) { <#value#> } -> AnyContent
 Traverse native Dictionary page bodies with ordered Dictionary items and a body next marker. Next accepts same-origin absolute URLs or simple sibling filenames. Exact resolved-URL hash cycles, absent/empty next and literal caps stop traversal; either zero cap emits no GET. No headers, Link parsing, HTTP status verification, retry, transport timeout or trailing block contract. Native runtime acceptance remains required.
 
 ```cherri
-paginate(startURL: Text, itemsKey?: Text = "items", nextKey?: Text = "next", maxPages?: Number = "20", maxItems?: Number = "1000") -> List<Map<Text, AnyContent>>
+paginate(startURL: Text, itemsKey?: Text = "items", nextKey?: Text = "next", maxPages?: Number = 20, maxItems?: Number = 1000) -> List<Map<Text, AnyContent>>
 ```
 
 | Parameter | Type | Optional | Literal required | Default |

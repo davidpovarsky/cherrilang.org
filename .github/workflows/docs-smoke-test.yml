@@ -18,6 +18,10 @@ concurrency:
 jobs:
   smoke-test-snippets:
     runs-on: ubuntu-latest
+    env:
+      CHERRI_SMOKE_CACHE_DIR: ${{ runner.temp }}/cherri-docs-compiler
+      CHERRI_SMOKE_TEST_CACHE: ${{ runner.temp }}/cherri-docs-compiler
+      PYTHONDONTWRITEBYTECODE: "1"
     steps:
       - name: Checkout cherrilang.org
         uses: actions/checkout@v4
@@ -33,4 +37,15 @@ jobs:
           python-version: "3.12"
 
       - name: Run standalone docs snippet smoke test against pinned Cherri compiler
-        run: python3 scripts/smoke_test_snippets.py
+        run: python3 scripts/smoke_test_snippets.py --evidence-out "$RUNNER_TEMP/cherri-docs-evidence.json"
+
+      - name: Verify real compiler cache provenance and negative examples
+        run: python3 scripts/test_smoke_test_snippets.py
+
+      - name: Retain bounded documentation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: docs-snippet-evidence
+          path: ${{ runner.temp }}/cherri-docs-evidence.json
+          if-no-files-found: warn

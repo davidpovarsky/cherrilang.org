@@ -46,7 +46,16 @@ Variables defined with `let` are immutable. They cannot be reassigned.
 ```cherri
 let name = "Alice"
 let count = 42
-// name = "Bob"  // Compile Error: E_ASSIGN_IMMUTABLE
+```
+
+A reassignment to a `let` binding is deliberately invalid. The documentation
+test requires the exact `E_ASSIGN_IMMUTABLE` diagnostic and verifies that
+no unsigned shortcut is produced:
+
+<!-- cherri-test: diagnostic E_ASSIGN_IMMUTABLE -->
+```cherri
+let name = "Alice"
+name = "Bob"
 ```
 
 ### Mutable Bindings (`var`)
@@ -132,7 +141,7 @@ Native Apple Shortcuts content items:
 Actions in Cherri v2 accept an optional primary argument without label, followed by named arguments:
 ```cherri
 // Primary argument + named arguments
-let photo = none
+let photo = selectPhotos()
 resizeImage(photo, width: 800, height: 600)
 
 // Named arguments only
@@ -218,9 +227,9 @@ menu("Select an action") {
 
 Declare shortcut properties using the `shortcut` declaration:
 ```cherri
-shortcut "Morning Routine" {
+shortcut "Network Routine" {
     icon: { glyph: 59789, color: 4282601983 }
-    trigger time(event: .sunrise)
+    trigger wifi(event: .joined)
 }
 ```
 
@@ -228,11 +237,17 @@ shortcut "Morning Routine" {
 ```cherri
 setup apiKey: Text {
     prompt: "Enter your API Key"
-    default: "sk-demo"
+    default: "synthetic-key"
 }
+text(apiKey)
 ```
 
 ---
+
+Setup questions are bound to one direct action parameter, as in `text(apiKey)`.
+Declare a separate question for another slot. A declaration that is never used
+does not create a native import question. An authored `Ask` value is a runtime
+prompt; it is separate from a setup question.
 
 ## 8. Native Escape Hatches
 
