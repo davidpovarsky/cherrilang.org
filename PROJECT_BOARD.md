@@ -34,6 +34,8 @@ Use Markdown checkboxes where useful:
 
 ## Done
 
+- [x] 2026-11-18: Regenerated the fork action reference from compiler `d00bc0b9e9a4d8c460623de3d883680b94289e04` with the existing `tools/language-docs` generator, retaining Jekyll frontmatter. The source fingerprint is `f55851491e52ec9d06e486420f83d4faef0e31292d411235c01bf104bc48045d`. Updated the snippet compiler pin to the same immutable SHA. The real fetched and rebuilt compiler passed all 14 executable snippets and the invalid-syntax negative control. This is the first P10R15 validation tuple; refresh its pin if the integrated compiler candidate changes. Generated signature declarations are reference notation, separate from the executable snippet checks.
+
 Completed items that are still useful to retain because they document an important decision, discovery, or implementation.
 
 Example:
