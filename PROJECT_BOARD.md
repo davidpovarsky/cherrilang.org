@@ -34,6 +34,8 @@ Use Markdown checkboxes where useful:
 
 ## Done
 
+- [x] 2026-11-18: Refreshed the immutable compiler pin to a04c6feede79358ee642a1ae27f0a0da8f995ad7 and compared the complete canonical generated action reference while preserving Jekyll frontmatter. The native schema and macro fingerprints remain unchanged. The 37 executable/diagnostic checks and 12 cache-provenance controls must bind to this exact compiler and the resulting docs commit; their run receipts are retained with the staged compiler consumer evidence. Future compiler changes require this pin/reference refresh again. This does not publish the site or prove Apple runtime.
+
 - [x] 2026-11-18: Replaced HEAD-only docs compiler cache trust with read-only source, VCS and binary-digest validation. Controlled baseline accepted an actual old compiler and deleted an unmanaged cache file; 12 actual controls now cover both failures and exact diagnostics. Existing occupied caches are preserved; the default versioned cache path starts fresh.
 - [x] 2026-11-18: Extended executable coverage from the former 14 examples to 37 checks across the active guide, migration and retained V2 pages. Corrected unsupported time-trigger and incomplete migration examples. Two deliberate errors require exact diagnostic codes and no unsigned output. The 520 generated signatures and four labelled Legacy fragments are reference-only, with signatures validated separately by the complete compiler schema contract at f3e32df.
 - [ ] After future compiler changes, refresh the immutable pin and generated reference together, rerun this CI and record its exact docs/compiler tuple. Local validation does not establish site publication or Apple execution.
