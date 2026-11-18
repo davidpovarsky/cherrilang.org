@@ -11,7 +11,7 @@ import sys
 import tempfile
 
 PINNED_CHERRI_REPO = "https://github.com/davidpovarsky/cherri.git"
-PINNED_CHERRI_COMMIT = "d00bc0b9e9a4d8c460623de3d883680b94289e04"
+PINNED_CHERRI_COMMIT = "17ba3ca3387f204a0fd80b092624e21f311db8d4"
 
 
 def ensure_pinned_cherri_binary() -> str:

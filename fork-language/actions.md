@@ -5,11 +5,12 @@ layout: default
 nav_order: 2
 permalink: /fork-language/actions
 ---
+
 # Cherri Language v2.0 — Action Reference
 
 **Language Version:** 2.0  
 **Catalog Schema:** 3.0  
-**Schema Fingerprint:** `f55851491e52ec9d06e486420f83d4faef0e31292d411235c01bf104bc48045d`  
+**Schema Fingerprint:** `6eb0ef0129bba916af7cfdeae85bdbb2e42245390ccaa1137670aeb46cb62cce`  
 **Total Actions:** 505  
 
 This documentation is generated automatically from the canonical Cherri v2 ActionSchema registry.
@@ -4131,14 +4132,14 @@ getTravelTime(destination: AnyContent, customLocation?: AnyContent, mode?: Text,
 
 ### `getType`
 
-**Title:** Get Type  
+**Title:** Get File of Type  
 **Apple Identifier:** `is.workflow.actions.gettypeaction`  
-**Returns:** `Text`  
+**Returns:** `File`  
 
-Get the type of input.
+Return file content of the requested UTI from input. May return multiple items; use typeOf to inspect content types.
 
 ```cherri
-getType(input: AnyContent, fileType?: Text) -> Text
+getType(input: AnyContent, fileType?: Text) -> File
 ```
 
 | Parameter | Type | Required | Default | Wire Key | Choices |
@@ -8566,4 +8567,210 @@ url(url: Text, url: Text)
 | `url` | `Text` | Yes | - | `` | - |
 
 ---
+
+## Compiler macros
+
+**Compiler Macro Fingerprint:** `1fe7f7993e2473aec591341712f42c521f913974b8e84091a5c2950232230dec`
+
+**Compiler Macros:** 15
+
+These compiler expansions are listed separately from the native Apple catalog. Signatures below describe V2 named arguments; existing Legacy positional forms remain available unless a scoped block is required. A metadata entry does not certify Apple runtime behavior.
+
+Build profile `--build-profile=debug|release` defaults to debug. Release removes explicitly diagnostic expansions, preserves body effects and semantic guards, and rejects consumed diagnostic outputs.
+
+### `debugAssert`
+
+Stop the Shortcut with a message when the condition is false.
+
+```cherri
+debugAssert(condition: bool, message?: text = "Assertion failed")
+```
+
+| Parameter | Type | Optional | Literal required | Default |
+|---|---|---|---|---|
+| `condition` | `bool` | false | false | - |
+| `message` | `text` | true | false | Assertion failed |
+
+### `debugClearLogs`
+
+Reset the execution-local debug log to an empty value.
+
+```cherri
+debugClearLogs()
+```
+
+### `debugExport`
+
+Return one local JSON/text File without saving, sharing or uploading. Fully redacts payloads by default. Explicit redactSensitive:false exports only Text as base64-encoded UTF-8; other payloads report UNSUPPORTED_PAYLOAD_TYPE. Dates/labels are not collected; includeDates:true is rejected. Options are compile-time literals. Native runtime acceptance remains required.
+
+```cherri
+debugExport(format: Text, includeDates?: Bool = "false", includeTypes?: Bool = "true", redactSensitive?: Bool = "true") -> File
+```
+
+| Parameter | Type | Optional | Literal required | Default |
+|---|---|---|---|---|
+| `format` | `Text` | true | true | json |
+| `includeDates` | `Bool` | true | true | false |
+| `includeTypes` | `Bool` | true | true | true |
+| `redactSensitive` | `Bool` | true | true | true |
+
+### `debugExportTrace`
+
+Combine the execution-local QA trace buffer into a deterministic JSON envelope for QA inspection or callback export without mutating __cherri_debug_log.
+
+```cherri
+debugExportTrace(runId: text) -> text
+```
+
+| Parameter | Type | Optional | Literal required | Default |
+|---|---|---|---|---|
+| `runId` | `text` | true | false | cherri-qa-run |
+
+### `debugFinish`
+
+Preview native objects with optional Creation Date names or display text with showLogsAsText.
+
+```cherri
+debugFinish(withDates: bool, showLogsAsText?: bool = "false")
+```
+
+| Parameter | Type | Optional | Literal required | Default |
+|---|---|---|---|---|
+| `withDates` | `bool` | true | false | false |
+| `showLogsAsText` | `bool` | true | false | false |
+
+### `debugLog`
+
+Append previous native output without coercion. Optional withDates captures original Creation Date at source; showLogs previews native objects (with Set Name by Creation Date when enabled); showLogsAsText opts into Combine Text or dated text rows.
+
+```cherri
+debugLog(withDates: bool, showLogs?: bool = "false", showLogsAsText?: bool = "false") -> text
+```
+
+| Parameter | Type | Optional | Literal required | Default |
+|---|---|---|---|---|
+| `withDates` | `bool` | true | false | false |
+| `showLogs` | `bool` | true | false | false |
+| `showLogsAsText` | `bool` | true | false | false |
+
+### `debugLogPrevious`
+
+Alias for debugLog with optional withDates/showLogs/showLogsAsText.
+
+```cherri
+debugLogPrevious(withDates: bool, showLogs?: bool = "false", showLogsAsText?: bool = "false") -> text
+```
+
+| Parameter | Type | Optional | Literal required | Default |
+|---|---|---|---|---|
+| `withDates` | `bool` | true | false | false |
+| `showLogs` | `bool` | true | false | false |
+| `showLogsAsText` | `bool` | true | false | false |
+
+### `debugShowLogs`
+
+Preview native objects, naming items by Creation Date when enabled; use showLogsAsText for text formatting.
+
+```cherri
+debugShowLogs(withDates: bool, showLogsAsText?: bool = "false")
+```
+
+| Parameter | Type | Optional | Literal required | Default |
+|---|---|---|---|---|
+| `withDates` | `bool` | true | false | false |
+| `showLogsAsText` | `bool` | true | false | false |
+
+### `debugStartTimer`
+
+Remember the current time under a compile-time label.
+
+```cherri
+debugStartTimer(label: text)
+```
+
+| Parameter | Type | Optional | Literal required | Default |
+|---|---|---|---|---|
+| `label` | `text` | false | false | - |
+
+### `debugStopTimer`
+
+Measure elapsed seconds and append the result to the execution-local log.
+
+```cherri
+debugStopTimer(label: text) -> number
+```
+
+| Parameter | Type | Optional | Literal required | Default |
+|---|---|---|---|---|
+| `label` | `text` | false | false | - |
+
+### `debugTrace`
+
+Append current time followed by a value to the execution-local debug log.
+
+```cherri
+debugTrace(value: text) -> text
+```
+
+| Parameter | Type | Optional | Literal required | Default |
+|---|---|---|---|---|
+| `value` | `text` | false | false | - |
+
+### `debugTraceEvent`
+
+Append a structured JSONL trace record (stage, label, step sequence, and CurrentDate timestamp) to the execution-local QA trace buffer without mutating __cherri_debug_log.
+
+```cherri
+debugTraceEvent(stage: text, label?: text) -> text
+```
+
+| Parameter | Type | Optional | Literal required | Default |
+|---|---|---|---|---|
+| `stage` | `text` | false | false | - |
+| `label` | `text` | true | false | - |
+
+### `measure`
+
+V2 scoped value block. Evaluate once, log elapsed seconds through existing native timers, and return the original typed value. Runtime timing accuracy remains platform-dependent.
+
+**Dialect:** V2 scoped block. Legacy rejects this syntax with E_V2_SCOPED_BLOCK. The current block contract is one inline value with no block parameters.
+
+```cherri
+measure(label: text) { <#value#> } -> AnyContent
+```
+
+| Parameter | Type | Optional | Literal required | Default |
+|---|---|---|---|---|
+| `label` | `text` | false | true | - |
+
+### `paginate`
+
+Traverse native Dictionary page bodies with ordered Dictionary items and a body next marker. Next accepts same-origin absolute URLs or simple sibling filenames. Exact resolved-URL hash cycles, absent/empty next and literal caps stop traversal; either zero cap emits no GET. No headers, Link parsing, HTTP status verification, retry, transport timeout or trailing block contract. Native runtime acceptance remains required.
+
+```cherri
+paginate(startURL: Text, itemsKey?: Text = "items", nextKey?: Text = "next", maxPages?: Number = "20", maxItems?: Number = "1000") -> List<Map<Text, AnyContent>>
+```
+
+| Parameter | Type | Optional | Literal required | Default |
+|---|---|---|---|---|
+| `startURL` | `Text` | false | true | - |
+| `itemsKey` | `Text` | true | true | items |
+| `nextKey` | `Text` | true | true | next |
+| `maxPages` | `Number` | true | true | 20 |
+| `maxItems` | `Number` | true | true | 1000 |
+
+### `require`
+
+Validate text, number or dictionary native content and optional nonempty character/key/item count, then return the original value. Type and nonEmpty are compile-time literals.
+
+```cherri
+require(value: AnyContent, type?: Text, nonEmpty?: Bool, message?: Text) -> AnyContent
+```
+
+| Parameter | Type | Optional | Literal required | Default |
+|---|---|---|---|---|
+| `value` | `AnyContent` | false | false | - |
+| `type` | `Text` | true | true | - |
+| `nonEmpty` | `Bool` | true | true | - |
+| `message` | `Text` | true | false | - |
 

@@ -48,3 +48,5 @@ Example:
 ## Archive
 
 Older completed/superseded items that still have historical value.
+
+- [x] 2026-11-18: Refreshed the existing canonical generator reference for compiler 17ba3ca3387f204a0fd80b092624e21f311db8d4. It contains 505 native catalog entries and 15 separately fingerprinted compiler macros. Preserved site frontmatter and all reconciled main history. The exact compiler was fetched, SHA-verified and rebuilt by scripts/smoke_test_snippets.py: 14 executable snippets passed static check and unsigned compilation, and the invalid-syntax negative control was rejected. Native action fingerprint 6eb0ef0129bba916af7cfdeae85bdbb2e42245390ccaa1137670aeb46cb62cce; macro fingerprint 1fe7f7993e2473aec591341712f42c521f913974b8e84091a5c2950232230dec. This is a staged P10R15 consumer tuple; no published site or live consumer deployment is claimed.
