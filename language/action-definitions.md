@@ -16,7 +16,7 @@ nav_order: 13
 
 ## Definition
 
-To define a Shortcut action raw, in the same reusable way as the [standard Shortcut actions](/language/actions) in the compiler, use the following syntax:
+To define a Shortcut action raw, in the same reusable way as the [standard Shortcut actions]({{ '/language/actions' | relative_url }}) in the compiler, use the following syntax:
 
 ```
 action 'com.example.app.action' myCustomAction()
@@ -32,7 +32,7 @@ You may see `#builtin` for an action definition printed by the compiler. These a
 
 ## Parsing Shortcut Data
 
-To find the identifier and parameters for an action from a Shortcut not implemented in Cherri, see [parsing out action data from a raw Shortcut](/faq#how-do-i-use-non-standard-actions).
+To find the identifier and parameters for an action from a Shortcut not implemented in Cherri, see [parsing out action data from a raw Shortcut]({{ '/faq#how-do-i-use-non-standard-actions' | relative_url }}).
 
 ## Attributes
 
@@ -44,7 +44,7 @@ Attributes may be added in the following order after `action`:
 
 ## Arguments
 
-The syntax for the action arguments is the same as [functions](/language/functions#defining-arguments), and you can also set an [output type](/language/custom-actions#output-type).
+The syntax for the action arguments is the same as [functions]({{ '/language/functions#defining-arguments' | relative_url }}), and you can also set an [output type]({{ '/language/custom-actions#output-type' | relative_url }}).
 
 One exception is that it requires the key for the parameter that the argument will be used to create. Add a `:` after the argument name, then a raw string with the parameter key:
 
@@ -57,7 +57,7 @@ myCustomAction(@file)
 
 ## Add Parameters
 
-To add extra parameters in the same way as a [raw action](/language/raw-actions), add a dictionary after the definition and an optional output type.
+To add extra parameters in the same way as a [raw action]({{ '/language/raw-actions' | relative_url }}), add a dictionary after the definition and an optional output type.
 
 ```
 action 'com.example.app.action' myCustomAction(variable file: 'WFInput'): bool {

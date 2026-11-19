@@ -5,10 +5,10 @@ nav_order: 6
 has_children: true
 ---
 
-# Documentation
+# Reference archive
 
 {: .note }
-This section documents the legacy upstream Cherri v1 syntax. For the active **Cherri Language v2.0** guide, please visit the [Language v2.0 Guide](/fork-language/).
+This archive retains upstream documentation and previously migrated pages. It is excluded from default search and navigation. For current **Cherri Language v2.0** authoring, use the [Language v2.0 Guide]({{ '/fork-language/' | relative_url }}).
 
 Welcome to the Cherri programming language documentation!
 

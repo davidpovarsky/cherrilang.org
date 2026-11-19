@@ -53,7 +53,7 @@ You can find all of the identifiers for each Shortcut glyph at [glyphs.cherrilan
 
 ## Input & Output Types
 
-You define input and output types for your Shortcut with [content item types](/language/types.html#content-item-types).
+You define input and output types for your Shortcut with [content item types]({{ '/language/types.html#content-item-types' | relative_url }}).
 
 Inputs will default to all types. Outputs will default to no types. This is done to be consistent with the Shortcuts
 file format.
@@ -87,7 +87,7 @@ alert(ShortcutInput)
 alert(ShortcutInput)
 ```
 
-### Ask for a [content item type](/language/types.html#content-item-types)
+### Ask for a [content item type]({{ '/language/types.html#content-item-types' | relative_url }})
 
 ```ruby
 #define noinput askfor text

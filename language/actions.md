@@ -27,4 +27,4 @@ Below are categories of standard Shortcut actions currently supported. Keep in m
 
 Yes, it's not very hard!
 
-[Learn more about contributing actions](/compiler/actions)
+[Learn more about contributing actions]({{ '/compiler/actions' | relative_url }})

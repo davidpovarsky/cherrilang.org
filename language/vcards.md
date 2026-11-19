@@ -53,7 +53,7 @@ alert(@chosenItem, "You chose:")
 
 This accepts base64 encoded image data.
 
-To use a local image file, use the output of the built-in [embedFile()](/language/standard/builtin#base64-encode-file) action to encode that file, then use it in a VCard using a variable reference.
+To use a local image file, use the output of the built-in [embedFile()]({{ '/language/standard/builtin#base64-encode-file' | relative_url }}) action to encode that file, then use it in a VCard using a variable reference.
 
 ```ruby
 #include 'actions/device'
@@ -75,6 +75,6 @@ const batteryLevel = getBatteryLevel()
 
 ## Standard Library Action
 
-You can also use the standard library action [`chooseFromVCard()`](/language/standard/stdlib#choose-from-vcard).
+You can also use the standard library action [`chooseFromVCard()`]({{ '/language/standard/stdlib#choose-from-vcard' | relative_url }}).
 
 You can use this action in the same way you'd use the `chooseFromList()` action. You just provide it an array of VCards and a prompt.

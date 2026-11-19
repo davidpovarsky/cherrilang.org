@@ -218,6 +218,7 @@ def main() -> int:
     args = parser.parse_args()
     binary = ensure_pinned_cherri_binary()
     targets = args.files or [
+        REPO_ROOT / "index.md",
         REPO_ROOT / "fork-language" / "guide.md",
         REPO_ROOT / "fork-language" / "migration.md",
         REPO_ROOT / "fork-language" / "actions.md",

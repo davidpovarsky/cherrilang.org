@@ -17,20 +17,20 @@ action 'is.workflow.actions.setvariable' setVariable(text name: 'WFVariableName'
 
 This can also be used with packages to create 3rd party action libraries.
 
-[Learn more](/language/action-definitions){: .btn }
+[Learn more]({{ '/language/action-definitions' | relative_url }}){: .btn }
 
 {: .note }
 When contributing actions, if an action has a complex number of arguments, try your best to split the action into multiple actions using the `default` keyword to reduce the number of arguments and complexity.
 
 ## Raw Actions
 
-You could also use either [functions](/language/functions) or [pastables](/language/copy-paste) to wrap a [raw action](/language/raw-actions).
+You could also use either [functions]({{ '/language/functions' | relative_url }}) or [pastables]({{ '/language/copy-paste' | relative_url }}) to wrap a [raw action]({{ '/language/raw-actions' | relative_url }}).
 
 ## 3rd-party Distribution
 
 Action definitions, raw actions wrapped in functions, or copy-pastes can then be included in a Cherri file and included either by our package manager, file sharing, or even git submodules.
 
-[Learn more](/distribution){: .btn }
+[Learn more]({{ '/distribution' | relative_url }}){: .btn }
 
 ---
 

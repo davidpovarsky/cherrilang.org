@@ -78,4 +78,4 @@ When used on an array variable, `+=` appends an item rather than performing nume
 
 ## Conditional and logical operators
 
-Conditional operators (`==`, `!=`, `contains`, `>`, etc.) and logical operators (`&&`, `||`) are used in `if` statements and are covered in [Control Flow](/language/control-flow).
+Conditional operators (`==`, `!=`, `contains`, `>`, etc.) and logical operators (`&&`, `||`) are used in `if` statements and are covered in [Control Flow]({{ '/language/control-flow' | relative_url }}).

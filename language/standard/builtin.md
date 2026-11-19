@@ -11,7 +11,7 @@ nav_order: 23
 
 Built-ins in Cherri are actions in the compiler that use standard actions but implement them in a way that makes it easier to use a specific Shortcuts feature.
 
-For example, the [makeVCard()](/language/vcards) action is, in actuality, just a text action, but the compiler uses it to insert the vCard format into a text action based on your input.
+For example, the [makeVCard()]({{ '/language/vcards' | relative_url }}) action is, in actuality, just a text action, but the compiler uses it to insert the vCard format into a text action based on your input.
 
 ## Table of contents
 {: .no_toc .text-delta }
@@ -27,7 +27,7 @@ Checks if `text` occurs in `subject`.
 containsText(text subject, text text, bool ?caseSensitive = true)
 ```
 
-This uses a [Match Text](/language/standard/documents#match-text) action to check if `text` is within `subject`.
+This uses a [Match Text]({{ '/language/standard/documents#match-text' | relative_url }}) action to check if `text` is within `subject`.
 
 ---
 
@@ -51,12 +51,12 @@ playSound(audio)
 
 ---
 
-## [Make vCard](/language/vcards)
+## [Make vCard]({{ '/language/vcards' | relative_url }})
 
 Create vCards without having to remember the format. Embed local images as an image for a menu item.
 
 ---
 
-## [Raw Action](/language/raw-actions)
+## [Raw Action]({{ '/language/raw-actions' | relative_url }})
 
 Create actions by inputting full identifiers and parameters to use actions not supported by Cherri.

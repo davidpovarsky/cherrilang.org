@@ -40,6 +40,7 @@ jobs:
       - name: Run standalone docs snippet smoke test against pinned Cherri compiler
         env:
           CHERRI_SMOKE_CACHE_DIR: ${{ runner.temp }}/cherri-docs-compiler
+          GOCACHE: ${{ runner.temp }}/cherri-docs-go-build
         run: python3 scripts/smoke_test_snippets.py --evidence-out "$RUNNER_TEMP/cherri-docs-evidence.json"
 
       - name: Verify real compiler cache provenance and negative examples
@@ -81,10 +82,13 @@ jobs:
         env:
           BUNDLE_PATH: ${{ runner.temp }}/cherri-docs-bundle
           JEKYLL_ENV: production
-        run: bundle exec jekyll build --disable-disk-cache --baseurl "" --destination "$RUNNER_TEMP/cherri-docs-site"
+        run: bundle exec jekyll build --disable-disk-cache --baseurl "/cherrilang.org" --destination "$RUNNER_TEMP/cherri-docs-site"
 
       - name: Verify rendered action reference and generated search
         run: python3 scripts/verify_site_artifacts.py --site "$RUNNER_TEMP/cherri-docs-site" --evidence-out "$RUNNER_TEMP/cherri-docs-site-evidence.json"
+
+      - name: Reject corrupted real site and search artifacts
+        run: python3 scripts/test_site_artifacts.py --site "$RUNNER_TEMP/cherri-docs-site" --evidence-out "$RUNNER_TEMP/cherri-docs-site-controls.json"
 
       - name: Retain built site and verification evidence
         if: always()
@@ -94,4 +98,5 @@ jobs:
           path: |
             ${{ runner.temp }}/cherri-docs-site
             ${{ runner.temp }}/cherri-docs-site-evidence.json
+            ${{ runner.temp }}/cherri-docs-site-controls.json
           if-no-files-found: warn

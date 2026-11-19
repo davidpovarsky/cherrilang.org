@@ -64,7 +64,7 @@ This is the data format Shortcuts uses to represent the state of the actions use
 
 ### Decompilation
 
-If the action is not already implemented in Cherri, you can decompile a Shortcut containing the action into a [raw action](/language/raw-actions) using decompilation.
+If the action is not already implemented in Cherri, you can decompile a Shortcut containing the action into a [raw action]({{ '/language/raw-actions' | relative_url }}) using decompilation.
 
 <a 
     href="/decompilation"
@@ -101,7 +101,7 @@ Look for a node with the key `WFWorkflowActions`. In text, this will be an `<arr
 
 While an alert action exists, for demonstration purposes and to keep things simple, here is how you would use the **Alert** action data:
 
-Below is this action in Cherri using a [raw action](/language/raw-actions). We use the `WFWorkflowActionParameters` key from above to make a dictionary value containing the same keys and values.
+Below is this action in Cherri using a [raw action]({{ '/language/raw-actions' | relative_url }}). We use the `WFWorkflowActionParameters` key from above to make a dictionary value containing the same keys and values.
 
 ```ruby
 rawAction("is.workflow.actions.alert", {
@@ -109,7 +109,7 @@ rawAction("is.workflow.actions.alert", {
 })
 ```
 
-Or, you could define a reusable action using [action definitions](/language/action-definitions):
+Or, you could define a reusable action using [action definitions]({{ '/language/action-definitions' | relative_url }}):
 
 ```
 action 'is.workflow.actions.setvariable' setVariable(text name: 'WFVariableName', variable input: 'WFInput')

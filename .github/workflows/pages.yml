@@ -29,6 +29,10 @@ jobs:
   # Build job
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      BUNDLE_FROZEN: "true"
+      PYTHONDONTWRITEBYTECODE: "1"
     steps:
       - name: Live Activity · refresh
         uses: davidpovarsky/github-automation/live-refresh@main
@@ -64,10 +68,9 @@ jobs:
           token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
           github_token: ${{ github.token }}
       - name: Install locked site dependencies
-        run: |
-          bundle config set deployment 'true'
-          bundle config set frozen 'true'
-          bundle install --jobs 4 --retry 3
+        env:
+          BUNDLE_PATH: ${{ runner.temp }}/cherri-docs-bundle
+        run: bundle install --jobs 2 --retry 3
       - name: Live Activity · refresh
         uses: davidpovarsky/github-automation/live-refresh@main
         continue-on-error: true
@@ -88,10 +91,23 @@ jobs:
           token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
           github_token: ${{ github.token }}
       - name: Build with Jekyll
-        # Outputs to the './_site' directory by default
-        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+        run: bundle exec jekyll build --disable-disk-cache --baseurl "${{ steps.pages.outputs.base_path }}" --destination "$RUNNER_TEMP/cherri-docs-site"
         env:
+          BUNDLE_PATH: ${{ runner.temp }}/cherri-docs-bundle
           JEKYLL_ENV: production
+      - name: Verify the actual fork pages and default search
+        run: python3 scripts/verify_site_artifacts.py --site "$RUNNER_TEMP/cherri-docs-site" --baseurl "${{ steps.pages.outputs.base_path }}" --evidence-out "$RUNNER_TEMP/cherri-docs-site-evidence.json"
+      - name: Reject corrupted real site and search artifacts
+        run: python3 scripts/test_site_artifacts.py --site "$RUNNER_TEMP/cherri-docs-site" --baseurl "${{ steps.pages.outputs.base_path }}" --evidence-out "$RUNNER_TEMP/cherri-docs-site-controls.json"
+      - name: Retain publication build evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: published-docs-build-evidence
+          path: |
+            ${{ runner.temp }}/cherri-docs-site-evidence.json
+            ${{ runner.temp }}/cherri-docs-site-controls.json
+          if-no-files-found: warn
       - name: Live Activity · refresh
         uses: davidpovarsky/github-automation/live-refresh@main
         continue-on-error: true
@@ -101,8 +117,9 @@ jobs:
           token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
           github_token: ${{ github.token }}
       - name: Upload artifact
-        # Automatically uploads an artifact from the './_site' directory by default
         uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ runner.temp }}/cherri-docs-site
 
   # Deployment job
   deploy:

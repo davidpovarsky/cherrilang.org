@@ -8,7 +8,7 @@ nav_order: 24
 
 # Standard Library of Functions
 
-You can use the Cherri Standard Library of [functions](/language/functions) using the following syntax:
+You can use the Cherri Standard Library of [functions]({{ '/language/functions' | relative_url }}) using the following syntax:
 
 ```
 #include 'stdlib'
@@ -20,7 +20,7 @@ This will give you access to the following functions. Note that functions are on
 
 ### Choose from vCard
 
-Prompt the user to choose from an array of [vCards](/language/vcards) with a prompt. Returns the chosen vCard item.
+Prompt the user to choose from an array of [vCards]({{ '/language/vcards' | relative_url }}) with a prompt. Returns the chosen vCard item.
 
 ```
 chooseFromVCard(array items, text prompt)
@@ -73,7 +73,7 @@ const jsResult = runJS(code)
 show(jsResult)
 ```
 
-You can also use [`base64File()`](/language/standard/builtin#base64-encode-file) to encode a large JS file into your Shortcut without needing to paste it.
+You can also use [`base64File()`]({{ '/language/standard/builtin#base64-encode-file' | relative_url }}) to encode a large JS file into your Shortcut without needing to paste it.
 
 `index.js`
 ```

@@ -1,5 +1,7 @@
-title: Cherri
-description: iOS Siri Shortcuts Programming Language
+title: Cherri Fork V2
+description: Active V2 authoring guide for the davidpovarsky Cherri fork
+url: "https://davidpovarsky.github.io"
+baseurl: "/cherrilang.org"
 theme: just-the-docs
 logo: "/assets/cherri_logo.png"
 favicon_ico: "/assets/cherri_icon.png"
@@ -21,27 +23,43 @@ callouts:
 #  version: "9.1.3"
 
 aux_links:
-  "View Source on GitHub":
-    - "//github.com/electrikmilk/cherri"
+  "Fork Source on GitHub":
+    - "https://github.com/davidpovarsky/cherri"
 aux_links_new_tab: true
 
 nav_external_links:
-  - title: VS Code Extension
-    url: https://marketplace.visualstudio.com/items?itemName=electrikmilk.cherri-vscode-extension
+  - title: Upstream project (reference)
+    url: https://github.com/electrikmilk/cherri
     hide_icon: false
     opens_in_new_tab: true
-  - title: macOS App
-    url: https://github.com/electrikmilk/cherri-macos-app
-    hide_icon: false
-    opens_in_new_tab: true
-  - title: Glyphs
-    url: https://glyphs.cherrilang.org/
-    hide_icon: false
-    opens_in_new_tab: true
-  - title: Merch
-    url: https://cherrilang.redbubble.com/
-    hide_icon: false
-    opens_in_new_tab: true
+
+# Search and navigation recommend the maintained fork guide. Archived upstream
+# routes remain directly accessible for deliberate historical reference.
+defaults:
+  - scope:
+      path: ""
+    values:
+      search_exclude: true
+      nav_exclude: true
+  - scope:
+      path: "fork-language"
+    values:
+      search_exclude: false
+      nav_exclude: false
+  - scope:
+      path: "index.md"
+    values:
+      search_exclude: false
+
+exclude:
+  - AGENTS.md
+  - CLAUDE.md
+  - PROJECT_BOARD.md
+  - scripts
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - .bundle
 
 footer_content: "Copyright &copy;. Distributed under the <a href=\"https://github.com/electrikmilk/cherri/blob/main/LICENSE\">GPL-2.0 License.</a> Siri Shortcuts and Mac are registered trademarks of Apple Inc. Apple is not involved in this project in any way. Do not contact Apple Support unless you are having an issue with the Shortcuts app itself."
 
@@ -52,6 +70,6 @@ last_edit_time_format: "%b %e %Y at %I:%M %p"
 
 gh_edit_link: true
 gh_edit_link_text: "Contribute to this page"
-gh_edit_repository: "https://github.com/electrikmilk/cherrilang.org"
+gh_edit_repository: "https://github.com/davidpovarsky/cherrilang.org"
 gh_edit_branch: "main"
 gh_edit_view_mode: "tree"

@@ -1,193 +1,47 @@
 ---
-title: Scale Your Siri Shortcut Projects
+title: Cherri Fork V2
 nav_exclude: true
-layout: home
+search_exclude: false
+layout: default
 nav_order: 1
 ---
 
 <div class="hero">
-    <br/>
-    <img src="/assets/cherri_icon.png" width="128" height="128" alt="Cherri Hero Image"/>
-    <h1>Scale your Shortcut projects and maintain them long-term.</h1>
-    <p style="color: #959396"><strong>Cherri</strong> (pronounced cherry) is a <a href="https://apps.apple.com/us/app/shortcuts/id1462947752" ref="noreferrer noopener" target="_blank">Siri Shortcuts</a> programming language that compiles directly to a signed Shortcut you can then run on your Apple devices.</p>
-    <span class="fs-6">
-    <a href="https://playground.cherrilang.org" target="_blank" class="btn btn-red btn-outline hero-button">Try Cherri</a>
-    </span>
+  <img src="{{ '/assets/cherri_icon.png' | relative_url }}" width="96" height="96" alt="Cherri"/>
+  <h1>Write Apple Shortcuts with Cherri V2.</h1>
+  <p>The active authoring guide for the davidpovarsky fork of Cherri.</p>
+  <p><a id="start-authoring" href="{{ '/fork-language/guide' | relative_url }}" class="btn btn-red">Start with the V2 guide</a>
+  <a href="{{ '/fork-language/actions' | relative_url }}" class="btn">Find an action</a></p>
 </div>
 
-```ruby
-/* Hello, Cherri! */
+## Your first program
 
-#define glyph smileyFace
-#define color yellow
+Save this example as a `.cherri` file:
 
-@message = "Hello!"
-alert("Message: {@message}", "Alert")
+```cherri
+let name = "Cherri"
+show(f"Hello from {name}!")
 ```
 
-## Why Cherri?
+The default compiler language is V2. The examples on this site are checked
+against an immutable compiler revision before publication.
 
-<div class="box" markdown="1">
-- 🖥️ Laptop/Desktop based development
-- 🚧 Easily maintain large Shortcut tool projects with file includes and helpful abstractions.
-- 🗂️ Version control your project and never lose work again!
-- 📦 Remote Git repo-based package manager built in, allowing for automatic inclusion and updates.
-- 🎓 Easy to learn and syntax similar to other languages.
-- 🐞 1-1 translation to Shortcut actions as much as possible to make debugging easier.
-- 🪶 Optimized to create as small as possible Shortcuts and reduces memory usage at runtime.
+## Read the current documentation
 
-<br/>
+- [Language guide]({{ '/fork-language/guide' | relative_url }}) — bindings, strings, types, functions, control flow, and diagnostics.
+- [Action reference]({{ '/fork-language/actions' | relative_url }}) — generated native action signatures and separately identified compiler macros.
+- [Migration guide]({{ '/fork-language/migration' | relative_url }}) — moving existing programs to V2.
+- [Fork source and build instructions](https://github.com/davidpovarsky/cherri) — compiler, tests, and supported workflows.
 
-<span class="fs-5">
-[Read Documentation](/language){: .btn }
-[Install](/install){: .btn .btn-red }
-</span>
-</div>
+A catalog entry describes compiler support; Apple runtime acceptance is
+established separately. See each feature's documented constraints.
 
-<div class="box" markdown="1">
-    
-## VS Code Extension
-Provides syntax highlighting and file icon.
+## Historical reference
 
-<br/>
+The [reference archive]({{ '/language/' | relative_url }}) retains upstream
+material and previously migrated pages. It is outside this site's default
+search and navigation. Use the current guide above when writing new code.
+Legacy compilation requires an explicit `--lang=legacy` selection.
 
-<a href="https://marketplace.visualstudio.com/items?itemName=electrikmilk.cherri-vscode-extension" target="_blank" class="btn btn-red">Install VS Code Extension</a>
-
-</div>
-
-<div class="box" markdown="1">
-
-## macOS App
-
-You can build and run the Xcode project locally.
-
-<br/>
-
-<a href="https://github.com/electrikmilk/cherri-macos-app" target="_blank" class="btn btn-red">View Source on GitHub</a>
-
-</div>
-
-<div class="box" markdown="1">
-
-## Glyphs Search
-
-Use the glyphs search site to easily generate a Shortcut icon for Cherri outside of Shortcuts.
-
-<br/>
-
-<a href="https://glyphs.cherrilang.org" target="_blank" class="btn btn-red">Generate Your Shortcut Icon</a>
-
-</div>
-
-## How does it work?
-
-Cherri is designed to be easy to learn and use, and is likely similar to a language that you are already familiar with.
-
-### 🪄 Magic variables are constants
-
-As Magic Variables cannot be changed, use the typical constant syntax found in many languages to use the output of an action directly.
-
-```ruby
-const int = 37
-show("{int}")
-```
-
-[Learn more](language/variables-constants-globals#constants){: .btn }
-
-### #️⃣ Includes
-
-Include multiple files and files within folders, etc., to create and maintain large Shortcut projects.
-
-```
-#include 'other-file.cherri'
-// ...
-#include 'another-file.cherri'
-```
-
-[Learn more](language/includes){: .btn }
-
-### 🔄 Define Functions
-
-Functions run within their own scope at the top of the Shortcut, called via the Run Shortcut action.
-
-```ruby
-function myFunc(text test) {
-    output("{@test}")
-}
-
-@result = myFunc("Test")
-show("{@result}")
-```
-
-[Learn more](language/functions){: .btn }
-
-### 🔧 Define actions
-
-Define your own version of Standard actions or 3rd party actions.
-
-```ruby
-action 'alert' showConfirm(text alert: 'WFAlertActionMessage')
-
-showConfirm("Are you sure?")
-```
-
-[Learn more](language/action-definitions){: .btn }
-
-### 📋 Copy-paste automatically
-
-Macros exist to copy and paste code automatically at compile-time.
-
-```ruby
-#include 'actions/network'
-
-copy checkConnection {
-    const online = isOnline()
-    if !online {
-        alert("No internet connection")
-    }
-}
-
-// ...
-
-paste checkConnection
-```
-
-[Learn more](language/copy-paste){: .btn }
-
-### 🥩 Add Actions Raw into your Shortcut
-
-Add a single custom-implemented or 3rd party action into your Shortcut with a Raw Action.
-
-```ruby
-rawAction("is.workflow.actions.gettext", {
-     "WFTextActionText": "Hello, world!"
-})
-```
-
-[Learn more](language/raw-actions){: .btn }
-
-### 📇 Generate VCards for menus
-
-Creates a text action in the VCard format based on the arguments. It also supports images.
-
-```ruby
-makeVCard("Title", "Subtitle")
-```
-
-[Learn more](language/vcards){: .btn }
-
-### 🔢 Type system and type inference
-
-Types are checked to match Shortcuts to ensure the compiled Shortcut will work when run and warn you when your defined types are used incorrectly.
-
-```ruby
-/* Declared types */
-@string: text
-@integer: number
-
-/* Inferred types */
-@txt = "Test"
-@int = 37
-```
-
-[Learn more](language/types){: .btn }
+Cherri originated in the [upstream project](https://github.com/electrikmilk/cherri).
+This site documents the fork; upstream releases and tools may use different syntax.

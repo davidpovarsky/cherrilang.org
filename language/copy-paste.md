@@ -52,7 +52,7 @@ In the example above, the resulting Shortcut will have an `alert("Hello")` paste
 
 ## Difference from functions and includes
 
-These work differently from [functions](/language/functions) in that they reduce the number of actions as functions add a lot of actions. If you don't _need_ to use the abstraction of functions (you don't need to use arguments) to reuse the same actions if it's not necessary for what you need to reuse.
+These work differently from [functions]({{ '/language/functions' | relative_url }}) in that they reduce the number of actions as functions add a lot of actions. If you don't _need_ to use the abstraction of functions (you don't need to use arguments) to reuse the same actions if it's not necessary for what you need to reuse.
 
 However, depending on how much code is in the pastable and how many times you need to paste it, it may produce fewer actions to use functions instead.
 

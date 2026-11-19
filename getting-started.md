@@ -77,7 +77,7 @@ alert("{message}", "My First Shortcut")
 - **Action:** `alert(...)` shows an alert
 
 {: .note }
-Mutable variables use `@variable` syntax, which creates a Set Variable action in Shortcuts. See [Variables, Constants & Globals](/language/variables-constants-globals) for details.
+Mutable variables use `@variable` syntax, which creates a Set Variable action in Shortcuts. See [Variables, Constants & Globals]({{ '/language/variables-constants-globals' | relative_url }}) for details.
 
 ### Step 2: Compile
 
@@ -161,7 +161,7 @@ const product = multiply(4, 7)
 show("5 + 3 = {sum}\n4 × 7 = {product}")
 ```
 
-Functions run in an isolated Shortcut instance via `runSelf()` — see [Isolated Scope](/language/functions#isolated-scope) for what this means for variable access.
+Functions run in an isolated Shortcut instance via `runSelf()` — see [Isolated Scope]({{ '/language/functions#isolated-scope' | relative_url }}) for what this means for variable access.
 
 ---
 
@@ -231,12 +231,12 @@ Declare types explicitly:
 
 ## Next Steps
 
-- [Variables, Constants & Globals](/language/variables-constants-globals)
-- [Control Flow](/language/control-flow)
-- [Functions](/language/functions)
-- [Types](/language/types)
-- [Standard Library](/language/standard/stdlib)
-- [Action Definitions](/language/action-definitions)
-- [Best Practices](/language/best-practices)
-- [Migration Guide](/migration) — convert existing Shortcuts to Cherri
-- [FAQ](/faq) · [GitHub Issues](https://github.com/electrikmilk/cherri/issues) · [Playground](https://playground.cherrilang.org)
+- [Variables, Constants & Globals]({{ '/language/variables-constants-globals' | relative_url }})
+- [Control Flow]({{ '/language/control-flow' | relative_url }})
+- [Functions]({{ '/language/functions' | relative_url }})
+- [Types]({{ '/language/types' | relative_url }})
+- [Standard Library]({{ '/language/standard/stdlib' | relative_url }})
+- [Action Definitions]({{ '/language/action-definitions' | relative_url }})
+- [Best Practices]({{ '/language/best-practices' | relative_url }})
+- [Migration Guide]({{ '/migration' | relative_url }}) — convert existing Shortcuts to Cherri
+- [FAQ]({{ '/faq' | relative_url }}) · [GitHub Issues](https://github.com/electrikmilk/cherri/issues) · [Playground](https://playground.cherrilang.org)

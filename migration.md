@@ -215,7 +215,7 @@ action 'net.shinyfrog.bear.create-note' createBearNote(
 createBearNote("My Note", "{content}")
 ```
 
-See [Action Definitions](/language/action-definitions) for more details.
+See [Action Definitions]({{ '/language/action-definitions' | relative_url }}) for more details.
 
 ### Clear Unused Output
 
@@ -260,11 +260,11 @@ Transfer the compiled Shortcut to your device and verify:
 
 ### Raw actions for standard Shortcuts actions
 
-The action may be missing from Cherri's standard library. Define it as a custom action using [action definitions](/language/action-definitions) or keep it as a raw action and report the issue on GitHub.
+The action may be missing from Cherri's standard library. Define it as a custom action using [action definitions]({{ '/language/action-definitions' | relative_url }}) or keep it as a raw action and report the issue on GitHub.
 
 ### Missing action includes
 
-Add the appropriate `#include` at the top of the file. Check the [standard actions](/language/standard) for which file each action belongs to.
+Add the appropriate `#include` at the top of the file. Check the [standard actions]({{ '/language/standard' | relative_url }}) for which file each action belongs to.
 
 ### Type errors
 
@@ -286,7 +286,7 @@ cherri my-shortcut.cherri --hubsign
 
 ## Resources
 
-- [Import Shortcut documentation](/decompilation)
-- [Standard Actions Reference](/language/actions)
-- [Action Definitions](/language/action-definitions)
-- [Best Practices](/language/best-practices)
+- [Import Shortcut documentation]({{ '/decompilation' | relative_url }})
+- [Standard Actions Reference]({{ '/language/actions' | relative_url }})
+- [Action Definitions]({{ '/language/action-definitions' | relative_url }})
+- [Best Practices]({{ '/language/best-practices' | relative_url }})

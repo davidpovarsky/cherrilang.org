@@ -29,11 +29,11 @@ rawAction("is.workflow.actions.alert", {
 
 This defines an alert action with the message `Hello World!`. This action is already defined in Cherri using the `alert()` action. Still, this example demonstrates a simple way actions not implemented in Cherri can be used.
 
-However, there is an alternative called [action definitions](/language/action-definitions), which creates reusable action definitions in the same way as the standard actions.
+However, there is an alternative called [action definitions]({{ '/language/action-definitions' | relative_url }}), which creates reusable action definitions in the same way as the standard actions.
 
 ## Parsing Shortcut Data
 
-To find the identifier and parameters for an action from a Shortcut not implemented in Cherri, see [parsing out action data from a raw Shortcut](/faq#how-do-i-use-non-standard-actions).
+To find the identifier and parameters for an action from a Shortcut not implemented in Cherri, see [parsing out action data from a raw Shortcut]({{ '/faq#how-do-i-use-non-standard-actions' | relative_url }}).
 
 ## Variable Values
 

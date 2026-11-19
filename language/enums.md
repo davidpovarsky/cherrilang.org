@@ -31,7 +31,7 @@ Each value is raw text (single quoted string). A trailing comma after the last v
 
 ## Using enums in action definitions
 
-Enums are used as parameter types in [action definitions](/language/action-definitions). When an action parameter has an enum type, only the declared values are accepted.
+Enums are used as parameter types in [action definitions]({{ '/language/action-definitions' | relative_url }}). When an action parameter has an enum type, only the declared values are accepted.
 
 ```
 enum hashType {
@@ -57,7 +57,7 @@ const result = hash(@input, "SHA256")
 
 The standard library action pages show the enum definition inline alongside each action that uses one. These enums are defined inside the Cherri compiler - you do not need to define them yourself when using standard library actions.
 
-For example, from the [Crypto](/language/standard/crypto) actions:
+For example, from the [Crypto]({{ '/language/standard/crypto' | relative_url }}) actions:
 
 ```
 enum hashType {

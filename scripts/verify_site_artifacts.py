@@ -8,13 +8,37 @@ import json
 from pathlib import Path
 import re
 import subprocess
-from urllib.parse import urlsplit
+from urllib.parse import unquote, urljoin, urlsplit
 
 
 class PageText(HTMLParser):
     def __init__(self):
         super().__init__(convert_charrefs=True)
         self.parts = []
+        self.links = []
+        self.resources = []
+        self.start_links = []
+        self.navigation_links = []
+        self.in_navigation = 0
+
+    def handle_starttag(self, tag, attrs):
+        attrs = dict(attrs)
+        if tag == "nav":
+            self.in_navigation += 1
+        if tag == "a" and "href" in attrs:
+            self.links.append(attrs["href"])
+            if self.in_navigation:
+                self.navigation_links.append(attrs["href"])
+            if attrs.get("id") == "start-authoring":
+                self.start_links.append(attrs["href"])
+        if tag in ("img", "script") and attrs.get("src"):
+            self.resources.append(attrs["src"])
+        if tag == "link" and attrs.get("href"):
+            self.resources.append(attrs["href"])
+
+    def handle_endtag(self, tag):
+        if tag == "nav":
+            self.in_navigation = max(0, self.in_navigation - 1)
 
     def handle_data(self, data):
         self.parts.append(data)
@@ -24,7 +48,93 @@ def sha256(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def verify(site, root):
+def built_page(site, route):
+    target = site / route.lstrip("/")
+    candidates = (target, Path(str(target) + ".html"), target / "index.html")
+    pages = [path for path in candidates if path.is_file()]
+    if len(pages) != 1:
+        raise RuntimeError("Built site is missing a unique page: " + route)
+    return pages[0]
+
+
+def inspect_page(path):
+    parser = PageText()
+    parser.feed(path.read_text(encoding="utf-8"))
+    return parser
+
+
+def verify_current_entry_points(site, root, search, baseurl):
+    config = (root / "_config.yml").read_text(encoding="utf-8")
+    configured = re.search(r'^baseurl:\s*["\']?([^"\'\n]*)["\']?\s*$', config, re.MULTILINE)
+    if not configured or configured.group(1).rstrip("/") != baseurl:
+        raise RuntimeError("Built base URL differs from the fork configuration")
+    origin = "https://davidpovarsky.github.io"
+    if not re.search(r'^url:\s*["\']?' + re.escape(origin) + r'["\']?\s*$', config, re.MULTILINE):
+        raise RuntimeError("Fork publication origin differs from its configuration")
+    if (root / "CNAME").exists() or (site / "CNAME").exists():
+        raise RuntimeError("Fork publication must not carry the upstream custom domain")
+
+    routes = {"/"}
+    for source in (root / "fork-language").glob("*.md"):
+        match = re.search(r"^permalink:\s*(/\S+)\s*$", source.read_text(encoding="utf-8"), re.MULTILINE)
+        if not match:
+            raise RuntimeError("Current documentation page has no stable route: " + source.name)
+        routes.add(match.group(1))
+    active_paths = {(baseurl + route).rstrip("/") for route in routes}
+    indexed_paths = set()
+    for row in search.values():
+        if not isinstance(row, dict):
+            raise RuntimeError("Jekyll search index contains a non-object entry")
+        path = unquote(urlsplit(str(row.get("relUrl", ""))).path).rstrip("/")
+        if path not in active_paths:
+            raise RuntimeError("Default search includes a historical or wrong-base route: " + path)
+        indexed_paths.add(path)
+    if indexed_paths != active_paths:
+        raise RuntimeError("Default search omits a current documentation route")
+
+    checked_links = 0
+    for route in sorted(routes):
+        page = built_page(site, route)
+        parsed = inspect_page(page)
+        if route == "/":
+            expected_start = baseurl + "/fork-language/guide"
+            if parsed.start_links != [expected_start]:
+                raise RuntimeError("Home page lacks its unique current-guide entry point")
+            if "https://github.com/davidpovarsky/cherri" not in parsed.links:
+                raise RuntimeError("Home page does not identify the fork source")
+        elif not any(link.startswith("https://github.com/davidpovarsky/cherrilang.org/tree/main/")
+                     for link in parsed.links):
+            raise RuntimeError("Current page edit link does not identify the fork repository")
+        for link in parsed.navigation_links:
+            target = urlsplit(urljoin(origin + baseurl + route, link))
+            if target.netloc == urlsplit(origin).netloc and unquote(target.path).rstrip("/") not in active_paths:
+                raise RuntimeError("Default navigation recommends a historical route: " + target.path)
+        for link in parsed.links + parsed.resources:
+            if not link or link.startswith("#") or urlsplit(link).scheme in ("mailto", "data", "javascript"):
+                continue
+            target = urlsplit(urljoin(origin + baseurl + route, link))
+            if target.netloc != urlsplit(origin).netloc:
+                continue
+            path = unquote(target.path)
+            if not path.startswith(baseurl + "/"):
+                raise RuntimeError("Current page contains a link outside the project base URL: " + path)
+            local = path[len(baseurl):]
+            candidate = site / local.lstrip("/")
+            if not candidate.is_file():
+                built_page(site, local)
+            checked_links += 1
+    archive = inspect_page(built_page(site, "/language/"))
+    if "Reference archive." not in " ".join(archive.parts):
+        raise RuntimeError("Historical page is missing the current-guide notice")
+    return {"baseUrl": baseurl, "publicationOrigin": origin,
+            "currentSearchRoutes": sorted(indexed_paths),
+            "verifiedLocalLinks": checked_links, "historicalSearchEntries": 0}
+
+
+def verify(site, root, baseurl="/cherrilang.org"):
+    baseurl = baseurl.rstrip("/")
+    if not baseurl.startswith("/") or "?" in baseurl or "#" in baseurl or ".." in baseurl:
+        raise RuntimeError("Expected a project-site base URL")
     reference = root / "fork-language/actions.md"
     source = reference.read_text(encoding="utf-8")
     permalink = re.search(r"^permalink:\s*(/\S+)\s*$", source, re.MULTILINE)
@@ -37,25 +147,20 @@ def verify(site, root):
         raise RuntimeError("Generated action reference lost declared native signatures")
 
     route = permalink.group(1).rstrip("/")
-    target = site / route.lstrip("/")
-    candidates = (target, Path(str(target) + ".html"), target / "index.html")
-    pages = [path for path in candidates if path.is_file()]
-    if len(pages) != 1 or not (site / "index.html").is_file():
-        raise RuntimeError("Built site is missing a unique action-reference page or home page")
-    action_page = pages[0]
-    parser = PageText()
-    parser.feed(action_page.read_text(encoding="utf-8"))
+    action_page = built_page(site, route)
+    parser = inspect_page(action_page)
     page_text = " ".join(parser.parts)
 
     search_path = site / "assets/js/search-data.json"
     search = json.loads(search_path.read_text(encoding="utf-8"))
     if not isinstance(search, dict) or not search:
         raise RuntimeError("Jekyll search index is empty or malformed")
+    entry_points = verify_current_entry_points(site, root, search, baseurl)
     action_rows = []
     for row in search.values():
         if not isinstance(row, dict):
             raise RuntimeError("Jekyll search index contains a non-object entry")
-        if urlsplit(str(row.get("relUrl", ""))).path.rstrip("/") == route:
+        if urlsplit(str(row.get("relUrl", ""))).path.rstrip("/") == baseurl + route:
             action_rows.append(row)
     if not action_rows:
         raise RuntimeError("Action reference is absent from Jekyll search")
@@ -90,7 +195,8 @@ def verify(site, root):
     if dirty:
         raise RuntimeError("Site build changed the source checkout: " + dirty)
     return {
-        "formatVersion": 1,
+        "formatVersion": 2,
+        **entry_points,
         "docsCommit": docs_commit,
         "compilerCommit": compiler_commit,
         "sourceTreeClean": True,
@@ -110,10 +216,11 @@ def verify(site, root):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--site", required=True, type=Path)
+    parser.add_argument("--baseurl", default="/cherrilang.org")
     parser.add_argument("--evidence-out", required=True, type=Path)
     args = parser.parse_args()
     root = Path(__file__).resolve().parent.parent
-    receipt = verify(args.site.resolve(), root)
+    receipt = verify(args.site.resolve(), root, args.baseurl)
     args.evidence_out.parent.mkdir(parents=True, exist_ok=True)
     args.evidence_out.write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(receipt, indent=2))

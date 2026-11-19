@@ -100,13 +100,13 @@ Receive What's On Screen
 Use as Quick Action
 Finder
 Services Menu
-Provide Output](/assets/workflows.png)
+Provide Output]({{ '/assets/workflows.png' | relative_url }})
 
 ### `MenuBar`
 
 The Shortcut will appear in the Shortcuts menubar menu.
 
-![Menubar Example](/assets/workflows_menubar.png)
+![Menubar Example]({{ '/assets/workflows_menubar.png' | relative_url }})
 
 ### `QuickActions`
 
