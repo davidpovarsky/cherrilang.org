@@ -52,8 +52,8 @@ jobs:
         # https://github.com/ruby/setup-ruby/releases/tag/v1.207.0
         uses: ruby/setup-ruby@4a9ddd6f338a97768b8006bf671dfbad383215f4
         with:
-          ruby-version: '3.1' # Not needed with a .ruby-version file
-          bundler: '2.5.18' # Pin Bundler to avoid resolver differences
+          ruby-version: '3.3' # Matches locked dependencies and build-only CI
+          bundler: '2.5.11' # Matches Gemfile.lock and build-only CI
           bundler-cache: false # we'll run bundle commands explicitly to enforce lockfile and constraints
       - name: Live Activity · refresh
         uses: davidpovarsky/github-automation/live-refresh@main
@@ -63,11 +63,10 @@ jobs:
           device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
           token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
           github_token: ${{ github.token }}
-      - name: Prepare Bundler (lock platforms + respect constraint)
+      - name: Install locked site dependencies
         run: |
-          bundle lock --add-platform x86_64-linux x86_64-darwin arm64-darwin || true
-          bundle update --conservative sass-embedded
           bundle config set deployment 'true'
+          bundle config set frozen 'true'
           bundle install --jobs 4 --retry 3
       - name: Live Activity · refresh
         uses: davidpovarsky/github-automation/live-refresh@main

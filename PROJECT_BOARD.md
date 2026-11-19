@@ -14,6 +14,8 @@ Potential improvements, features, optimizations, or architectural ideas.
 
 ## Discoveries & Tips
 
+- 2026-11-19: The locked public_suffix 7.0.5 dependency requires Ruby >= 3.2 (https://rubygems.org/gems/public_suffix/versions/7.0.5). The site-build and Pages workflows now share Ruby 3.3 / Bundler 2.5.11 and install the frozen Gemfile.lock. Do not resolve new dependency versions during a release build. The feature-branch build verifies the rendered action reference and search index, and retains the built site for review.
+
 - 2026-11-18: GitHub runner context is unavailable in jobs.<job_id>.env and is available in steps.env. Bind compiler cache paths at their consuming steps; otherwise workflow validation can fail before any job or log exists. Official context table: https://docs.github.com/en/actions/reference/workflows-and-actions/contexts#context-availability . Preserve the local snippet result separately from a GitHub workflow result.
 
 Useful technical discoveries, undocumented behavior, shortcuts, implementation tricks, platform behavior, or reusable knowledge discovered while working.
@@ -35,6 +37,8 @@ Use Markdown checkboxes where useful:
 - [ ] Example item
 
 ## Done
+
+- [x] 2026-11-19: Refreshed the compiler pin to 71225b71f5353a0f661722d154a8b670b52e76f6 and regenerated the complete canonical action reference from a clean ordinary compiler clone with VCS provenance. Preserved Jekyll frontmatter. The generated body has native schema fingerprint 7bfff2b8c3fddf3892e943ef45b79bbbc4cc984ad051a15099a5da0fc6fccc0b, 505 native actions and 15 separately fingerprinted macros. The resulting docs commit must pass the 37 snippet checks, 12 cache controls and the new Jekyll/search-artifact gate; the CI artifacts bind their evidence to the actual compiler/docs commits. This source update does not publish the site or establish Apple runtime acceptance.
 
 - [x] 2026-11-18: Refreshed the immutable compiler pin to a04c6feede79358ee642a1ae27f0a0da8f995ad7 and compared the complete canonical generated action reference while preserving Jekyll frontmatter. The native schema and macro fingerprints remain unchanged. The 37 executable/diagnostic checks and 12 cache-provenance controls must bind to this exact compiler and the resulting docs commit; their run receipts are retained with the staged compiler consumer evidence. Future compiler changes require this pin/reference refresh again. This does not publish the site or prove Apple runtime.
 
