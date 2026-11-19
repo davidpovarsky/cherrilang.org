@@ -81,14 +81,24 @@ def verify_current_entry_points(site, root, search, baseurl):
             raise RuntimeError("Current documentation page has no stable route: " + source.name)
         routes.add(match.group(1))
     active_paths = {(baseurl + route).rstrip("/") for route in routes}
+    relative_paths = {route.rstrip("/") for route in routes}
+    client = (site / "assets/js/just-the-docs.js").read_text(encoding="utf-8")
+    request = "request.open('GET', '" + baseurl + "/assets/js/search-data.json', true)"
+    if request not in client or "resultLink.setAttribute('href', doc.url)" not in client:
+        raise RuntimeError("Search client does not load and use the verified project URLs")
     indexed_paths = set()
     for row in search.values():
         if not isinstance(row, dict):
             raise RuntimeError("Jekyll search index contains a non-object entry")
-        path = unquote(urlsplit(str(row.get("relUrl", ""))).path).rstrip("/")
-        if path not in active_paths:
-            raise RuntimeError("Default search includes a historical or wrong-base route: " + path)
-        indexed_paths.add(path)
+        relative = urlsplit(str(row.get("relUrl", "")))
+        path = unquote(relative.path).rstrip("/")
+        if relative.scheme or relative.netloc or path not in relative_paths:
+            raise RuntimeError("Default search includes a historical route: " + path)
+        target = urlsplit(str(row.get("url", "")))
+        if (target.scheme or target.netloc or target.path != baseurl + relative.path
+                or target.query != relative.query or target.fragment != relative.fragment):
+            raise RuntimeError("Search result URL does not match its project-base route")
+        indexed_paths.add(unquote(target.path).rstrip("/"))
     if indexed_paths != active_paths:
         raise RuntimeError("Default search omits a current documentation route")
 
@@ -160,7 +170,7 @@ def verify(site, root, baseurl="/cherrilang.org"):
     for row in search.values():
         if not isinstance(row, dict):
             raise RuntimeError("Jekyll search index contains a non-object entry")
-        if urlsplit(str(row.get("relUrl", ""))).path.rstrip("/") == baseurl + route:
+        if urlsplit(str(row.get("relUrl", ""))).path.rstrip("/") == route:
             action_rows.append(row)
     if not action_rows:
         raise RuntimeError("Action reference is absent from Jekyll search")

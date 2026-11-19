@@ -18,10 +18,12 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--site", required=True, type=Path)
     parser.add_argument("--baseurl", default="/cherrilang.org")
+    parser.add_argument("--source-root", type=Path,
+                        default=Path(__file__).resolve().parent.parent)
     parser.add_argument("--evidence-out", required=True, type=Path)
     args = parser.parse_args()
     site = args.site.resolve()
-    root = Path(__file__).resolve().parent.parent
+    root = args.source_root.resolve()
     baseline = verifier.verify(site, root, args.baseurl)
     before = inventory(site)
     records = []
@@ -47,17 +49,22 @@ def main():
         data = json.loads(raw)
         data["synthetic-historical-control"] = {
             "title":"Historical control", "content":"Legacy syntax",
-            "relUrl":args.baseurl + "/language/raw-actions"}
+            "relUrl":"/language/raw-actions",
+            "url":args.baseurl + "/language/raw-actions"}
         return json.dumps(data).encode()
     def wrong_base(raw):
         data = json.loads(raw)
         key = next(iter(data))
-        data[key]["relUrl"] = "/fork-language/guide"
+        data[key]["url"] = data[key]["relUrl"]
         return json.dumps(data).encode()
     rejected("historical-route-in-default-search", search, legacy,
-             "Default search includes a historical or wrong-base route")
-    rejected("search-route-without-project-base", search, wrong_base,
-             "Default search includes a historical or wrong-base route")
+             "Default search includes a historical route")
+    rejected("search-result-without-project-base", search, wrong_base,
+             "Search result URL does not match its project-base route")
+    rejected("client-search-request-without-project-base", site / "assets/js/just-the-docs.js",
+             lambda raw: raw.replace((args.baseurl + "/assets/js/search-data.json").encode(),
+                                     b"/assets/js/search-data.json"),
+             "Search client does not load and use the verified project URLs")
     rejected("missing-home-authoring-entry", site / "index.html",
              lambda raw: raw.replace(b'id="start-authoring"',b'id="removed-authoring-control"'),
              "Home page lacks its unique current-guide entry point")
