@@ -209,6 +209,23 @@ for (index, item) in names {
 }
 ```
 
+### List-valued loop results
+
+A value-producing `repeat` or `for` loop cannot currently preserve a separate
+nested List for each iteration. The native runtime probe produced four items
+from two two-item results. When the compiler knows that a loop would yield a
+List, it rejects that result with `E_TARGET_VALUE_SHAPE` and emits no shortcut:
+
+<!-- cherri-test: diagnostic E_TARGET_VALUE_SHAPE -->
+```cherri
+let values = for item in [1, 2] { yield [item, "tail"] }
+```
+
+This boundary applies to the shape of the loop's result. Statement loops and
+scalar results remain available. For results typed as `AnyContent`, successful
+compilation does not establish that nested List cardinality is preserved; that
+runtime case remains unverified.
+
 ### Menus (`menu`)
 ```cherri
 menu("Select an action") {
