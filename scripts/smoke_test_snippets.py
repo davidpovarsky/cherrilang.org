@@ -26,8 +26,11 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 
 
 def command(args, *, cwd=None, check=True):
+    # A clean CI runner must build the compiler and its dependencies. Preserve the
+    # shorter bound for Git, metadata, checks, and every executable example.
+    timeout = 600 if args[:2] == ["go", "build"] else 180
     return subprocess.run(args, cwd=cwd, check=check, capture_output=True,
-                          text=True, encoding="utf-8", errors="replace", timeout=180)
+                          text=True, encoding="utf-8", errors="replace", timeout=timeout)
 
 
 def digest(path):

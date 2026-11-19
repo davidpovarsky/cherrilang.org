@@ -14,6 +14,8 @@ Potential improvements, features, optimizations, or architectural ideas.
 
 ## Discoveries & Tips
 
+- 2026-11-19: A cold GitHub runner exceeded the former universal 180-second subprocess limit while building the pinned Go compiler (run 44453561234); examples had not started. Only Go build now receives a 600-second deadline, with two build workers and a 20-minute job ceiling. Other commands and each example retain 180 seconds. Validate this change on a cold CI runner before treating the docs job as passed.
+
 - 2026-11-19: The locked public_suffix 7.0.5 dependency requires Ruby >= 3.2 (https://rubygems.org/gems/public_suffix/versions/7.0.5). The site-build and Pages workflows now share Ruby 3.3 / Bundler 2.5.11 and install the frozen Gemfile.lock. Do not resolve new dependency versions during a release build. The feature-branch build verifies the rendered action reference and search index, and retains the built site for review.
 
 - 2026-11-18: GitHub runner context is unavailable in jobs.<job_id>.env and is available in steps.env. Bind compiler cache paths at their consuming steps; otherwise workflow validation can fail before any job or log exists. Official context table: https://docs.github.com/en/actions/reference/workflows-and-actions/contexts#context-availability . Preserve the local snippet result separately from a GitHub workflow result.

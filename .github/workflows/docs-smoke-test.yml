@@ -18,8 +18,11 @@ concurrency:
 jobs:
   smoke-test-snippets:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     env:
       PYTHONDONTWRITEBYTECODE: "1"
+      GOMAXPROCS: "2"
+      GOFLAGS: "-p=2"
     steps:
       - name: Checkout cherrilang.org
         uses: actions/checkout@v4
