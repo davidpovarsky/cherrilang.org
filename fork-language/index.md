@@ -10,7 +10,7 @@ permalink: /fork-language/
 
 Welcome to the Cherri Language v2.0 active authoring guide.
 
-The default public authoring path is V2. Existing Legacy programs remain available through the explicit --lang=legacy route; this section documents V2.
+The default public authoring path is V2. Existing Legacy programs remain available with `cherri compile example.cherri --mode=legacy`; this section documents V2.
 
 Cherri v2.0 is an expressive, safe, strongly-typed language for authoring native Apple Shortcuts. It replaces legacy ad-hoc syntax with formal lexical and grammar rules, first-class interpolation, block-scoped variables, static typing, and direct native plist preservation.
 
@@ -18,9 +18,9 @@ Cherri v2.0 is an expressive, safe, strongly-typed language for authoring native
 
 - **Clean Modern Syntax**: Declarative `let` (immutable) and `var` (mutable) bindings instead of `@variables`.
 - **First-Class Interpolation**: Clean `f"Hello, {name}!"` string interpolation preserving Apple's `WFTextTokenAttachment` natively.
-- **Strong Static Typing**: Type checking with clear, actionable diagnostics (`E_TYPE_MISMATCH`, `E_UNDEFINED_SYMBOL`, `E_ARG_UNKNOWN`, etc.).
+- **Strong Static Typing**: Type checking with clear, actionable diagnostics (`E_ASSIGN_IMMUTABLE`, `E_LEGACY_SYNTAX`, and `E_DUPLICATE_KEY`, for example).
 - **Deterministic Action Binding**: Positional, named, and primary parameters resolved deterministically against the Action Registry.
-- **Rich Control Flow**: `if` / `else if` / `else`, `repeat(n)`, `for item in list`, and `menu` statements.
+- **Rich Control Flow**: `if` / `else if` / `else`, `repeat 3 as index`, `for item in list`, and `menu` statements.
 - **Safety First**: Deprecated legacy constructs (`#include`, `@var`, `const`) produce explicit migration errors pointing to modern replacements.
 
 ## Key Sections

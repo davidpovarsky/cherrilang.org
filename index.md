@@ -41,7 +41,8 @@ established separately. See each feature's documented constraints.
 The [reference archive]({{ '/language/' | relative_url }}) retains upstream
 material and previously migrated pages. It is outside this site's default
 search and navigation. Use the current guide above when writing new code.
-Legacy compilation requires an explicit `--lang=legacy` selection.
+Compile a Legacy program with `cherri compile example.cherri --mode=legacy`.
+For an unsigned local validation build, add `--skip-sign`.
 
 Cherri originated in the [upstream project](https://github.com/electrikmilk/cherri).
 This site documents the fork; upstream releases and tools may use different syntax.

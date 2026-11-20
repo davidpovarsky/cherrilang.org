@@ -102,7 +102,7 @@ In Cherri v2, the primary argument is passed positionally and subsequent argumen
 
 **Cherri v1 (Legacy reference):**
 ```cherri-legacy
-@first = @list[1] // 1-based indexing
+@first = getListItem(@list, 1) // 1-based action index
 ```
 
 **Cherri v2.0 (Modern):**
@@ -111,7 +111,9 @@ let values = ["first", "second"]
 let first = values[0] // 0-based indexing
 ```
 
-Collections and lists now consistently use standard **0-based indexing**.
+V2's list indexing expression uses **0-based indexing**. The Legacy
+`getListItem` action takes a 1-based index; Legacy square brackets
+address a Dictionary key and do not implement numeric list indexing.
 
 ---
 
@@ -131,7 +133,7 @@ Run `cherri check <file>` to view all diagnostics with file locations and remedi
 
 The following example intentionally uses historical syntax on the default V2
 path. It is tested for the exact diagnostic below. Use the explicitly selected
-`--lang=legacy` path only when you intend to compile a Legacy program.
+`cherri compile example.cherri --mode=legacy` command only when you intend to compile a Legacy program.
 
 <!-- cherri-test: diagnostic E_LEGACY_SYNTAX -->
 ```cherri
