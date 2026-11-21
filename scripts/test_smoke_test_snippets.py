@@ -125,22 +125,72 @@ class SmokeProductionTests(unittest.TestCase):
         cls.source_lease = None
         self.source_witness("release", sourceState=state)
 
-    def restore_owned_source_file(self, path, original, mutation):
-        self.assertEqual(path.parent, self.cache/"src")
-        self.assertEqual(path.read_bytes(), mutation, "fixture mutation changed unexpectedly; preserve it")
-        path.write_bytes(original)
+    def owned_file_identity(self, path):
+        repo = self.cache/"src"
+        self.assertEqual(path.parent, repo)
+        self.assertEqual(type(self).source_lease, self.case)
+        self.assertTrue(all(smoke.real_path(p) for p in (self.case,self.cache,repo,path)),
+                        "fixture file identity became a link/junction; preserve it")
+        parent = repo.lstat()
+        self.assertTrue(stat.S_ISDIR(parent.st_mode))
+        self.assertEqual((parent.st_dev,parent.st_ino), self.leased_source_identity)
+        actual = path.lstat()
+        self.assertTrue(stat.S_ISREG(actual.st_mode) and actual.st_ino != 0 and actual.st_nlink == 1,
+                        "fixture file identity is not one owned regular file; preserve it")
+        return actual.st_dev,actual.st_ino
+
+    def restore_owned_source_file(self, path, original, mutation, identity):
+        self.assertEqual(self.owned_file_identity(path), identity,
+                         "fixture file identity changed; preserve the replacement")
+        # Opening without truncation and checking the descriptor prevents a
+        # substituted same-byte file from being overwritten by compensation.
+        with path.open("r+b") as stream:
+            actual = os.fstat(stream.fileno())
+            self.assertEqual((actual.st_dev,actual.st_ino), identity, "fixture descriptor identity changed")
+            self.assertEqual(stream.read(), mutation, "fixture mutation changed unexpectedly; preserve it")
+            self.assertEqual(self.owned_file_identity(path), identity, "fixture file identity changed")
+            stream.seek(0)
+            stream.write(original)
+            stream.truncate()
+        self.assertEqual(self.owned_file_identity(path), identity)
         self.assertEqual(path.read_bytes(), original)
         self.source_witness("restore-owned-file", path=path.name,
                             mutationSha256=hashlib.sha256(mutation).hexdigest(),
                             restoredSha256=hashlib.sha256(original).hexdigest())
 
-    def remove_owned_source_file(self, path, mutation):
-        self.assertEqual(path.parent, self.cache/"src")
+    def remove_owned_source_file(self, path, mutation, identity):
+        self.assertEqual(self.owned_file_identity(path), identity,
+                         "fixture file identity changed; preserve the replacement")
         self.assertEqual(path.read_bytes(), mutation, "fixture mutation changed unexpectedly; preserve it")
+        self.assertEqual(self.owned_file_identity(path), identity)
         path.unlink()
         self.assertFalse(path.exists())
         self.source_witness("remove-owned-file", path=path.name,
                             mutationSha256=hashlib.sha256(mutation).hexdigest())
+
+    def assert_same_byte_replacement_rejected(self, path, mutation, operation, *args):
+        original_identity = self.owned_file_identity(path)
+        held = self.case/(path.name+".held-original")
+        self.assertFalse(held.exists())
+        path.rename(held)
+        replacement_identity = None
+        try:
+            path.write_bytes(mutation)
+            replacement_identity = self.owned_file_identity(path)
+            self.assertNotEqual(replacement_identity, original_identity)
+            with self.assertRaisesRegex(AssertionError,"identity"):
+                operation(path,*args)
+            self.assertEqual(path.read_bytes(),mutation)
+            self.assertEqual(self.owned_file_identity(path),replacement_identity)
+            self.assertEqual(held.read_bytes(),mutation)
+            self.source_witness("same-byte-replacement-rejected", path=path.name)
+        finally:
+            # Remove only the exact new regular file this control created.
+            if replacement_identity is not None:
+                self.remove_owned_source_file(path,mutation,replacement_identity)
+            self.assertFalse(path.exists(), "unexpected replacement retained")
+            held.rename(path)
+        self.assertEqual(self.owned_file_identity(path),original_identity)
 
     def setUp(self):
         self.assertIsNone(type(self).source_lease, "prior case did not restore its owned source")
@@ -158,6 +208,8 @@ class SmokeProductionTests(unittest.TestCase):
         repo = self.cache/"src"
         cls.source_pool.rename(repo)
         cls.source_lease = self.case
+        source_info = repo.lstat()
+        self.leased_source_identity = (source_info.st_dev,source_info.st_ino)
         self.addCleanup(self.release_source)
         state = self.read_source_state(repo)
         self.assertEqual(state, cls.pristine_source_state)
@@ -201,16 +253,19 @@ class SmokeProductionTests(unittest.TestCase):
     def test_dirty_tracked_source_rejected_and_preserved(self):
         self.populated_cache()
         source=self.cache/"src/go.mod"
+        identity=self.owned_file_identity(source)
         original=source.read_bytes()
         mutation=original+b"\n"
         source.write_bytes(mutation)
-        self.addCleanup(self.restore_owned_source_file,source,original,mutation)
+        self.addCleanup(self.restore_owned_source_file,source,original,mutation,identity)
         before=smoke.digest(source)
         with self.assertRaisesRegex(RuntimeError,"local/ignored changes"):
             smoke.ensure_pinned_cherri_binary()
         self.assertEqual(smoke.digest(source),before)
         with self.assertRaisesRegex(AssertionError,"not fully pristine"):
             self.read_source_state(self.cache/"src")
+        self.assert_same_byte_replacement_rejected(source,mutation,
+            self.restore_owned_source_file,original,mutation,identity)
 
     def test_untracked_source_rejected_and_preserved(self):
         self.populated_cache()
@@ -218,12 +273,15 @@ class SmokeProductionTests(unittest.TestCase):
         self.assertFalse(source.exists(), "untracked control must own its new file")
         mutation=b"package main\n"
         source.write_bytes(mutation)
-        self.addCleanup(self.remove_owned_source_file,source,mutation)
+        identity=self.owned_file_identity(source)
+        self.addCleanup(self.remove_owned_source_file,source,mutation,identity)
         with self.assertRaisesRegex(RuntimeError,"local/ignored changes"):
             smoke.ensure_pinned_cherri_binary()
         self.assertEqual(source.read_text(encoding="utf-8"),"package main\n")
         with self.assertRaisesRegex(AssertionError,"not fully pristine"):
             self.read_source_state(self.cache/"src")
+        self.assert_same_byte_replacement_rejected(source,mutation,
+            self.remove_owned_source_file,mutation,identity)
 
     def test_missing_receipt_does_not_rebuild_or_delete_binary(self):
         binary=self.populated_cache()
