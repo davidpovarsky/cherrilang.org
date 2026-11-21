@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """Real cache and snippet controls for smoke_test_snippets; no fake compiler."""
 import importlib.util
+import hashlib
 import json
 import os
 from pathlib import Path
 import shutil
+import stat
 import subprocess
 import sys
 import tempfile
@@ -20,8 +22,12 @@ spec.loader.exec_module(smoke)
 class SmokeProductionTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.work = tempfile.TemporaryDirectory(prefix="cherri_docs_controls_")
-        cls.root = Path(cls.work.name)
+        # The fixture owns this directory. Failed lease/pristine checks retain it
+        # for diagnosis; successful suites clean only their own directory.
+        cls.root = Path(tempfile.mkdtemp(prefix="cherri_docs_controls_"))
+        cls.source_pool = cls.root / "source-pool"
+        cls.source_lease = None
+        cls.source_events = []
         supplied = os.environ.get("CHERRI_SMOKE_TEST_CACHE")
         if supplied:
             cls.good = Path(supplied)
@@ -46,12 +52,98 @@ class SmokeProductionTests(unittest.TestCase):
             smoke.command(["go","build","-buildvcs=true","-trimpath","-o",str(cls.wrong),"."],cwd=repo)
         actual = smoke.command(["go","version","-m",str(cls.wrong)]).stdout
         assert "vcs.revision="+smoke.PINNED_CHERRI_COMMIT not in actual
+        # One genuine ordinary checkout, never a linked worktree, is leased
+        # exclusively into each case's separate cache. Only source is reused:
+        # binaries, receipts, corruption and other output stay case-local.
+        smoke.command(["git","clone","--shared","--no-checkout",str(cls.good/"src"),str(cls.source_pool)])
+        smoke.command(["git","config","core.autocrlf","false"],cwd=cls.source_pool)
+        smoke.command(["git","remote","set-url","origin",smoke.PINNED_CHERRI_REPO],cwd=cls.source_pool)
+        smoke.command(["git","checkout","--detach",smoke.PINNED_CHERRI_COMMIT],cwd=cls.source_pool)
+        cls.pristine_source_state = cls.read_source_state(cls.source_pool)
+
+    @staticmethod
+    def read_source_state(repo):
+        if not repo.is_dir() or not (repo/".git").is_dir():
+            raise AssertionError("fixture requires an ordinary Git checkout")
+        if any(not smoke.real_path(p) for p in (repo,repo/".git")):
+            raise AssertionError("fixture source must not be a link or junction")
+        def git(*args):
+            return smoke.command(["git","--no-replace-objects",*args],cwd=repo).stdout
+        if Path(git("rev-parse","--show-toplevel").strip()).resolve() != repo.resolve():
+            raise AssertionError("fixture source top-level identity changed")
+        if git("rev-parse","--git-dir").strip() != ".git":
+            raise AssertionError("fixture source is not an ordinary checkout")
+        state = {
+            "revision":git("rev-parse","HEAD").strip(),
+            "origin":git("remote","get-url","origin").strip(),
+            "status":git("status","--porcelain=v1","--untracked-files=all","--ignored=matching"),
+            "autocrlf":git("config","--get","core.autocrlf").strip(),
+            "trackedStageSha256":hashlib.sha256(git("ls-files","--stage").encode()).hexdigest(),
+            "trackedFlagsSha256":hashlib.sha256(git("ls-files","-v").encode()).hexdigest(),
+            "goModSha256":smoke.digest(repo/"go.mod"),
+        }
+        if state["revision"] != smoke.PINNED_CHERRI_COMMIT or state["origin"] != smoke.PINNED_CHERRI_REPO:
+            raise AssertionError("fixture source identity changed")
+        if state["status"] or state["autocrlf"] != "false":
+            raise AssertionError("fixture source is not fully pristine")
+        return state
 
     @classmethod
     def tearDownClass(cls):
-        cls.work.cleanup()
+        acquired = [e["case"] for e in cls.source_events if e["event"] == "acquire"]
+        released = [e["case"] for e in cls.source_events if e["event"] == "release"]
+        if cls.source_lease is not None or acquired != released or len(set(acquired)) != len(acquired):
+            raise AssertionError(f"source lease contamination; owned fixture retained at {cls.root}")
+        if cls.read_source_state(cls.source_pool) != cls.pristine_source_state:
+            raise AssertionError(f"source state leaked between cases; owned fixture retained at {cls.root}")
+        # Match TemporaryDirectory's Windows read-only-file cleanup, restricted
+        # to this successfully verified fixture tree.
+        def remove_readonly(function, path, error):
+            if not isinstance(error[1], PermissionError):
+                raise error[1]
+            candidate = Path(path)
+            if cls.root not in candidate.parents or candidate.is_symlink():
+                raise error[1]
+            os.chmod(candidate, stat.S_IREAD | stat.S_IWRITE)
+            function(path)
+        shutil.rmtree(cls.root, onerror=remove_readonly)
+
+    def source_witness(self, event, **fields):
+        row = {"event":event, "case":self._testMethodName, "cache":str(self.cache), **fields}
+        type(self).source_events.append(row)
+        print("CACHE_SOURCE_WITNESS " + json.dumps(row, sort_keys=True), flush=True)
+
+    def release_source(self):
+        cls = type(self)
+        self.assertEqual(cls.source_lease, self.case, "source lease belongs to a different case")
+        repo = self.cache/"src"
+        state = self.read_source_state(repo)
+        self.assertEqual(state, cls.pristine_source_state, "source mutation leaked from this case")
+        self.assertFalse(cls.source_pool.exists(), "source pool unexpectedly occupied")
+        repo.rename(cls.source_pool)
+        self.assertEqual(self.read_source_state(cls.source_pool), cls.pristine_source_state)
+        cls.source_lease = None
+        self.source_witness("release", sourceState=state)
+
+    def restore_owned_source_file(self, path, original, mutation):
+        self.assertEqual(path.parent, self.cache/"src")
+        self.assertEqual(path.read_bytes(), mutation, "fixture mutation changed unexpectedly; preserve it")
+        path.write_bytes(original)
+        self.assertEqual(path.read_bytes(), original)
+        self.source_witness("restore-owned-file", path=path.name,
+                            mutationSha256=hashlib.sha256(mutation).hexdigest(),
+                            restoredSha256=hashlib.sha256(original).hexdigest())
+
+    def remove_owned_source_file(self, path, mutation):
+        self.assertEqual(path.parent, self.cache/"src")
+        self.assertEqual(path.read_bytes(), mutation, "fixture mutation changed unexpectedly; preserve it")
+        path.unlink()
+        self.assertFalse(path.exists())
+        self.source_witness("remove-owned-file", path=path.name,
+                            mutationSha256=hashlib.sha256(mutation).hexdigest())
 
     def setUp(self):
+        self.assertIsNone(type(self).source_lease, "prior case did not restore its owned source")
         self.case = Path(tempfile.mkdtemp(dir=self.root, prefix="case-"))
         self.cache = self.case / "cache"
         self.env = unittest.mock.patch.dict(os.environ, {"CHERRI_SMOKE_CACHE_DIR":str(self.cache)})
@@ -59,16 +151,21 @@ class SmokeProductionTests(unittest.TestCase):
         self.addCleanup(self.env.stop)
 
     def populated_cache(self):
+        cls = type(self)
+        self.assertIsNone(cls.source_lease)
+        self.assertEqual(self.read_source_state(cls.source_pool), cls.pristine_source_state)
         self.cache.mkdir()
         repo = self.cache/"src"
-        smoke.command(["git","clone","--shared","--no-checkout",str(self.good/"src"),str(repo)])
-        smoke.command(["git","config","core.autocrlf","false"],cwd=repo)
-        smoke.command(["git","remote","set-url","origin",smoke.PINNED_CHERRI_REPO],cwd=repo)
-        smoke.command(["git","checkout","--detach",smoke.PINNED_CHERRI_COMMIT],cwd=repo)
+        cls.source_pool.rename(repo)
+        cls.source_lease = self.case
+        self.addCleanup(self.release_source)
+        state = self.read_source_state(repo)
+        self.assertEqual(state, cls.pristine_source_state)
         binary = self.cache/self.binary.name
         shutil.copy2(self.binary,binary)
         shutil.copy2(self.good/smoke.CACHE_RECEIPT,self.cache/smoke.CACHE_RECEIPT)
         smoke.inspect_cache(self.cache)
+        self.source_witness("acquire", sourceState=state, binarySha256=smoke.digest(binary))
         return binary
 
     def test_valid_cache_reuses_verified_binary_without_rebuild(self):
@@ -104,7 +201,10 @@ class SmokeProductionTests(unittest.TestCase):
     def test_dirty_tracked_source_rejected_and_preserved(self):
         self.populated_cache()
         source=self.cache/"src/go.mod"
-        source.write_bytes(source.read_bytes()+b"\n")
+        original=source.read_bytes()
+        mutation=original+b"\n"
+        source.write_bytes(mutation)
+        self.addCleanup(self.restore_owned_source_file,source,original,mutation)
         before=smoke.digest(source)
         with self.assertRaisesRegex(RuntimeError,"local/ignored changes"):
             smoke.ensure_pinned_cherri_binary()
@@ -113,7 +213,10 @@ class SmokeProductionTests(unittest.TestCase):
     def test_untracked_source_rejected_and_preserved(self):
         self.populated_cache()
         source=self.cache/"src/docs-cache-local.go"
-        source.write_text("package main\n",encoding="utf-8")
+        self.assertFalse(source.exists(), "untracked control must own its new file")
+        mutation=b"package main\n"
+        source.write_bytes(mutation)
+        self.addCleanup(self.remove_owned_source_file,source,mutation)
         with self.assertRaisesRegex(RuntimeError,"local/ignored changes"):
             smoke.ensure_pinned_cherri_binary()
         self.assertEqual(source.read_text(encoding="utf-8"),"package main\n")
