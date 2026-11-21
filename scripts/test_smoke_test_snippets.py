@@ -209,6 +209,8 @@ class SmokeProductionTests(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError,"local/ignored changes"):
             smoke.ensure_pinned_cherri_binary()
         self.assertEqual(smoke.digest(source),before)
+        with self.assertRaisesRegex(AssertionError,"not fully pristine"):
+            self.read_source_state(self.cache/"src")
 
     def test_untracked_source_rejected_and_preserved(self):
         self.populated_cache()
@@ -220,6 +222,8 @@ class SmokeProductionTests(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError,"local/ignored changes"):
             smoke.ensure_pinned_cherri_binary()
         self.assertEqual(source.read_text(encoding="utf-8"),"package main\n")
+        with self.assertRaisesRegex(AssertionError,"not fully pristine"):
+            self.read_source_state(self.cache/"src")
 
     def test_missing_receipt_does_not_rebuild_or_delete_binary(self):
         binary=self.populated_cache()
