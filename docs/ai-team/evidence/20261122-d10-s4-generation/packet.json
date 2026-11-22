@@ -1,0 +1,15 @@
+{
+  "schema": "cherri.d10-generation-publication-draft/v1",
+  "status": "VERIFIED_NOT_YET_PUBLISHED",
+  "source_base": "151111f7f67ed4980b243065fbd606a5902f734b",
+  "suggested_proof_branch": "audit/cherri-p10r15-docs-d10-generation-proof-20261122",
+  "archive": "d10-s4-generation-originals-20261122.zip",
+  "archive_bytes": 8820169,
+  "archive_sha256": "f94f7ed148617d0b2e1eb5523a23378c0743940df054ae03b742891ac49020b9",
+  "manifest_sha256": "091a8f7bdc520a7b08c5bfb340434ff7292534963a504ce87943cb1eaf2a8ce7",
+  "bound_files": 63,
+  "original_artifact_members": 200,
+  "independent_intake_sha256": "4311210100db090fdab4591ca087e738f09936f3b2df0eb454281f8db7b6f9c7",
+  "run": 44971464321,
+  "scope": "Evidence-only draft; no Docs main/Pages, compiler/main/Pure, consumer pin or source mutation."
+}

@@ -1,0 +1,236 @@
+{
+  "schema": "cherri.d10-generation-independent-intake/v1",
+  "status": "PASS",
+  "read_at": "2026-11-22T01:35:13.970112+00:00",
+  "run": 44971464321,
+  "attempt": 1,
+  "docs_source": "151111f7f67ed4980b243065fbd606a5902f734b",
+  "compiler_source": "b791ce0616d1821cebfc57909a6bc50a195ca68c",
+  "linux_binary_sha256": "65042016b5c973d71a7409b844482d73d26e5dd6327f945f851915e5facdebc6",
+  "generation": {
+    "elapsed_seconds": 5.894063,
+    "check_elapsed_seconds": 0.064162,
+    "go_elapsed_seconds": 2.172201,
+    "reference_bytes": 243289,
+    "reference_sha256": "8f8a953a14fd65c9bfe6024ea065524d76a8f0549bd1d2e45502cda00dd4d0be",
+    "complete_generated_canonical_docs_body_equality": true,
+    "native_actions": 505,
+    "macros": 15,
+    "headings": 520
+  },
+  "go": {
+    "parents": [
+      "TestGeneratedReferenceIncludesSeparateMacroContracts",
+      "TestP15D01PrimaryParameterContract",
+      "TestP15D01AllGeneratedSignaturesAndCategories",
+      "TestP15D01CheckGateProducesAndRejectsFaults"
+    ],
+    "mutations": [
+      "optional_primary",
+      "typed_default",
+      "callable_identity",
+      "wire_key",
+      "return_type",
+      "macro_identity",
+      "missing_category",
+      "extra_section"
+    ],
+    "run_once": [
+      "TestGeneratedReferenceIncludesSeparateMacroContracts",
+      "TestP15D01AllGeneratedSignaturesAndCategories",
+      "TestP15D01CheckGateProducesAndRejectsFaults",
+      "TestP15D01CheckGateProducesAndRejectsFaults/callable_identity",
+      "TestP15D01CheckGateProducesAndRejectsFaults/extra_section",
+      "TestP15D01CheckGateProducesAndRejectsFaults/macro_identity",
+      "TestP15D01CheckGateProducesAndRejectsFaults/missing_category",
+      "TestP15D01CheckGateProducesAndRejectsFaults/optional_primary",
+      "TestP15D01CheckGateProducesAndRejectsFaults/return_type",
+      "TestP15D01CheckGateProducesAndRejectsFaults/typed_default",
+      "TestP15D01CheckGateProducesAndRejectsFaults/wire_key",
+      "TestP15D01PrimaryParameterContract"
+    ],
+    "pass_once": [
+      "TestGeneratedReferenceIncludesSeparateMacroContracts",
+      "TestP15D01AllGeneratedSignaturesAndCategories",
+      "TestP15D01CheckGateProducesAndRejectsFaults",
+      "TestP15D01CheckGateProducesAndRejectsFaults/callable_identity",
+      "TestP15D01CheckGateProducesAndRejectsFaults/extra_section",
+      "TestP15D01CheckGateProducesAndRejectsFaults/macro_identity",
+      "TestP15D01CheckGateProducesAndRejectsFaults/missing_category",
+      "TestP15D01CheckGateProducesAndRejectsFaults/optional_primary",
+      "TestP15D01CheckGateProducesAndRejectsFaults/return_type",
+      "TestP15D01CheckGateProducesAndRejectsFaults/typed_default",
+      "TestP15D01CheckGateProducesAndRejectsFaults/wire_key",
+      "TestP15D01PrimaryParameterContract"
+    ],
+    "fail": 0,
+    "skip": 0,
+    "raw_events": 52,
+    "raw_sha256": "6bfe1f690eddaeaccf339dc4374f52da45fd1d85df180ed3c0a9f12126ce4490"
+  },
+  "source": {
+    "before_after_identical": true,
+    "git_tree_index_entries": {
+      "compiler": 6313,
+      "docs": 101
+    },
+    "direct_generation_witnesses": 11,
+    "all_raw_process_receipts_reconciled": 33,
+    "source_bindings": {
+      "compiler-module": {
+        "git_blob": "0bc0002815d1779cf4f094bbe141df03557d37ed",
+        "bytes": 1618,
+        "sha256": "a7c75fd79aaf8691d08ad70fdb03fdeb024bc324d18bd36ddc99ee28059d948c",
+        "url": "https://github.com/davidpovarsky/cherri/blob/b791ce0616d1821cebfc57909a6bc50a195ca68c/go.mod"
+      },
+      "compiler-reference": {
+        "git_blob": "cc6aa89af2399a8a28cc824ab63c34875c9cece9",
+        "bytes": 243289,
+        "sha256": "8f8a953a14fd65c9bfe6024ea065524d76a8f0549bd1d2e45502cda00dd4d0be",
+        "url": "https://github.com/davidpovarsky/cherri/blob/b791ce0616d1821cebfc57909a6bc50a195ca68c/docs/language-v2/actions-reference.md"
+      },
+      "compiler-sum": {
+        "git_blob": "00552c157626f542aee6906578955f7ded0ebf4c",
+        "bytes": 11884,
+        "sha256": "8128f7aca3ed35d26eced1b2b2e3fc2f0e942f1c46b94c27d6c023991e1d3f5c",
+        "url": "https://github.com/davidpovarsky/cherri/blob/b791ce0616d1821cebfc57909a6bc50a195ca68c/go.sum"
+      },
+      "docs-cache-test": {
+        "git_blob": "72b56c2730d95681cda353a955cc6b1060bbf469",
+        "bytes": 18101,
+        "sha256": "6a6ec4ad22c3492910854417fb10cd798cec8979a149e441bdf6ca9bd3fb4359",
+        "url": "https://github.com/davidpovarsky/cherrilang.org/blob/151111f7f67ed4980b243065fbd606a5902f734b/scripts/test_smoke_test_snippets.py"
+      },
+      "docs-driver": {
+        "git_blob": "1e51d470e735be8cd07e9932e248e801336b1c80",
+        "bytes": 22581,
+        "sha256": "153d9d0aab56b18c580c3c1286282fd7682f1b75f27455a25544723eea20900f",
+        "url": "https://github.com/davidpovarsky/cherrilang.org/blob/151111f7f67ed4980b243065fbd606a5902f734b/scripts/verify_generated_reference.py"
+      },
+      "docs-functions": {
+        "git_blob": "90fa8b71deee3e09d8f0053c5ebd0fc59c2a9f8d",
+        "bytes": 7357,
+        "sha256": "d625f4714c7dadaaed00f8a77beeb64078e83c2d59bab056c6e0b208824208f4",
+        "url": "https://github.com/davidpovarsky/cherrilang.org/blob/151111f7f67ed4980b243065fbd606a5902f734b/language/functions.md"
+      },
+      "docs-guide": {
+        "git_blob": "c20b9e58963b4a1bb337b70185e88e5cfd34966a",
+        "bytes": 8365,
+        "sha256": "38637c6a0406e33bcc470c2a4a604ab5cd3d837934422b26954d7582e8f0bd81",
+        "url": "https://github.com/davidpovarsky/cherrilang.org/blob/151111f7f67ed4980b243065fbd606a5902f734b/fork-language/guide.md"
+      },
+      "docs-index": {
+        "git_blob": "35ebe7635b31798d89aa93571b584b81a45ec238",
+        "bytes": 2078,
+        "sha256": "84376027a4f3619e7fd7e5416a2d22df63925d6faee2bfecbdae97534fee1cfd",
+        "url": "https://github.com/davidpovarsky/cherrilang.org/blob/151111f7f67ed4980b243065fbd606a5902f734b/index.md"
+      },
+      "docs-migration": {
+        "git_blob": "cf266a074e0b46337076a7f3be728d4bae1341c9",
+        "bytes": 3314,
+        "sha256": "1946a6f87406aef1ea7250325d0b8679fe68eeaa6eda8907b5cb0059bb5a2de6",
+        "url": "https://github.com/davidpovarsky/cherrilang.org/blob/151111f7f67ed4980b243065fbd606a5902f734b/fork-language/migration.md"
+      },
+      "docs-reference": {
+        "git_blob": "9e3b5ff3b4820932a17a407e30274906f1e57628",
+        "bytes": 243408,
+        "sha256": "d1a5dfe3762109caeb7ddf8e1beaba5f17de4b5231de342ce99fa039d76090cd",
+        "url": "https://github.com/davidpovarsky/cherrilang.org/blob/151111f7f67ed4980b243065fbd606a5902f734b/fork-language/actions.md"
+      },
+      "docs-site-controls": {
+        "git_blob": "57c7f0b8c72bc6b2e07ef963d4e04a289607c7a5",
+        "bytes": 4386,
+        "sha256": "af386ae2ba9a40ba49de3341dcde5e1d76bb19a7a6dc2235f1c70e62db70c653",
+        "url": "https://github.com/davidpovarsky/cherrilang.org/blob/151111f7f67ed4980b243065fbd606a5902f734b/scripts/test_site_artifacts.py"
+      },
+      "docs-site-verifier": {
+        "git_blob": "8b5463d535591a041f5e78a266f129f1783f50ca",
+        "bytes": 11300,
+        "sha256": "e0a51da0c337dbc5a90dd43f1eec05152fca499fc9f98e94bc123938bdcc0959",
+        "url": "https://github.com/davidpovarsky/cherrilang.org/blob/151111f7f67ed4980b243065fbd606a5902f734b/scripts/verify_site_artifacts.py"
+      },
+      "docs-smoke": {
+        "git_blob": "ce7e47ed5dc5ba40a28894d675b5fc9c41de98c8",
+        "bytes": 13765,
+        "sha256": "ffc7cd61cebba9e082148682ee3017d25236799b39dc6861b5f722a0669fb8f2",
+        "url": "https://github.com/davidpovarsky/cherrilang.org/blob/151111f7f67ed4980b243065fbd606a5902f734b/scripts/smoke_test_snippets.py"
+      },
+      "docs-variables": {
+        "git_blob": "2f613d109571a09d31d7530d514ea78182ba8289",
+        "bytes": 4429,
+        "sha256": "01e8033ffeca60093547befef8b50d220354f55e1fac1c767371047604eb22f2",
+        "url": "https://github.com/davidpovarsky/cherrilang.org/blob/151111f7f67ed4980b243065fbd606a5902f734b/language/variables-constants-globals.md"
+      },
+      "docs-workflow": {
+        "git_blob": "e40d9dc0f678550e42c996400e7e609a3f9f769f",
+        "bytes": 3996,
+        "sha256": "3b46fc4ee7280b4d353005e33e010a39cf074d4fd38881ef7e9cddc49a2aa524",
+        "url": "https://github.com/davidpovarsky/cherrilang.org/blob/151111f7f67ed4980b243065fbd606a5902f734b/.github/workflows/docs-smoke-test.yml"
+      },
+      "generator-contract-test": {
+        "git_blob": "7b351ac9391ce587366323a1c2bc1f2c0be5c6fc",
+        "bytes": 7736,
+        "sha256": "cfa03d777f1103975f845e90723730b0a46971ffba6dc88ecf20c1eba4503782",
+        "url": "https://github.com/davidpovarsky/cherri/blob/b791ce0616d1821cebfc57909a6bc50a195ca68c/tools/language-docs/p15_contract_test.go"
+      },
+      "generator-macro-test": {
+        "git_blob": "61dc3aab84ebff30cd91407528969a4c581121dc",
+        "bytes": 927,
+        "sha256": "c6b3d1d72dffd1ed56e391b72bb3514c99f29049679597256202fc25f0311f6a",
+        "url": "https://github.com/davidpovarsky/cherri/blob/b791ce0616d1821cebfc57909a6bc50a195ca68c/tools/language-docs/macro_metadata_test.go"
+      },
+      "generator-main": {
+        "git_blob": "ad492193cd8dc6014059f2b2bb8e968bb8889622",
+        "bytes": 7430,
+        "sha256": "ee2038a8bbd5d0c475b9824e8a12abf5e2a0be2e529eb8da1486e1de4f184573",
+        "url": "https://github.com/davidpovarsky/cherri/blob/b791ce0616d1821cebfc57909a6bc50a195ca68c/tools/language-docs/main.go"
+      }
+    }
+  },
+  "cache": {
+    "actual_controls": 12,
+    "elapsed_seconds": 28.798,
+    "witnesses": 18,
+    "clean_acquire_release_pairs": 6,
+    "same_byte_replacement_controls": 2,
+    "binary_receipt_before_after_identical": true
+  },
+  "smoke": {
+    "actual_executions": 39,
+    "runnable": 36,
+    "diagnostic": 3,
+    "reference_only_unexecuted": 524,
+    "all563_source_block_hashes_reconciled": true
+  },
+  "site": {
+    "rendered_signatures": 520,
+    "search_entries": 50,
+    "controls_passed": 6,
+    "artifacts_restored_exactly": true,
+    "published": false
+  },
+  "artifacts": [
+    {
+      "id": 14733852372,
+      "name": "docs-snippet-evidence",
+      "bytes": 25791,
+      "sha256": "df107d3e2a7bc9368b924ecaaad6f48be21e7f3956eb354c26d645cc7c19aa51",
+      "members": 1
+    },
+    {
+      "id": 14733458610,
+      "name": "docs-generator-evidence",
+      "bytes": 582250,
+      "sha256": "60d19f25bc050d51740636a9d1c97100aaadd77137e3af72fada705d2b087b07",
+      "members": 105
+    },
+    {
+      "id": 14733304387,
+      "name": "docs-built-site",
+      "bytes": 7305846,
+      "sha256": "026c73d8568718ebcc2de8f56d95fac6eb07ca9097b67405f8ddc6093e89834c",
+      "members": 94
+    }
+  ],
+  "scope": "Original single GitHub source generation/check, Go controls, snippet/cache and built-site evidence. No local re-execution, Windows binary equivalence, Pages promotion, Apple runtime, installed-consumer deployment or full179 acceptance."
+}

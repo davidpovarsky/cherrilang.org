@@ -1,0 +1,35 @@
+{
+  "smoke": {
+    "bytes": 52244,
+    "sha256": "d2d1f90058fae3d2c826530e87cc3aa583923b2de7de5850f6670a84abace79e"
+  },
+  "site": {
+    "bytes": 27285,
+    "sha256": "eecc2627d1e65cb4a5fa54b6d5c19051e1136874f16dd889fe990b6f5d86e4a9"
+  },
+  "compiler_tree": "cdd6e1606a75cd312f24ee060a92ce84ba863a1b",
+  "docs_tree": "45b1ee0b29647016f1f4f5cc529b2b3be3c7b0f2",
+  "artifacts": [
+    {
+      "id": 14733852372,
+      "bytes": 25791,
+      "digest": "sha256:df107d3e2a7bc9368b924ecaaad6f48be21e7f3956eb354c26d645cc7c19aa51"
+    },
+    {
+      "id": 14733458610,
+      "bytes": 582250,
+      "digest": "sha256:60d19f25bc050d51740636a9d1c97100aaadd77137e3af72fada705d2b087b07"
+    },
+    {
+      "id": 14733304387,
+      "bytes": 7305846,
+      "digest": "sha256:026c73d8568718ebcc2de8f56d95fac6eb07ca9097b67405f8ddc6093e89834c"
+    }
+  ],
+  "scope": "ROOT_READ_ONLY_ORIGINAL_RECONCILIATION",
+  "root_report_sha256": "206cd38afbe93218a4d51b36f23a76170f6db0403701b9aaf81e4c7044459806",
+  "read_at": "2026-11-22T01:40:29.247800+00:00",
+  "report_identical_except_audit_timestamp": true,
+  "go_event_nanosecond_order_and_elapsed_verified": true,
+  "new_test_executions": 0
+}
