@@ -1,0 +1,390 @@
+﻿2026-11-22T00:36:02.0295530Z Current runner version: '2.338.2'
+2026-11-22T00:36:02.0320987Z ##[group]Runner Image Provisioner
+2026-11-22T00:36:02.0322180Z Hosted Compute Agent
+2026-11-22T00:36:02.0322812Z Version: 20261111.635
+2026-11-22T00:36:02.0323573Z Commit: b8a594ea514ff44cadb5342986c68b1eac6e22ed
+2026-11-22T00:36:02.0324342Z Build Date: 2026-11-11T01:49:01Z
+2026-11-22T00:36:02.0325355Z Worker ID: {2124ec91-99b5-4ce0-92dd-218df5561613}
+2026-11-22T00:36:02.0326196Z Region: westus
+2026-11-22T00:36:02.0326763Z Cloud: Azure
+2026-11-22T00:36:02.0327360Z ##[endgroup]
+2026-11-22T00:36:02.0328887Z ##[group]Operating System
+2026-11-22T00:36:02.0329580Z Ubuntu
+2026-11-22T00:36:02.0330194Z 26.04.1
+2026-11-22T00:36:02.0330712Z LTS
+2026-11-22T00:36:02.0331297Z ##[endgroup]
+2026-11-22T00:36:02.0331862Z ##[group]Runner Image
+2026-11-22T00:36:02.0332489Z Image: ubuntu-26.04
+2026-11-22T00:36:02.0333503Z Version: 20261116.202.1
+2026-11-22T00:36:02.0334970Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261116.202/images/ubuntu/Ubuntu2604-Readme.md
+2026-11-22T00:36:02.0336734Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261116.202
+2026-11-22T00:36:02.0337731Z ##[endgroup]
+2026-11-22T00:36:02.0338866Z ##[group]GITHUB_TOKEN Permissions
+2026-11-22T00:36:02.0340766Z Contents: read
+2026-11-22T00:36:02.0341481Z Metadata: read
+2026-11-22T00:36:02.0342082Z ##[endgroup]
+2026-11-22T00:36:02.0344466Z Secret source: Actions
+2026-11-22T00:36:02.0345876Z Cache mode: write
+2026-11-22T00:36:02.0346795Z Prepare workflow directory
+2026-11-22T00:36:02.0753616Z Prepare all required actions
+2026-11-22T00:36:02.0803572Z Getting action download info
+2026-11-22T00:36:02.4309658Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-22T00:36:02.5348870Z Download action repository 'actions/setup-go@v5' (SHA:40f1582b2485089dde7abd97c1529aa768e1baff)
+2026-11-22T00:36:02.9008425Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-11-22T00:36:02.9588952Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-22T00:36:03.1587966Z Complete job name: smoke-test-snippets
+2026-11-22T00:36:03.2509645Z ##[group]Run actions/checkout@v4
+2026-11-22T00:36:03.2510625Z with:
+2026-11-22T00:36:03.2511176Z   repository: davidpovarsky/cherrilang.org
+2026-11-22T00:36:03.2516842Z   token: ***
+2026-11-22T00:36:03.2517347Z   ssh-strict: true
+2026-11-22T00:36:03.2517852Z   ssh-user: git
+2026-11-22T00:36:03.2518372Z   persist-credentials: true
+2026-11-22T00:36:03.2518962Z   clean: true
+2026-11-22T00:36:03.2519474Z   sparse-checkout-cone-mode: true
+2026-11-22T00:36:03.2520138Z   fetch-depth: 1
+2026-11-22T00:36:03.2520663Z   fetch-tags: false
+2026-11-22T00:36:03.2521176Z   show-progress: true
+2026-11-22T00:36:03.2521701Z   lfs: false
+2026-11-22T00:36:03.2522174Z   submodules: false
+2026-11-22T00:36:03.2522698Z   set-safe-directory: true
+2026-11-22T00:36:03.2523301Z   allow-unsafe-pr-checkout: false
+2026-11-22T00:36:03.2524226Z env:
+2026-11-22T00:36:03.2524860Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-22T00:36:03.2525467Z   GOMAXPROCS: 2
+2026-11-22T00:36:03.2525986Z   GOFLAGS: -p=2
+2026-11-22T00:36:03.2526531Z ##[endgroup]
+2026-11-22T00:36:03.5708452Z Syncing repository: davidpovarsky/cherrilang.org
+2026-11-22T00:36:03.5711530Z ##[group]Getting Git version info
+2026-11-22T00:36:03.5713057Z Working directory is '/home/runner/work/cherrilang.org/cherrilang.org'
+2026-11-22T00:36:03.5715124Z [command]/usr/bin/git version
+2026-11-22T00:36:03.5716210Z git version 2.56.1
+2026-11-22T00:36:03.5739442Z ##[endgroup]
+2026-11-22T00:36:03.5756530Z Temporarily overriding HOME='/home/runner/work/_temp/21be7293-e78f-4234-88b9-9baf83cf9c99' before making global git config changes
+2026-11-22T00:36:03.5766698Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-22T00:36:03.5769748Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/cherrilang.org/cherrilang.org
+2026-11-22T00:36:03.5842556Z Deleting the contents of '/home/runner/work/cherrilang.org/cherrilang.org'
+2026-11-22T00:36:03.5847764Z ##[group]Initializing the repository
+2026-11-22T00:36:03.5853194Z [command]/usr/bin/git init /home/runner/work/cherrilang.org/cherrilang.org
+2026-11-22T00:36:03.5967210Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-22T00:36:03.5970672Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-22T00:36:03.5975435Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-22T00:36:03.5977929Z hint: call:
+2026-11-22T00:36:03.5979244Z hint:
+2026-11-22T00:36:03.5980833Z hint: 	git config --global init.defaultBranch <name>
+2026-11-22T00:36:03.5982434Z hint:
+2026-11-22T00:36:03.5983783Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-22T00:36:03.5986491Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-22T00:36:03.5988684Z hint:
+2026-11-22T00:36:03.5989753Z hint: 	git branch -m <name>
+2026-11-22T00:36:03.5991047Z hint:
+2026-11-22T00:36:03.5993035Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-22T00:36:03.5996649Z Initialized empty Git repository in /home/runner/work/cherrilang.org/cherrilang.org/.git/
+2026-11-22T00:36:03.6000718Z [command]/usr/bin/git remote add origin https://github.com/davidpovarsky/cherrilang.org
+2026-11-22T00:36:03.6059292Z ##[endgroup]
+2026-11-22T00:36:03.6061110Z ##[group]Disabling automatic garbage collection
+2026-11-22T00:36:03.6062845Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-22T00:36:03.6097712Z ##[endgroup]
+2026-11-22T00:36:03.6099316Z ##[group]Setting up auth
+2026-11-22T00:36:03.6105354Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-22T00:36:03.6141964Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-22T00:36:03.6675756Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-22T00:36:03.6713245Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-22T00:36:03.6989593Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-22T00:36:03.7027494Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-22T00:36:03.7299079Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-22T00:36:03.7339738Z ##[endgroup]
+2026-11-22T00:36:03.7341469Z ##[group]Fetching the repository
+2026-11-22T00:36:03.7352595Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +03431e9114211c1093b330d5fbaec3a4855ee867:refs/remotes/origin/agent/cherri-p10r15-docs-d10-ci-20261122
+2026-11-22T00:36:04.2688231Z From https://github.com/davidpovarsky/cherrilang.org
+2026-11-22T00:36:04.2692929Z  * [new ref]         03431e9114211c1093b330d5fbaec3a4855ee867 -> origin/agent/cherri-p10r15-docs-d10-ci-20261122
+2026-11-22T00:36:04.2702656Z ##[endgroup]
+2026-11-22T00:36:04.2705384Z ##[group]Determining the checkout info
+2026-11-22T00:36:04.2708196Z ##[endgroup]
+2026-11-22T00:36:04.2710083Z [command]/usr/bin/git sparse-checkout disable
+2026-11-22T00:36:04.2767418Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-22T00:36:04.2808999Z ##[group]Checking out the ref
+2026-11-22T00:36:04.2813662Z [command]/usr/bin/git checkout --progress --force -B agent/cherri-p10r15-docs-d10-ci-20261122 refs/remotes/origin/agent/cherri-p10r15-docs-d10-ci-20261122
+2026-11-22T00:36:04.3067072Z Switched to a new branch 'agent/cherri-p10r15-docs-d10-ci-20261122'
+2026-11-22T00:36:04.3074368Z branch 'agent/cherri-p10r15-docs-d10-ci-20261122' set up to track 'origin/agent/cherri-p10r15-docs-d10-ci-20261122'.
+2026-11-22T00:36:04.3090121Z ##[endgroup]
+2026-11-22T00:36:04.3137030Z [command]/usr/bin/git log -1 --format=%H
+2026-11-22T00:36:04.3162417Z 03431e9114211c1093b330d5fbaec3a4855ee867
+2026-11-22T00:36:04.3625137Z ##[group]Run actions/setup-go@v5
+2026-11-22T00:36:04.3626328Z with:
+2026-11-22T00:36:04.3627184Z   go-version: 1.24
+2026-11-22T00:36:04.3628138Z   check-latest: false
+2026-11-22T00:36:04.3638652Z   token: ***
+2026-11-22T00:36:04.3639555Z   cache: true
+2026-11-22T00:36:04.3640431Z env:
+2026-11-22T00:36:04.3641313Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-22T00:36:04.3642396Z   GOMAXPROCS: 2
+2026-11-22T00:36:04.3643295Z   GOFLAGS: -p=2
+2026-11-22T00:36:04.3644196Z ##[endgroup]
+2026-11-22T00:36:04.5040545Z Setup go version spec 1.24
+2026-11-22T00:36:04.5092852Z Attempting to download 1.24...
+2026-11-22T00:36:04.5251248Z (node:2407) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-22T00:36:04.5257363Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-22T00:36:05.2132770Z matching 1.24...
+2026-11-22T00:36:05.2224884Z Acquiring 1.24.13 from https://github.com/actions/go-versions/releases/download/1.24.13-21696107652/go-1.24.13-linux-x64.tar.gz
+2026-11-22T00:36:06.3750179Z Extracting Go...
+2026-11-22T00:36:06.3881145Z [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/c722499f-891e-4f1a-ad92-7257f866daa4 -f /home/runner/work/_temp/7f990868-8d95-4dd3-bf6e-f5f61c08f06e
+2026-11-22T00:36:07.6942958Z Successfully extracted go to /home/runner/work/_temp/c722499f-891e-4f1a-ad92-7257f866daa4
+2026-11-22T00:36:07.6944085Z Adding to the cache ...
+2026-11-22T00:36:12.0570530Z Successfully cached go to /opt/hostedtoolcache/go/1.24.13/x64
+2026-11-22T00:36:12.0571537Z Added go to the path
+2026-11-22T00:36:12.0585563Z Successfully set up Go version 1.24
+2026-11-22T00:36:12.0847271Z [command]/opt/hostedtoolcache/go/1.24.13/x64/bin/go env GOMODCACHE
+2026-11-22T00:36:12.0897154Z [command]/opt/hostedtoolcache/go/1.24.13/x64/bin/go env GOCACHE
+2026-11-22T00:36:12.0947340Z /home/runner/go/pkg/mod
+2026-11-22T00:36:12.0964598Z /home/runner/.cache/go-build
+2026-11-22T00:36:12.0992735Z ##[warning]Restore cache failed: Dependencies file is not found in /home/runner/work/cherrilang.org/cherrilang.org. Supported file pattern: go.sum
+2026-11-22T00:36:12.1019051Z go version go1.24.13 linux/amd64
+2026-11-22T00:36:12.1019312Z 
+2026-11-22T00:36:12.1019720Z ##[group]go env
+2026-11-22T00:36:12.2693420Z AR='ar'
+2026-11-22T00:36:12.2694086Z CC='gcc'
+2026-11-22T00:36:12.2694575Z CGO_CFLAGS='-O2 -g'
+2026-11-22T00:36:12.2695301Z CGO_CPPFLAGS=''
+2026-11-22T00:36:12.2695839Z CGO_CXXFLAGS='-O2 -g'
+2026-11-22T00:36:12.2696381Z CGO_ENABLED='1'
+2026-11-22T00:36:12.2696880Z CGO_FFLAGS='-O2 -g'
+2026-11-22T00:36:12.2697423Z CGO_LDFLAGS='-O2 -g'
+2026-11-22T00:36:12.2697916Z CXX='g++'
+2026-11-22T00:36:12.2698214Z GCCGO='gccgo'
+2026-11-22T00:36:12.2698521Z GO111MODULE=''
+2026-11-22T00:36:12.2698831Z GOAMD64='v1'
+2026-11-22T00:36:12.2699157Z GOARCH='amd64'
+2026-11-22T00:36:12.2699464Z GOAUTH='netrc'
+2026-11-22T00:36:12.2699773Z GOBIN=''
+2026-11-22T00:36:12.2700123Z GOCACHE='/home/runner/.cache/go-build'
+2026-11-22T00:36:12.2700612Z GOCACHEPROG=''
+2026-11-22T00:36:12.2700966Z GODEBUG=''
+2026-11-22T00:36:12.2701348Z GOENV='/home/runner/.config/go/env'
+2026-11-22T00:36:12.2701738Z GOEXE=''
+2026-11-22T00:36:12.2702038Z GOEXPERIMENT=''
+2026-11-22T00:36:12.2702349Z GOFIPS140='off'
+2026-11-22T00:36:12.2702653Z GOFLAGS='-p=2'
+2026-11-22T00:36:12.2703620Z GOGCCFLAGS='-fPIC -m64 -pthread -Wl,--no-gc-sections -fmessage-length=0 -ffile-prefix-map=/tmp/go-build2865189871=/tmp/go-build -gno-record-gcc-switches'
+2026-11-22T00:36:12.2704616Z GOHOSTARCH='amd64'
+2026-11-22T00:36:12.2705194Z GOHOSTOS='linux'
+2026-11-22T00:36:12.2705503Z GOINSECURE=''
+2026-11-22T00:36:12.2705804Z GOMOD='/dev/null'
+2026-11-22T00:36:12.2706539Z GOMODCACHE='/home/runner/go/pkg/mod'
+2026-11-22T00:36:12.2706940Z GONOPROXY=''
+2026-11-22T00:36:12.2707239Z GONOSUMDB=''
+2026-11-22T00:36:12.2707526Z GOOS='linux'
+2026-11-22T00:36:12.2707833Z GOPATH='/home/runner/go'
+2026-11-22T00:36:12.2708170Z GOPRIVATE=''
+2026-11-22T00:36:12.2708799Z GOPROXY='https://proxy.golang.org,direct'
+2026-11-22T00:36:12.2709327Z GOROOT='/opt/hostedtoolcache/go/1.24.13/x64'
+2026-11-22T00:36:12.2709793Z GOSUMDB='sum.golang.org'
+2026-11-22T00:36:12.2710184Z GOTELEMETRY='local'
+2026-11-22T00:36:12.2710604Z GOTELEMETRYDIR='/home/runner/.config/go/telemetry'
+2026-11-22T00:36:12.2711063Z GOTMPDIR=''
+2026-11-22T00:36:12.2711367Z GOTOOLCHAIN='auto'
+2026-11-22T00:36:12.2711842Z GOTOOLDIR='/opt/hostedtoolcache/go/1.24.13/x64/pkg/tool/linux_amd64'
+2026-11-22T00:36:12.2712325Z GOVCS=''
+2026-11-22T00:36:12.2712576Z GOVERSION='go1.24.13'
+2026-11-22T00:36:12.2712852Z GOWORK=''
+2026-11-22T00:36:12.2713116Z PKG_CONFIG='pkg-config'
+2026-11-22T00:36:12.2713298Z 
+2026-11-22T00:36:12.2713813Z ##[endgroup]
+2026-11-22T00:36:12.2998936Z ##[group]Run actions/setup-python@v5
+2026-11-22T00:36:12.2999448Z with:
+2026-11-22T00:36:12.2999791Z   python-version: 3.12
+2026-11-22T00:36:12.3000187Z   check-latest: false
+2026-11-22T00:36:12.3005478Z   token: ***
+2026-11-22T00:36:12.3005858Z   update-environment: true
+2026-11-22T00:36:12.3006288Z   allow-prereleases: false
+2026-11-22T00:36:12.3006698Z   freethreaded: false
+2026-11-22T00:36:12.3007119Z env:
+2026-11-22T00:36:12.3007389Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-22T00:36:12.3007647Z   GOMAXPROCS: 2
+2026-11-22T00:36:12.3007869Z   GOFLAGS: -p=2
+2026-11-22T00:36:12.3008080Z ##[endgroup]
+2026-11-22T00:36:12.4479019Z ##[group]Installed versions
+2026-11-22T00:36:12.4655835Z (node:2470) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-22T00:36:12.4657111Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-22T00:36:12.4657976Z Successfully set up CPython (3.12.16)
+2026-11-22T00:36:12.4658868Z ##[endgroup]
+2026-11-22T00:36:12.4833270Z ##[group]Run python3 scripts/smoke_test_snippets.py --evidence-out "$RUNNER_TEMP/cherri-docs-evidence.json"
+2026-11-22T00:36:12.4834918Z [36;1mpython3 scripts/smoke_test_snippets.py --evidence-out "$RUNNER_TEMP/cherri-docs-evidence.json"[0m
+2026-11-22T00:36:12.4908737Z shell: /usr/bin/bash -e {0}
+2026-11-22T00:36:12.4909182Z env:
+2026-11-22T00:36:12.4909531Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-22T00:36:12.4909960Z   GOMAXPROCS: 2
+2026-11-22T00:36:12.4910317Z   GOFLAGS: -p=2
+2026-11-22T00:36:12.4910784Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-22T00:36:12.4911529Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-22T00:36:12.4912263Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-22T00:36:12.4912927Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-22T00:36:12.4913586Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-22T00:36:12.4914349Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-22T00:36:12.4915276Z   CHERRI_SMOKE_CACHE_DIR: /home/runner/work/_temp/cherri-docs-compiler
+2026-11-22T00:36:12.4915981Z   GOCACHE: /home/runner/work/_temp/cherri-docs-go-build
+2026-11-22T00:36:12.4916509Z ##[endgroup]
+2026-11-22T00:36:53.6258119Z Fetching pinned Cherri compiler (b791ce0616d1821cebfc57909a6bc50a195ca68c) from https://github.com/davidpovarsky/cherri.git...
+2026-11-22T00:36:53.6259484Z Building and verifying pinned compiler b791ce0616d1821cebfc57909a6bc50a195ca68c...
+2026-11-22T00:36:53.6260365Z Testing 1 classified Cherri blocks in index.md (compiler b791ce0616d1)...
+2026-11-22T00:36:53.6261145Z   [PASS] Block 1: checked and compiled to a native workflow plist
+2026-11-22T00:36:53.6261823Z Summary for index.md: 1 passed, 0 failed, 0 reference-only
+2026-11-22T00:36:53.6262512Z Testing 19 classified Cherri blocks in guide.md (compiler b791ce0616d1)...
+2026-11-22T00:36:53.6263274Z   [PASS] Block 1: checked and compiled to a native workflow plist
+2026-11-22T00:36:53.6264373Z   [PASS] Block 2: exact diagnostic and compile rejection
+2026-11-22T00:36:53.6265297Z   [PASS] Block 3: checked and compiled to a native workflow plist
+2026-11-22T00:36:53.6266143Z   [PASS] Block 4: checked and compiled to a native workflow plist
+2026-11-22T00:36:53.6267107Z   [PASS] Block 5: checked and compiled to a native workflow plist
+2026-11-22T00:36:53.6268097Z   [PASS] Block 6: checked and compiled to a native workflow plist
+2026-11-22T00:36:53.6269056Z   [PASS] Block 7: checked and compiled to a native workflow plist
+2026-11-22T00:36:53.6270018Z   [PASS] Block 8: checked and compiled to a native workflow plist
+2026-11-22T00:36:53.6271064Z   [PASS] Block 9: checked and compiled to a native workflow plist
+2026-11-22T00:36:53.6271952Z   [PASS] Block 10: checked and compiled to a native workflow plist
+2026-11-22T00:36:53.6272786Z   [PASS] Block 11: checked and compiled to a native workflow plist
+2026-11-22T00:36:53.6273572Z   [PASS] Block 12: checked and compiled to a native workflow plist
+2026-11-22T00:36:53.6274313Z   [PASS] Block 13: checked and compiled to a native workflow plist
+2026-11-22T00:36:53.6275298Z   [PASS] Block 14: checked and compiled to a native workflow plist
+2026-11-22T00:36:53.6276047Z   [PASS] Block 15: exact diagnostic and compile rejection
+2026-11-22T00:36:53.6276855Z   [PASS] Block 16: checked and compiled to a native workflow plist
+2026-11-22T00:36:53.6277711Z   [PASS] Block 17: checked and compiled to a native workflow plist
+2026-11-22T00:36:53.6278559Z   [PASS] Block 18: checked and compiled to a native workflow plist
+2026-11-22T00:36:53.6279409Z   [PASS] Block 19: checked and compiled to a native workflow plist
+2026-11-22T00:36:53.6280203Z Summary for guide.md: 19 passed, 0 failed, 0 reference-only
+2026-11-22T00:36:53.6281057Z Testing 9 classified Cherri blocks in migration.md (compiler b791ce0616d1)...
+2026-11-22T00:36:53.6282045Z   [PASS] Block 2: checked and compiled to a native workflow plist
+2026-11-22T00:36:53.6283287Z   [PASS] Block 4: checked and compiled to a native workflow plist
+2026-11-22T00:36:53.6284036Z   [PASS] Block 6: checked and compiled to a native workflow plist
+2026-11-22T00:36:53.6295159Z   [PASS] Block 8: checked and compiled to a native workflow plist
+2026-11-22T00:36:53.6296022Z   [PASS] Block 9: exact diagnostic and compile rejection
+2026-11-22T00:36:53.6296742Z Summary for migration.md: 5 passed, 0 failed, 4 reference-only
+2026-11-22T00:36:53.6297580Z Testing 520 classified Cherri blocks in actions.md (compiler b791ce0616d1)...
+2026-11-22T00:36:53.6298383Z Summary for actions.md: 0 passed, 0 failed, 520 reference-only
+2026-11-22T00:36:53.6299166Z Testing 12 classified Cherri blocks in functions.md (compiler b791ce0616d1)...
+2026-11-22T00:36:53.6300038Z   [PASS] Block 1: checked and compiled to a native workflow plist
+2026-11-22T00:36:53.6300822Z   [PASS] Block 2: checked and compiled to a native workflow plist
+2026-11-22T00:36:53.6301589Z   [PASS] Block 3: checked and compiled to a native workflow plist
+2026-11-22T00:36:53.6302359Z   [PASS] Block 4: checked and compiled to a native workflow plist
+2026-11-22T00:36:53.6303140Z   [PASS] Block 5: checked and compiled to a native workflow plist
+2026-11-22T00:36:53.6303945Z   [PASS] Block 6: checked and compiled to a native workflow plist
+2026-11-22T00:36:53.6304941Z   [PASS] Block 7: checked and compiled to a native workflow plist
+2026-11-22T00:36:53.6305737Z   [PASS] Block 8: checked and compiled to a native workflow plist
+2026-11-22T00:36:53.6306521Z   [PASS] Block 9: checked and compiled to a native workflow plist
+2026-11-22T00:36:53.6307393Z   [PASS] Block 10: checked and compiled to a native workflow plist
+2026-11-22T00:36:53.6308240Z   [PASS] Block 11: checked and compiled to a native workflow plist
+2026-11-22T00:36:53.6309085Z   [PASS] Block 12: checked and compiled to a native workflow plist
+2026-11-22T00:36:53.6309863Z Summary for functions.md: 12 passed, 0 failed, 0 reference-only
+2026-11-22T00:36:53.6310829Z Testing 2 classified Cherri blocks in variables-constants-globals.md (compiler b791ce0616d1)...
+2026-11-22T00:36:53.6312109Z   [PASS] Block 1: checked and compiled to a native workflow plist
+2026-11-22T00:36:53.6312902Z   [PASS] Block 2: checked and compiled to a native workflow plist
+2026-11-22T00:36:53.6313778Z Summary for variables-constants-globals.md: 2 passed, 0 failed, 0 reference-only
+2026-11-22T00:36:53.6416275Z ##[group]Run python3 scripts/test_smoke_test_snippets.py
+2026-11-22T00:36:53.6416771Z [36;1mpython3 scripts/test_smoke_test_snippets.py[0m
+2026-11-22T00:36:53.6450708Z shell: /usr/bin/bash -e {0}
+2026-11-22T00:36:53.6450980Z env:
+2026-11-22T00:36:53.6451213Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-22T00:36:53.6451500Z   GOMAXPROCS: 2
+2026-11-22T00:36:53.6451737Z   GOFLAGS: -p=2
+2026-11-22T00:36:53.6452049Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-22T00:36:53.6452555Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-22T00:36:53.6453044Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-22T00:36:53.6453489Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-22T00:36:53.6453951Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-22T00:36:53.6454428Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-22T00:36:53.6455088Z   CHERRI_SMOKE_TEST_CACHE: /home/runner/work/_temp/cherri-docs-compiler
+2026-11-22T00:36:53.6455535Z ##[endgroup]
+2026-11-22T00:37:28.0059840Z test_actual_valid_check_and_native_plist (__main__.SmokeProductionTests.test_actual_valid_check_and_native_plist) ... ok
+2026-11-22T00:37:28.5972697Z CACHE_SOURCE_WITNESS {"binarySha256": "65042016b5c973d71a7409b844482d73d26e5dd6327f945f851915e5facdebc6", "cache": "/tmp/cherri_docs_controls_4nt8bxdh/case-p_9lk1pp/cache", "case": "test_corrupt_binary_digest_rejected_and_bytes_preserved", "event": "acquire", "sourceState": {"autocrlf": "false", "goModSha256": "a7c75fd79aaf8691d08ad70fdb03fdeb024bc324d18bd36ddc99ee28059d948c", "origin": "https://github.com/davidpovarsky/cherri.git", "revision": "b791ce0616d1821cebfc57909a6bc50a195ca68c", "status": "", "trackedFlagsSha256": "35ecbc398a46eecd4cbcdc0fc7666194de9fa301db766b659d9acd347538772f", "trackedStageSha256": "796b26847f4ecbf6b834a36eb78c99dccdf120e3fd44d1def020652fe25a1696"}}
+2026-11-22T00:37:28.7736383Z CACHE_SOURCE_WITNESS {"cache": "/tmp/cherri_docs_controls_4nt8bxdh/case-p_9lk1pp/cache", "case": "test_corrupt_binary_digest_rejected_and_bytes_preserved", "event": "release", "sourceState": {"autocrlf": "false", "goModSha256": "a7c75fd79aaf8691d08ad70fdb03fdeb024bc324d18bd36ddc99ee28059d948c", "origin": "https://github.com/davidpovarsky/cherri.git", "revision": "b791ce0616d1821cebfc57909a6bc50a195ca68c", "status": "", "trackedFlagsSha256": "35ecbc398a46eecd4cbcdc0fc7666194de9fa301db766b659d9acd347538772f", "trackedStageSha256": "796b26847f4ecbf6b834a36eb78c99dccdf120e3fd44d1def020652fe25a1696"}}
+2026-11-22T00:37:28.7739930Z test_corrupt_binary_digest_rejected_and_bytes_preserved (__main__.SmokeProductionTests.test_corrupt_binary_digest_rejected_and_bytes_preserved) ... ok
+2026-11-22T00:37:28.9400426Z CACHE_SOURCE_WITNESS {"binarySha256": "65042016b5c973d71a7409b844482d73d26e5dd6327f945f851915e5facdebc6", "cache": "/tmp/cherri_docs_controls_4nt8bxdh/case-nxkjxz8d/cache", "case": "test_dirty_tracked_source_rejected_and_preserved", "event": "acquire", "sourceState": {"autocrlf": "false", "goModSha256": "a7c75fd79aaf8691d08ad70fdb03fdeb024bc324d18bd36ddc99ee28059d948c", "origin": "https://github.com/davidpovarsky/cherri.git", "revision": "b791ce0616d1821cebfc57909a6bc50a195ca68c", "status": "", "trackedFlagsSha256": "35ecbc398a46eecd4cbcdc0fc7666194de9fa301db766b659d9acd347538772f", "trackedStageSha256": "796b26847f4ecbf6b834a36eb78c99dccdf120e3fd44d1def020652fe25a1696"}}
+2026-11-22T00:37:29.0131758Z CACHE_SOURCE_WITNESS {"cache": "/tmp/cherri_docs_controls_4nt8bxdh/case-nxkjxz8d/cache", "case": "test_dirty_tracked_source_rejected_and_preserved", "event": "same-byte-replacement-rejected", "path": "go.mod"}
+2026-11-22T00:37:29.0135398Z CACHE_SOURCE_WITNESS {"cache": "/tmp/cherri_docs_controls_4nt8bxdh/case-nxkjxz8d/cache", "case": "test_dirty_tracked_source_rejected_and_preserved", "event": "remove-owned-file", "mutationSha256": "c0ac2382f31003691eacac24e8a6f91ba36eb2b75a71d8416acfdc4b70dc805a", "path": "go.mod"}
+2026-11-22T00:37:29.0143809Z CACHE_SOURCE_WITNESS {"cache": "/tmp/cherri_docs_controls_4nt8bxdh/case-nxkjxz8d/cache", "case": "test_dirty_tracked_source_rejected_and_preserved", "event": "restore-owned-file", "mutationSha256": "c0ac2382f31003691eacac24e8a6f91ba36eb2b75a71d8416acfdc4b70dc805a", "path": "go.mod", "restoredSha256": "a7c75fd79aaf8691d08ad70fdb03fdeb024bc324d18bd36ddc99ee28059d948c"}
+2026-11-22T00:37:29.1087297Z CACHE_SOURCE_WITNESS {"cache": "/tmp/cherri_docs_controls_4nt8bxdh/case-nxkjxz8d/cache", "case": "test_dirty_tracked_source_rejected_and_preserved", "event": "release", "sourceState": {"autocrlf": "false", "goModSha256": "a7c75fd79aaf8691d08ad70fdb03fdeb024bc324d18bd36ddc99ee28059d948c", "origin": "https://github.com/davidpovarsky/cherri.git", "revision": "b791ce0616d1821cebfc57909a6bc50a195ca68c", "status": "", "trackedFlagsSha256": "35ecbc398a46eecd4cbcdc0fc7666194de9fa301db766b659d9acd347538772f", "trackedStageSha256": "796b26847f4ecbf6b834a36eb78c99dccdf120e3fd44d1def020652fe25a1696"}}
+2026-11-22T00:37:29.1090955Z test_dirty_tracked_source_rejected_and_preserved (__main__.SmokeProductionTests.test_dirty_tracked_source_rejected_and_preserved) ... ok
+2026-11-22T00:37:29.1581015Z test_exact_invalid_diagnostic_and_no_output (__main__.SmokeProductionTests.test_exact_invalid_diagnostic_and_no_output) ... ok
+2026-11-22T00:37:29.1712585Z test_failed_fetch_cleans_only_the_owned_stage (__main__.SmokeProductionTests.test_failed_fetch_cleans_only_the_owned_stage) ... ok
+2026-11-22T00:37:29.3492225Z Fetching pinned Cherri compiler (b791ce0616d1821cebfc57909a6bc50a195ca68c) from /tmp/cherri_docs_controls_4nt8bxdh/case-4q2jqai3/missing-repository...
+2026-11-22T00:37:29.3502032Z CACHE_SOURCE_WITNESS {"binarySha256": "65042016b5c973d71a7409b844482d73d26e5dd6327f945f851915e5facdebc6", "cache": "/tmp/cherri_docs_controls_4nt8bxdh/case-kdracucp/cache", "case": "test_missing_receipt_does_not_rebuild_or_delete_binary", "event": "acquire", "sourceState": {"autocrlf": "false", "goModSha256": "a7c75fd79aaf8691d08ad70fdb03fdeb024bc324d18bd36ddc99ee28059d948c", "origin": "https://github.com/davidpovarsky/cherri.git", "revision": "b791ce0616d1821cebfc57909a6bc50a195ca68c", "status": "", "trackedFlagsSha256": "35ecbc398a46eecd4cbcdc0fc7666194de9fa301db766b659d9acd347538772f", "trackedStageSha256": "796b26847f4ecbf6b834a36eb78c99dccdf120e3fd44d1def020652fe25a1696"}}
+2026-11-22T00:37:29.5846813Z CACHE_SOURCE_WITNESS {"cache": "/tmp/cherri_docs_controls_4nt8bxdh/case-kdracucp/cache", "case": "test_missing_receipt_does_not_rebuild_or_delete_binary", "event": "release", "sourceState": {"autocrlf": "false", "goModSha256": "a7c75fd79aaf8691d08ad70fdb03fdeb024bc324d18bd36ddc99ee28059d948c", "origin": "https://github.com/davidpovarsky/cherri.git", "revision": "b791ce0616d1821cebfc57909a6bc50a195ca68c", "status": "", "trackedFlagsSha256": "35ecbc398a46eecd4cbcdc0fc7666194de9fa301db766b659d9acd347538772f", "trackedStageSha256": "796b26847f4ecbf6b834a36eb78c99dccdf120e3fd44d1def020652fe25a1696"}}
+2026-11-22T00:37:29.5851742Z test_missing_receipt_does_not_rebuild_or_delete_binary (__main__.SmokeProductionTests.test_missing_receipt_does_not_rebuild_or_delete_binary) ... ok
+2026-11-22T00:37:29.5864353Z test_occupied_empty_directory_is_not_used (__main__.SmokeProductionTests.test_occupied_empty_directory_is_not_used) ... ok
+2026-11-22T00:37:29.5912218Z test_unmanaged_directory_is_not_deleted_or_modified (__main__.SmokeProductionTests.test_unmanaged_directory_is_not_deleted_or_modified) ... ok
+2026-11-22T00:37:29.7736545Z CACHE_SOURCE_WITNESS {"binarySha256": "65042016b5c973d71a7409b844482d73d26e5dd6327f945f851915e5facdebc6", "cache": "/tmp/cherri_docs_controls_4nt8bxdh/case-h7_i4kr0/cache", "case": "test_untracked_source_rejected_and_preserved", "event": "acquire", "sourceState": {"autocrlf": "false", "goModSha256": "a7c75fd79aaf8691d08ad70fdb03fdeb024bc324d18bd36ddc99ee28059d948c", "origin": "https://github.com/davidpovarsky/cherri.git", "revision": "b791ce0616d1821cebfc57909a6bc50a195ca68c", "status": "", "trackedFlagsSha256": "35ecbc398a46eecd4cbcdc0fc7666194de9fa301db766b659d9acd347538772f", "trackedStageSha256": "796b26847f4ecbf6b834a36eb78c99dccdf120e3fd44d1def020652fe25a1696"}}
+2026-11-22T00:37:29.8593726Z CACHE_SOURCE_WITNESS {"cache": "/tmp/cherri_docs_controls_4nt8bxdh/case-h7_i4kr0/cache", "case": "test_untracked_source_rejected_and_preserved", "event": "same-byte-replacement-rejected", "path": "docs-cache-local.go"}
+2026-11-22T00:37:29.8597201Z CACHE_SOURCE_WITNESS {"cache": "/tmp/cherri_docs_controls_4nt8bxdh/case-h7_i4kr0/cache", "case": "test_untracked_source_rejected_and_preserved", "event": "remove-owned-file", "mutationSha256": "df1d036cbbf3df46e2045071e082245ece204c7f53ecf0a4e022bff9bb228f47", "path": "docs-cache-local.go"}
+2026-11-22T00:37:29.8601162Z CACHE_SOURCE_WITNESS {"cache": "/tmp/cherri_docs_controls_4nt8bxdh/case-h7_i4kr0/cache", "case": "test_untracked_source_rejected_and_preserved", "event": "remove-owned-file", "mutationSha256": "df1d036cbbf3df46e2045071e082245ece204c7f53ecf0a4e022bff9bb228f47", "path": "docs-cache-local.go"}
+2026-11-22T00:37:29.9529162Z CACHE_SOURCE_WITNESS {"cache": "/tmp/cherri_docs_controls_4nt8bxdh/case-h7_i4kr0/cache", "case": "test_untracked_source_rejected_and_preserved", "event": "release", "sourceState": {"autocrlf": "false", "goModSha256": "a7c75fd79aaf8691d08ad70fdb03fdeb024bc324d18bd36ddc99ee28059d948c", "origin": "https://github.com/davidpovarsky/cherri.git", "revision": "b791ce0616d1821cebfc57909a6bc50a195ca68c", "status": "", "trackedFlagsSha256": "35ecbc398a46eecd4cbcdc0fc7666194de9fa301db766b659d9acd347538772f", "trackedStageSha256": "796b26847f4ecbf6b834a36eb78c99dccdf120e3fd44d1def020652fe25a1696"}}
+2026-11-22T00:37:29.9532641Z test_untracked_source_rejected_and_preserved (__main__.SmokeProductionTests.test_untracked_source_rejected_and_preserved) ... ok
+2026-11-22T00:37:30.1274602Z CACHE_SOURCE_WITNESS {"binarySha256": "65042016b5c973d71a7409b844482d73d26e5dd6327f945f851915e5facdebc6", "cache": "/tmp/cherri_docs_controls_4nt8bxdh/case-bww1btf6/cache", "case": "test_valid_cache_reuses_verified_binary_without_rebuild", "event": "acquire", "sourceState": {"autocrlf": "false", "goModSha256": "a7c75fd79aaf8691d08ad70fdb03fdeb024bc324d18bd36ddc99ee28059d948c", "origin": "https://github.com/davidpovarsky/cherri.git", "revision": "b791ce0616d1821cebfc57909a6bc50a195ca68c", "status": "", "trackedFlagsSha256": "35ecbc398a46eecd4cbcdc0fc7666194de9fa301db766b659d9acd347538772f", "trackedStageSha256": "796b26847f4ecbf6b834a36eb78c99dccdf120e3fd44d1def020652fe25a1696"}}
+2026-11-22T00:37:30.2678756Z CACHE_SOURCE_WITNESS {"cache": "/tmp/cherri_docs_controls_4nt8bxdh/case-bww1btf6/cache", "case": "test_valid_cache_reuses_verified_binary_without_rebuild", "event": "release", "sourceState": {"autocrlf": "false", "goModSha256": "a7c75fd79aaf8691d08ad70fdb03fdeb024bc324d18bd36ddc99ee28059d948c", "origin": "https://github.com/davidpovarsky/cherri.git", "revision": "b791ce0616d1821cebfc57909a6bc50a195ca68c", "status": "", "trackedFlagsSha256": "35ecbc398a46eecd4cbcdc0fc7666194de9fa301db766b659d9acd347538772f", "trackedStageSha256": "796b26847f4ecbf6b834a36eb78c99dccdf120e3fd44d1def020652fe25a1696"}}
+2026-11-22T00:37:30.2682586Z test_valid_cache_reuses_verified_binary_without_rebuild (__main__.SmokeProductionTests.test_valid_cache_reuses_verified_binary_without_rebuild) ... ok
+2026-11-22T00:37:30.2944528Z test_wrong_expected_diagnostic_does_not_pass (__main__.SmokeProductionTests.test_wrong_expected_diagnostic_does_not_pass) ... ok
+2026-11-22T00:37:30.4618173Z CACHE_SOURCE_WITNESS {"binarySha256": "65042016b5c973d71a7409b844482d73d26e5dd6327f945f851915e5facdebc6", "cache": "/tmp/cherri_docs_controls_4nt8bxdh/case-frdqu2ci/cache", "case": "test_wrong_real_binary_rejected_even_with_matching_digest_receipt", "event": "acquire", "sourceState": {"autocrlf": "false", "goModSha256": "a7c75fd79aaf8691d08ad70fdb03fdeb024bc324d18bd36ddc99ee28059d948c", "origin": "https://github.com/davidpovarsky/cherri.git", "revision": "b791ce0616d1821cebfc57909a6bc50a195ca68c", "status": "", "trackedFlagsSha256": "35ecbc398a46eecd4cbcdc0fc7666194de9fa301db766b659d9acd347538772f", "trackedStageSha256": "796b26847f4ecbf6b834a36eb78c99dccdf120e3fd44d1def020652fe25a1696"}}
+2026-11-22T00:37:30.6523448Z CACHE_SOURCE_WITNESS {"cache": "/tmp/cherri_docs_controls_4nt8bxdh/case-frdqu2ci/cache", "case": "test_wrong_real_binary_rejected_even_with_matching_digest_receipt", "event": "release", "sourceState": {"autocrlf": "false", "goModSha256": "a7c75fd79aaf8691d08ad70fdb03fdeb024bc324d18bd36ddc99ee28059d948c", "origin": "https://github.com/davidpovarsky/cherri.git", "revision": "b791ce0616d1821cebfc57909a6bc50a195ca68c", "status": "", "trackedFlagsSha256": "35ecbc398a46eecd4cbcdc0fc7666194de9fa301db766b659d9acd347538772f", "trackedStageSha256": "796b26847f4ecbf6b834a36eb78c99dccdf120e3fd44d1def020652fe25a1696"}}
+2026-11-22T00:37:30.6527837Z test_wrong_real_binary_rejected_even_with_matching_digest_receipt (__main__.SmokeProductionTests.test_wrong_real_binary_rejected_even_with_matching_digest_receipt) ... ok
+2026-11-22T00:37:31.4596932Z 
+2026-11-22T00:37:31.4599458Z ----------------------------------------------------------------------
+2026-11-22T00:37:31.4600080Z Ran 12 tests in 37.553s
+2026-11-22T00:37:31.4600323Z 
+2026-11-22T00:37:31.4600450Z OK
+2026-11-22T00:37:31.4848459Z ##[group]Run actions/upload-artifact@v4
+2026-11-22T00:37:31.4848802Z with:
+2026-11-22T00:37:31.4849037Z   name: docs-snippet-evidence
+2026-11-22T00:37:31.4849395Z   path: /home/runner/work/_temp/cherri-docs-evidence.json
+2026-11-22T00:37:31.4849756Z   if-no-files-found: warn
+2026-11-22T00:37:31.4850011Z   compression-level: 6
+2026-11-22T00:37:31.4850249Z   overwrite: false
+2026-11-22T00:37:31.4850487Z   include-hidden-files: false
+2026-11-22T00:37:31.4850743Z env:
+2026-11-22T00:37:31.4850980Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-22T00:37:31.4851237Z   GOMAXPROCS: 2
+2026-11-22T00:37:31.4851458Z   GOFLAGS: -p=2
+2026-11-22T00:37:31.4851749Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-22T00:37:31.4852208Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-22T00:37:31.4852657Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-22T00:37:31.4853062Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-22T00:37:31.4853496Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-22T00:37:31.4853903Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-22T00:37:31.4854252Z ##[endgroup]
+2026-11-22T00:37:31.6555954Z (node:8400) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-22T00:37:31.6557300Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-22T00:37:31.6651539Z With the provided path, there will be 1 file uploaded
+2026-11-22T00:37:31.6652751Z Artifact name is valid!
+2026-11-22T00:37:31.6653218Z Root directory input is valid!
+2026-11-22T00:37:32.0757406Z Beginning upload of artifact content to blob storage
+2026-11-22T00:37:32.1032880Z (node:8400) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-22T00:37:32.4603086Z Uploaded bytes 25793
+2026-11-22T00:37:32.5439297Z Finished uploading artifact content to blob storage!
+2026-11-22T00:37:32.5440936Z SHA256 digest of uploaded artifact zip is 15c88612b6d299e33c4e3b891a946050d8eedc5eaa548e712d42ce65889a41c2
+2026-11-22T00:37:32.5442242Z Finalizing artifact upload
+2026-11-22T00:37:32.9134992Z Artifact docs-snippet-evidence.zip successfully finalized. Artifact ID 14732415995
+2026-11-22T00:37:32.9136846Z Artifact docs-snippet-evidence has been successfully uploaded! Final size is 25793 bytes. Artifact ID is 14732415995
+2026-11-22T00:37:32.9138873Z Artifact download URL: https://github.com/davidpovarsky/cherrilang.org/actions/runs/44967399674/artifacts/14732415995
+2026-11-22T00:37:32.9355771Z Post job cleanup.
+2026-11-22T00:37:33.0576002Z (node:8412) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-22T00:37:33.0577121Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-22T00:37:33.0714675Z Post job cleanup.
+2026-11-22T00:37:33.2119264Z (node:8420) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-22T00:37:33.2120915Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-22T00:37:33.2255877Z [command]/opt/hostedtoolcache/go/1.24.13/x64/bin/go env GOMODCACHE
+2026-11-22T00:37:33.2296456Z [command]/opt/hostedtoolcache/go/1.24.13/x64/bin/go env GOCACHE
+2026-11-22T00:37:33.2330214Z /home/runner/go/pkg/mod
+2026-11-22T00:37:33.2355665Z /home/runner/.cache/go-build
+2026-11-22T00:37:33.2363972Z Primary key was not generated. Please check the log messages above for more errors or information
+2026-11-22T00:37:33.2483144Z Post job cleanup.
+2026-11-22T00:37:33.3345606Z [command]/usr/bin/git version
+2026-11-22T00:37:33.3383576Z git version 2.56.1
+2026-11-22T00:37:33.3422727Z Temporarily overriding HOME='/home/runner/work/_temp/fc271041-46f2-40d0-a1a1-0ff5294c2a00' before making global git config changes
+2026-11-22T00:37:33.3424408Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-22T00:37:33.3428468Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/cherrilang.org/cherrilang.org
+2026-11-22T00:37:33.3470471Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-22T00:37:33.3509190Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-22T00:37:33.3821100Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-22T00:37:33.3850713Z http.https://github.com/.extraheader
+2026-11-22T00:37:33.3863590Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-22T00:37:33.3901539Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-22T00:37:33.4230083Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-22T00:37:33.4275995Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-22T00:37:33.4751690Z Cleaning up orphan processes
+2026-11-22T00:37:33.5137052Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-go@v5, actions/setup-python@v5, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

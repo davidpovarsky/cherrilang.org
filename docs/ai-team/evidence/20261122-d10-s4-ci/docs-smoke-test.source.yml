@@ -1,0 +1,102 @@
+name: Docs Snippet Smoke Test
+
+on:
+  push:
+    branches:
+      - "main"
+      - "agent/**"
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: docs-smoke-test-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  smoke-test-snippets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+      GOMAXPROCS: "2"
+      GOFLAGS: "-p=2"
+    steps:
+      - name: Checkout cherrilang.org
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.24"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run standalone docs snippet smoke test against pinned Cherri compiler
+        env:
+          CHERRI_SMOKE_CACHE_DIR: ${{ runner.temp }}/cherri-docs-compiler
+          GOCACHE: ${{ runner.temp }}/cherri-docs-go-build
+        run: python3 scripts/smoke_test_snippets.py --evidence-out "$RUNNER_TEMP/cherri-docs-evidence.json"
+
+      - name: Verify real compiler cache provenance and negative examples
+        env:
+          CHERRI_SMOKE_TEST_CACHE: ${{ runner.temp }}/cherri-docs-compiler
+        run: python3 scripts/test_smoke_test_snippets.py
+
+      - name: Retain bounded documentation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: docs-snippet-evidence
+          path: ${{ runner.temp }}/cherri-docs-evidence.json
+          if-no-files-found: warn
+
+  build-site:
+    name: Build documentation and search index
+    runs-on: ubuntu-latest
+    env:
+      BUNDLE_FROZEN: "true"
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - name: Checkout cherrilang.org
+        uses: actions/checkout@v4
+
+      - name: Set up locked Ruby toolchain
+        uses: ruby/setup-ruby@4a9ddd6f338a97768b8006bf671dfbad383215f4
+        with:
+          ruby-version: "3.3"
+          bundler: "2.5.11"
+          bundler-cache: false
+
+      - name: Install locked site dependencies
+        env:
+          BUNDLE_PATH: ${{ runner.temp }}/cherri-docs-bundle
+        run: bundle install --jobs 2 --retry 3
+
+      - name: Build Jekyll site
+        env:
+          BUNDLE_PATH: ${{ runner.temp }}/cherri-docs-bundle
+          JEKYLL_ENV: production
+        run: bundle exec jekyll build --disable-disk-cache --baseurl "/cherrilang.org" --destination "$RUNNER_TEMP/cherri-docs-site"
+
+      - name: Verify rendered action reference and generated search
+        run: python3 scripts/verify_site_artifacts.py --site "$RUNNER_TEMP/cherri-docs-site" --evidence-out "$RUNNER_TEMP/cherri-docs-site-evidence.json"
+
+      - name: Reject corrupted real site and search artifacts
+        run: python3 scripts/test_site_artifacts.py --site "$RUNNER_TEMP/cherri-docs-site" --evidence-out "$RUNNER_TEMP/cherri-docs-site-controls.json"
+
+      - name: Retain built site and verification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: docs-built-site
+          path: |
+            ${{ runner.temp }}/cherri-docs-site
+            ${{ runner.temp }}/cherri-docs-site-evidence.json
+            ${{ runner.temp }}/cherri-docs-site-controls.json
+          if-no-files-found: warn

@@ -1,0 +1,88 @@
+{
+  "schema": "cherri.d10-independent-ci-intake/v1",
+  "status": "PASS",
+  "workflowRun": 44967399674,
+  "attempt": 1,
+  "docsSource": "03431e9114211c1093b330d5fbaec3a4855ee867",
+  "compilerSource": "b791ce0616d1821cebfc57909a6bc50a195ca68c",
+  "binarySha256": "65042016b5c973d71a7409b844482d73d26e5dd6327f945f851915e5facdebc6",
+  "snippets": {
+    "executed": 39,
+    "runnable": 36,
+    "diagnostic": 3,
+    "referenceOnlyUnexecuted": 524
+  },
+  "cacheControls": {
+    "actualPassed": 12,
+    "names": [
+      "test_actual_valid_check_and_native_plist",
+      "test_corrupt_binary_digest_rejected_and_bytes_preserved",
+      "test_dirty_tracked_source_rejected_and_preserved",
+      "test_exact_invalid_diagnostic_and_no_output",
+      "test_failed_fetch_cleans_only_the_owned_stage",
+      "test_missing_receipt_does_not_rebuild_or_delete_binary",
+      "test_occupied_empty_directory_is_not_used",
+      "test_unmanaged_directory_is_not_deleted_or_modified",
+      "test_untracked_source_rejected_and_preserved",
+      "test_valid_cache_reuses_verified_binary_without_rebuild",
+      "test_wrong_expected_diagnostic_does_not_pass",
+      "test_wrong_real_binary_rejected_even_with_matching_digest_receipt"
+    ],
+    "elapsedSeconds": 37.553,
+    "sourceWitnesses": 18,
+    "cleanMatchedAcquireReleasePairs": 6
+  },
+  "site": {
+    "nativeActions": 505,
+    "referenceSignatures": 520,
+    "searchEntries": 50,
+    "actionSearchEntries": 21,
+    "verifiedLocalLinks": 87,
+    "corruptionControlsPassed": 6,
+    "artifactsRestoredExactly": true,
+    "sitePublished": false
+  },
+  "originalFiles": {
+    "cherri-docs-evidence.json": {
+      "bytes": 172451,
+      "sha256": "9035a2300adb79026618648370dd9c6d99eb6fcc9691db9c4b1e89146e9e2e12"
+    },
+    "cherri-docs-site-controls.json": {
+      "bytes": 1350,
+      "sha256": "43aeea590153a01b6c18f5ccb3e5cf9bb1294d84f75fd23b9038a31e0caf0ce4"
+    },
+    "cherri-docs-site-evidence.json": {
+      "bytes": 1208,
+      "sha256": "d29c3919b7236e65b73b2d1af4a45e9dafe60bcb2514d16ca0486503e66ca56c"
+    },
+    "d10-docs-built-site.zip": {
+      "bytes": 7305844,
+      "sha256": "5845a0ba81d82d77c3b0f4b2c56757eb9bc5dcd28afff46ce51fda58014a8341"
+    },
+    "d10-docs-snippet-evidence.zip": {
+      "bytes": 25793,
+      "sha256": "15c88612b6d299e33c4e3b891a946050d8eedc5eaa548e712d42ce65889a41c2"
+    },
+    "docs-smoke-test.source.yml": {
+      "bytes": 3265,
+      "sha256": "dfd211d6d9758253c06387362f3ca79b0a2d2fc70efc1bcc78cc3b54b2f9d30f"
+    },
+    "site-job-original.log": {
+      "bytes": 27210,
+      "sha256": "2b7dee87ae6a7de9f46f2e1d7aa9365e5485b6fd52eaf16e97861f30fa3add32"
+    },
+    "smoke-job-original.log": {
+      "bytes": 40275,
+      "sha256": "c35122e33eac52799df37c1e9fe930590ff8bbdf45e9e314c66ead0c2519ae5f"
+    },
+    "smoke_test_snippets.source.py": {
+      "bytes": 13765,
+      "sha256": "ffc7cd61cebba9e082148682ee3017d25236799b39dc6861b5f722a0669fb8f2"
+    },
+    "test_smoke_test_snippets.source.py": {
+      "bytes": 18101,
+      "sha256": "6a6ec4ad22c3492910854417fb10cd798cec8979a149e441bdf6ca9bd3fb4359"
+    }
+  },
+  "scope": "Actual GitHub CI snippet compilation/cache controls and built-site verification only. No Apple runtime, published Pages, S4 generation replay, final consumer promotion or full179 acceptance credit."
+}

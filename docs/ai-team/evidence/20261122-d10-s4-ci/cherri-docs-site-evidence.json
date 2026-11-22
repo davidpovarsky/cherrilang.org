@@ -1,0 +1,30 @@
+{
+  "formatVersion": 2,
+  "baseUrl": "/cherrilang.org",
+  "publicationOrigin": "https://davidpovarsky.github.io",
+  "currentSearchRoutes": [
+    "/cherrilang.org",
+    "/cherrilang.org/fork-language",
+    "/cherrilang.org/fork-language/actions",
+    "/cherrilang.org/fork-language/guide",
+    "/cherrilang.org/fork-language/migration"
+  ],
+  "verifiedLocalLinks": 87,
+  "historicalSearchEntries": 0,
+  "docsCommit": "03431e9114211c1093b330d5fbaec3a4855ee867",
+  "compilerCommit": "b791ce0616d1821cebfc57909a6bc50a195ca68c",
+  "sourceTreeClean": true,
+  "sourceReferenceSha256": "d1a5dfe3762109caeb7ddf8e1beaba5f17de4b5231de342ce99fa039d76090cd",
+  "renderedActionPage": "fork-language/actions.html",
+  "renderedActionPageSha256": "c863ebd0ec9535fd6da10b82d7e3da8c8366f4b07de0ce4855c51e524c5b29fc",
+  "searchIndexSha256": "2387c2c2f8da9996a48c3373e05117b8238bec93bd575c5aec3dcd0f237428a0",
+  "schemaFingerprints": [
+    "dc6548076b8320b15e062439f0d8e7b032e1fd62d032b19b06ab6c79a54890a5",
+    "acb4dd5035ee20786c68a01d323f565e880d2a0b8eedb151145181a4960d455c"
+  ],
+  "nativeActionCount": 505,
+  "renderedReferenceSignatures": 520,
+  "searchEntries": 50,
+  "actionSearchEntries": 21,
+  "sitePublished": false
+}
