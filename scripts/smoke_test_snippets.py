@@ -18,7 +18,7 @@ import sys
 import tempfile
 
 PINNED_CHERRI_REPO = "https://github.com/davidpovarsky/cherri.git"
-PINNED_CHERRI_COMMIT = "9c8daf721aa241127df8d1e3f91bbadf90110e73"
+PINNED_CHERRI_COMMIT = "b791ce0616d1821cebfc57909a6bc50a195ca68c"
 CACHE_RECEIPT = "compiler-receipt.json"
 FENCES = re.compile(r"^```(?P<kind>cherri(?:-[a-z]+)?)\s*\r?\n(?P<code>.*?)^```\s*$", re.MULTILINE | re.DOTALL)
 EXPECTATION = re.compile(r"<!--\s*cherri-test:\s*(.*?)\s*-->\s*$")
