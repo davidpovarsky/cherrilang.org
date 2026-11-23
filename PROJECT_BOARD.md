@@ -14,6 +14,8 @@ Potential improvements, features, optimizations, or architectural ideas.
 
 ## Discoveries & Tips
 
+- 2026-11-23: A new compiler source needs fresh immutable pins in both snippet and generated-reference consumers. The current six generator/reference input files are byte-identical to the accepted D14/S79 input set, so preserve the reference body and let the unchanged generator/check/cache/snippet/site gates validate the newly selected source. D14 remains its original S79 publication; D15 candidate and main/Pages evidence must identify the new compiler and Docs commits. Preserve the D10 archive exclusion and immutable historical link; no old artifact or success is relabelled.
+
 - 2026-11-23: Jekyll copied the historical D10 proof ZIP into each site artifact. Its retained older site ZIP contains further ZIPs, producing a depth-four public archive chain beyond the unchanged CI04 depth-three bound. The candidate site configuration excludes only that D10 ZIP; the archive stays byte-identical in Git and the D10 note links to its immutable D13 repository copy. Preserve complete historical artifacts and validate the new candidate/publication; do not hide nested archives from intake or relax the bound.
 
 - 2026-11-21: Exact D9 source f93bfd0db1fd2b99fc2b9eaacf48a2310ab236b6 passed all 12 actual cache controls (124.625s), all 39 snippets (36 runnable/3 diagnostic,17.859s), and 18 fixed ownership/restore witnesses under the unchanged 180s stage limits. Source and binaries stayed exact/clean. The original 11/12 timeout remains preserved. [The component proof](docs/ai-team/d9-candidate-20261121.md) binds original build/generation/cache/snippet evidence; this proof-only descendant does not change the tested source pin or promote Docs main/Pages/final consumers.
