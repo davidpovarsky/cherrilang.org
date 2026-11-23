@@ -60,6 +60,7 @@ exclude:
   - Gemfile.lock
   - vendor
   - .bundle
+  - docs/ai-team/evidence/20261122-d10-s4-generation/d10-s4-generation-originals-20261122.zip
 
 footer_content: "Copyright &copy;. Distributed under the <a href=\"https://github.com/electrikmilk/cherri/blob/main/LICENSE\">GPL-2.0 License.</a> Siri Shortcuts and Mac are registered trademarks of Apple Inc. Apple is not involved in this project in any way. Do not contact Apple Support unless you are having an issue with the Shortcuts app itself."
 

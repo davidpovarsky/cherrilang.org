@@ -69,7 +69,7 @@ Original decoded job-log hashes:
 - Smoke/cache/generation, 52,244 bytes: `d2d1f90058fae3d2c826530e87cc3aa583923b2de7de5850f6670a84abace79e`.
 - Site, 27,285 bytes: `eecc2627d1e65cb4a5fa54b6d5c19051e1136874f16dd889fe990b6f5d86e4a9`.
 
-The proposed evidence archive is `d10-s4-generation-originals-20261122.zip`, 8,820,169 bytes, SHA256 `f94f7ed148617d0b2e1eb5523a23378c0743940df054ae03b742891ac49020b9`. Its manifest binds 63 files plus the manifest itself; all 200 original artifact members remain inside the three unchanged original ZIPs. It includes original API/source carriers, decoded logs, source bytes, member inventories, the independent verifier, and its first successful process/stdout/stderr originals. Temporary download URLs are not part of the publication packet.
+The proposed evidence archive is [d10-s4-generation-originals-20261122.zip](https://github.com/davidpovarsky/cherrilang.org/blob/841999480a4112ea0b2112d92c060a436a37ddf1/docs/ai-team/evidence/20261122-d10-s4-generation/d10-s4-generation-originals-20261122.zip), 8,820,169 bytes, SHA256 `f94f7ed148617d0b2e1eb5523a23378c0743940df054ae03b742891ac49020b9`. Its manifest binds 63 files plus the manifest itself; all 200 original artifact members remain inside the three unchanged original ZIPs. It includes original API/source carriers, decoded logs, source bytes, member inventories, the independent verifier, and its first successful process/stdout/stderr originals. Temporary download URLs are not part of the publication packet.
 
 The first independent intake completed successfully in 0.315 seconds. Intake result SHA256: `4311210100db090fdab4591ca087e738f09936f3b2df0eb454281f8db7b6f9c7`. Verifier source SHA256: `97b2ae65910b022f144f703b09229eb90bdc48534c62fb033e3ad00b2d88fb1b`.
 
