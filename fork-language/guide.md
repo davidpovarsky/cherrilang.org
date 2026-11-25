@@ -209,22 +209,45 @@ for (index, item) in names {
 }
 ```
 
-### List-valued loop results
+### Local list-valued loop results
 
-A value-producing `repeat` or `for` loop cannot currently preserve a separate
-nested List for each iteration. The native runtime probe produced four items
-from two two-item results. When the compiler knows that a loop would yield a
-List, it rejects that result with `E_TARGET_VALUE_SHAPE` and emits no shortcut:
+V2 supports a bounded local flow for loops that yield Lists or Optional values.
+Keep each producer in an immutable `let` binding, then consume its result with
+`count`, checked indexing, or a `for` loop. A mutable alias requires an explicit,
+exact `List<T>` type and may be reassigned in straight-line code from an immutable
+producer or snapshot of that same type:
+
+```cherri
+let first = repeat 2 { yield ["first", "second"] }
+let replacement = repeat 1 { yield ["replacement"] }
+var current: List<List<Text>> = first
+let snapshot = current
+current = replacement
+return count(snapshot) * 10 + count(current)
+```
+
+The immutable `snapshot` retains the earlier sequence; later reads of `current`
+use the replacement. Each reaching producer version must have a supported
+consumer. The documentation suite checks this source and compiles its native
+workflow graph; Apple execution of this nested-value flow remains a separate
+runtime qualification.
+
+This support does not yet include writes to these aliases inside branches or
+loops, inferred mutable alias types, mutable right-hand-side aliases, direct
+mutable loop producers, compound assignment, or arbitrary joins between native
+representations. Ordinary scalar variables and statement loops remain available.
+
+A List-valued loop result outside the supported local flow is rejected with
+`E_TARGET_VALUE_SHAPE` and emits no shortcut, including this unconsumed result:
 
 <!-- cherri-test: diagnostic E_TARGET_VALUE_SHAPE -->
 ```cherri
 let values = for item in [1, 2] { yield [item, "tail"] }
 ```
 
-This boundary applies to the shape of the loop's result. Statement loops and
-scalar results remain available. For results typed as `AnyContent`, successful
-compilation does not establish that nested List cardinality is preserved; that
-runtime case remains unverified.
+Native Repeat Results can flatten nested Lists: an earlier runtime probe produced
+four items from two two-item results. Giving a result the broad `AnyContent` type
+does not establish that its hierarchy or Optional presence survives execution.
 
 ### Menus (`menu`)
 ```cherri
