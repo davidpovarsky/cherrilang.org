@@ -37,6 +37,12 @@ MUTATIONS = (
 )
 EXPECTED_TESTS = frozenset(PARENTS + tuple(PARENTS[-1] + "/" + name for name in MUTATIONS))
 TEST_PATTERN = "^(" + "|".join(PARENTS) + ")$"
+EXPECTED_MACROS = (
+    b"cache", b"debugAssert", b"debugClearLogs", b"debugExport", b"debugExportTrace",
+    b"debugFinish", b"debugLog", b"debugLogPrevious", b"debugShowLogs",
+    b"debugStartTimer", b"debugStopTimer", b"debugTrace", b"debugTraceEvent",
+    b"measure", b"paginate", b"require",
+)
 FRONTMATTER = (b"---\ntitle: Actions Reference\nparent: Language v2.0\nlayout: default\n"
                b"nav_order: 2\npermalink: /fork-language/actions\n---\n\n")
 MAX_LOG = 16 * 1024 * 1024
@@ -44,6 +50,7 @@ MAX_REFERENCE = 4 * 1024 * 1024
 DOCS_FILES = (
     ".github/workflows/docs-smoke-test.yml", "scripts/smoke_test_snippets.py",
     "scripts/test_smoke_test_snippets.py", "scripts/verify_generated_reference.py",
+    "scripts/test_generated_reference_contract.py",
     "fork-language/actions.md",
 )
 COMPILER_FILES = (
@@ -335,11 +342,13 @@ def verify_reference(generated, canonical, docs):
     pattern = rb"^### `([^`\r\n]+)`$"
     native_names = re.findall(pattern, native, re.MULTILINE)
     macro_names = re.findall(pattern, macros, re.MULTILINE)
-    require(len(native_names) == 505 and len(macro_names) == 15 and
-            len(set(native_names + macro_names)) == 520, "reference heading inventory differs")
-    require(b"**Total Actions:** 505  \n" in native and b"**Compiler Macros:** 15\n" in macros,
+    require(len(native_names) == 505 and macro_names == list(EXPECTED_MACROS) and
+            len(set(native_names + macro_names)) == 505 + len(EXPECTED_MACROS),
+            "reference heading inventory differs")
+    require(b"**Total Actions:** 505  \n" in native and b"**Compiler Macros:** 16\n" in macros,
             "reference count headers differ")
-    return {"native_actions": 505, "compiler_macros": 15, "headings": 520,
+    return {"native_actions": 505, "compiler_macros": len(EXPECTED_MACROS),
+            "headings": 505 + len(EXPECTED_MACROS),
             "frontmatter_bytes": 119, "complete_byte_equality": True,
             "reference_sha256": hashlib.sha256(generated).hexdigest()}
 
