@@ -33,7 +33,8 @@ PARENTS = (
 )
 MUTATIONS = (
     "optional_primary", "typed_default", "callable_identity", "wire_key",
-    "return_type", "macro_identity", "missing_category", "extra_section",
+    "return_type", "macro_identity", "scoped_dialect", "scoped_void_result",
+    "missing_category", "extra_section",
 )
 EXPECTED_TESTS = frozenset(PARENTS + tuple(PARENTS[-1] + "/" + name for name in MUTATIONS))
 TEST_PATTERN = "^(" + "|".join(PARENTS) + ")$"
@@ -51,6 +52,8 @@ DOCS_FILES = (
     ".github/workflows/docs-smoke-test.yml", "scripts/smoke_test_snippets.py",
     "scripts/test_smoke_test_snippets.py", "scripts/verify_generated_reference.py",
     "scripts/test_generated_reference_contract.py",
+    "scripts/fixtures/generated-reference-s708-go-controls.jsonl",
+    "scripts/fixtures/generated-reference-s708-go-process.json",
     "fork-language/actions.md",
 )
 COMPILER_FILES = (
@@ -327,8 +330,8 @@ def verify_go_events(raw, process):
             package_pass += 1
         else:
             require(action == "output" and package_start == 1, "invalid package event")
-    require(package_start == package_pass == 1 and len(run) == 12 and len(passed) == 12,
-            "missing complete package/12-test execution")
+    require(package_start == package_pass == 1 and len(run) == 14 and len(passed) == 14,
+            "missing complete package/14-test execution")
     return {"package": PACKAGE, "parents": list(PARENTS), "mutations": list(MUTATIONS),
             "run_once": sorted(run), "passed_once": sorted(passed), "package_pass": True, "skipped": 0}
 
