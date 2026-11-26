@@ -22,7 +22,7 @@ import time
 sys.dont_write_bytecode = True
 import smoke_test_snippets as smoke
 
-COMPILER_SHA = "627c3e7eb4a54a0364b5a5563db89291fa953b97"
+COMPILER_SHA = "708ed78eda1cad0f1f453559afce100edc59b8a9"
 DOCS_ORIGIN = "https://github.com/davidpovarsky/cherrilang.org"
 PACKAGE = "github.com/electrikmilk/cherri/tools/language-docs"
 PARENTS = (

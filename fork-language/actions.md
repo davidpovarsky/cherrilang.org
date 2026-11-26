@@ -10,7 +10,7 @@ permalink: /fork-language/actions
 
 **Language Version:** 2.0  
 **Catalog Schema:** 3.0  
-**Schema Fingerprint:** `dc6548076b8320b15e062439f0d8e7b032e1fd62d032b19b06ab6c79a54890a5`  
+**Schema Fingerprint:** `378d23912e98d11fe5da550de96f1715407f0754a2f29cd3593a2c7f4dd4b8c5`  
 **Total Actions:** 505  
 
 This documentation is generated automatically from the canonical Cherri v2 ActionSchema registry.
@@ -7374,7 +7374,7 @@ statistic(operation: Text, input: AnyContent)
 | Parameter | Type | Required | Default | Wire Key | Choices |
 |-----------|------|----------|---------|----------|---------|
 | `operation` | `Text` | Yes | - | `WFStatisticsOperation` | Average, Minimum, Maximum, Sum, Median, Mode, Range, Standard Deviation |
-| `input` | `AnyContent` | Yes | - | `WFInput` | - |
+| `input` | `AnyContent` | Yes | - | `Input` | - |
 
 ---
 
@@ -8572,13 +8572,29 @@ url(url: Text)
 
 ## Compiler macros
 
-**Compiler Macro Fingerprint:** `acb4dd5035ee20786c68a01d323f565e880d2a0b8eedb151145181a4960d455c`
+**Compiler Macro Fingerprint:** `bfa446ea152ef48e9a2b7f7177ef0c54409bc98bc2d1dfcf9b8e282e1f3c580e`
 
-**Compiler Macros:** 15
+**Compiler Macros:** 16
 
-These compiler expansions are listed separately from the native Apple catalog. Signatures below describe V2 named arguments; existing Legacy positional forms remain available unless a scoped block is required. A metadata entry does not certify Apple runtime behavior.
+These compiler expansions are listed separately from the native Apple catalog. Signatures below describe V2 named arguments; Legacy uses its existing positional forms. Each scoped construct describes its supported dialects and body result below. A metadata entry does not certify Apple runtime behavior.
 
 Build profile `--build-profile=debug|release` defaults to debug. Release removes explicitly diagnostic expansions, preserves body effects and semantic guards, and rejects consumed diagnostic outputs.
+
+### `cache`
+
+Legacy and V2 scalar scoped block with no block parameters. Lazy iOS27 Stored Content cache for source-typed Text, Number and Bool. The body must return one supported scalar; Void and complex/native objects are rejected. Literal key/ttl/scope; ttl0 bypasses storage. Versioned scalar envelope, post-body expiry, clock rollback and changed-policy misses. Sensitive values require explicit opt-in. Complex/native objects, atomic compare-and-set and recoverable native parser/storage errors are not supported; native cache acceptance remains pending.
+
+```cherri
+cache(key: Text, ttl: Number, global?: Bool, sensitive?: Bool, allowSensitive?: Bool) { <#body#> } -> AnyContent
+```
+
+| Parameter | Type | Optional | Literal required | Default |
+|---|---|---|---|---|
+| `key` | `Text` | false | true | - |
+| `ttl` | `Number` | false | true | - |
+| `global` | `Bool` | true | true | - |
+| `sensitive` | `Bool` | true | true | - |
+| `allowSensitive` | `Bool` | true | true | - |
 
 ### `debugAssert`
 
@@ -8603,10 +8619,10 @@ debugClearLogs()
 
 ### `debugExport`
 
-Return one local JSON/text File without saving, sharing or uploading. Fully redacts payloads by default. Explicit redactSensitive:false exports only Text as base64-encoded UTF-8; other payloads report UNSUPPORTED_PAYLOAD_TYPE. Dates/labels are not collected; includeDates:true is rejected. Options are compile-time literals. Native runtime acceptance remains required.
+Return one local JSON/text File without saving, sharing or uploading. Fully redacts payloads by default. Explicit redactSensitive:false exports only Text as base64-encoded UTF-8; other payloads report UNSUPPORTED_PAYLOAD_TYPE. includeDates:true reads each native item's Creation Date with explicit absent/ambiguous/unsupported statuses. includeLabels:true reads source-owned label ranges only when redactSensitive:false; otherwise labels remain redacted. Options are compile-time literals. Native runtime acceptance remains required.
 
 ```cherri
-debugExport(format?: Text = "json", includeDates?: Bool = false, includeTypes?: Bool = true, redactSensitive?: Bool = true) -> File
+debugExport(format?: Text = "json", includeDates?: Bool = false, includeTypes?: Bool = true, redactSensitive?: Bool = true, includeLabels?: Bool = false) -> File
 ```
 
 | Parameter | Type | Optional | Literal required | Default |
@@ -8615,6 +8631,7 @@ debugExport(format?: Text = "json", includeDates?: Bool = false, includeTypes?: 
 | `includeDates` | `Bool` | true | true | false |
 | `includeTypes` | `Bool` | true | true | true |
 | `redactSensitive` | `Bool` | true | true | true |
+| `includeLabels` | `Bool` | true | true | false |
 
 ### `debugExportTrace`
 
@@ -8735,12 +8752,10 @@ debugTraceEvent(stage: text, label?: text = "") -> text
 
 ### `measure`
 
-V2 scoped value block. Evaluate once, log elapsed seconds through existing native timers, and return the original typed value. Runtime timing accuracy remains platform-dependent.
-
-**Dialect:** V2 scoped block. Legacy rejects this syntax with E_V2_SCOPED_BLOCK. The current block contract is one inline value with no block parameters.
+Legacy and V2 scoped block with no block parameters. Evaluate the body exactly once in Debug and Release. A value body returns its original typed value; a Void body has no result and cannot be bound or consumed. The signature below illustrates the value form. Debug records elapsed seconds; Release preserves body effects without timer actions. A workflow-stopping action can prevent the final timer action from running; this is not a finally or cancellation guarantee. Runtime timing accuracy remains platform-dependent.
 
 ```cherri
-measure(label: text) { <#value#> } -> AnyContent
+measure(label: text) { <#body#> } -> AnyContent
 ```
 
 | Parameter | Type | Optional | Literal required | Default |
@@ -8749,10 +8764,10 @@ measure(label: text) { <#value#> } -> AnyContent
 
 ### `paginate`
 
-Traverse native Dictionary page bodies with ordered Dictionary items and a body next marker. Next accepts same-origin absolute URLs or simple sibling filenames. Exact resolved-URL hash cycles, absent/empty next and literal caps stop traversal; either zero cap emits no GET. No headers, Link parsing, HTTP status verification, retry, transport timeout or trailing block contract. Native runtime acceptance remains required.
+Traverse native Dictionary page bodies with ordered Dictionary items and a body next marker. Default URL mode accepts same-origin absolute URLs or simple sibling filenames. Optional cursor/page/offset modes use a fixed authored URL and replace one configured query value; cursor Text is encoded and roundtrip-checked, numeric next markers are exact bounded integers. Query byte order and unrelated query values remain unchanged. Exact marker and resolved-URL hash cycles, absent/empty next and literal caps stop traversal; either zero cap emits no GET. Optional headers use the native HTTP Dictionary codec with runtime leaf values. An optional { page in ... } body receives the immutable native page Dictionary once per validated page, preserves lexical captured writes and must be Void; either zero cap skips it. Typed item selectors/returned items, Link parsing, HTTP status verification, retry and transport timeout remain separate contracts. Native runtime acceptance remains required.
 
 ```cherri
-paginate(startURL: Text, itemsKey?: Text = "items", nextKey?: Text = "next", maxPages?: Number = 20, maxItems?: Number = 1000) -> List<Map<Text, AnyContent>>
+paginate(startURL: Text, itemsKey?: Text = "items", nextKey?: Text = "next", maxPages?: Number = 20, maxItems?: Number = 1000, headers?: Map<Text, AnyContent>, mode?: Text = "url", queryKey?: Text) { <#body#> } -> List<Map<Text, AnyContent>>
 ```
 
 | Parameter | Type | Optional | Literal required | Default |
@@ -8762,10 +8777,13 @@ paginate(startURL: Text, itemsKey?: Text = "items", nextKey?: Text = "next", max
 | `nextKey` | `Text` | true | true | next |
 | `maxPages` | `Number` | true | true | 20 |
 | `maxItems` | `Number` | true | true | 1000 |
+| `headers` | `Map<Text, AnyContent>` | true | true | - |
+| `mode` | `Text` | true | true | url |
+| `queryKey` | `Text` | true | true | - |
 
 ### `require`
 
-Validate text, number or dictionary native content and optional nonempty character/key/item count, then return the original value. Type and nonEmpty are compile-time literals.
+Require a source-proved Boolean condition, or validate text, number or dictionary native content and optional nonempty character/key/item count, then return the original value. Type and nonEmpty are compile-time literals.
 
 ```cherri
 require(value: AnyContent, type?: Text, nonEmpty?: Bool, message?: Text) -> AnyContent
