@@ -1,0 +1,285 @@
+{
+  "schema": "cherri-reference-contract-public-originals/1",
+  "source": "5c83558695bfd8ebe3c3ece253f1eefd267f4418",
+  "archive": "originals.zip",
+  "archiveSHA256": "bc4fd0721bff08423346dabbf0795bb508269e50287de936ab1f5ed891ddfed9",
+  "archiveBytes": 94006,
+  "files": [
+    {
+      "path": "reference-contract-red-01/canonical-reference.original.md",
+      "bytes": 245300,
+      "sha256": "0ceeff870174737de0d0bad90c3f26a1a09ab8d0bae2454893d132ee8c7acda7"
+    },
+    {
+      "path": "reference-contract-red-01/owner.original.py",
+      "bytes": 8713,
+      "sha256": "2e7ebdc58f30aa040a52047a155574a774d1f33fd4e9585001e2a3f7be802352"
+    },
+    {
+      "path": "reference-contract-red-01/result.original.json",
+      "bytes": 543,
+      "sha256": "abaafae8cf98f80c18a3ffd1c6e243d0745b941f5ed566645f8f9d75f19b5d01"
+    },
+    {
+      "path": "reference-contract-red-01/stderr.original.bin",
+      "bytes": 5665,
+      "sha256": "c7c7766d5b58429c7f833e819eee5e0774590ea8dd0426bf0c87425bf6947662"
+    },
+    {
+      "path": "reference-contract-red-01/stdout.original.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reference-contract-red-01/test-source.original.py",
+      "bytes": 5790,
+      "sha256": "4faf6ddd441b05824e72d0cd2e2332ed3569610f4f7c8a9036dc2fb62255e128"
+    },
+    {
+      "path": "reference-contract-red-01/verifier-before.original.py",
+      "bytes": 22581,
+      "sha256": "1c3cbfb0ebe8f98426423e7c3a40c9fbad759c8025b80041a7349dd8798cc0ba"
+    },
+    {
+      "path": "reference-contract-green-01/owner.original.py",
+      "bytes": 3793,
+      "sha256": "ce57af226cdcfcf90e924b1a661109234bdf2b15c6621bf737022e0c7dab206b"
+    },
+    {
+      "path": "reference-contract-green-01/result.original.json",
+      "bytes": 1076,
+      "sha256": "d19cd595dce34e534afec129a71e71de1fccb49fecff269f60e58031f38ef34f"
+    },
+    {
+      "path": "reference-contract-green-01/stderr.original.bin",
+      "bytes": 836,
+      "sha256": "680d553bd37305200a6720928e5d0b66eae82ae8542eea55cf24b40d0ca007cd"
+    },
+    {
+      "path": "reference-contract-green-01/stdout.original.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reference-contract-green-01/verifier-after.original.py",
+      "bytes": 22982,
+      "sha256": "ee339f299b29c72aec319e293a1f8b950cfc736f1b969d4db803bbbfba53d74d"
+    },
+    {
+      "path": "reference-contract-green-01/verifier-before.original.py",
+      "bytes": 22581,
+      "sha256": "1c3cbfb0ebe8f98426423e7c3a40c9fbad759c8025b80041a7349dd8798cc0ba"
+    },
+    {
+      "path": "reference-contract-checkpoint-01/commit.stdout.original.txt",
+      "bytes": 255,
+      "sha256": "768c50ae23490416e37bebd27abadeac4c9475c0916718677d2f663b20c4e85e"
+    },
+    {
+      "path": "reference-contract-checkpoint-01/owner.original.py",
+      "bytes": 3795,
+      "sha256": "c6331acc9d062eae7e8eeaa41982247f1516266be74798d351004bad9b75be73"
+    },
+    {
+      "path": "reference-contract-checkpoint-01/push.stderr.original.bin",
+      "bytes": 395,
+      "sha256": "f705f13349c27f8247ffddba8a38c5b71094e54ae8b9d66296cfd0d0363b9b75"
+    },
+    {
+      "path": "reference-contract-checkpoint-01/push.stdout.original.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reference-contract-checkpoint-01/result.original.json",
+      "bytes": 1195,
+      "sha256": "3eab36de34a2bc00ba6998faeb80cba0828718b5c63a2f1c25ed3da132efa813"
+    },
+    {
+      "path": "reference-contract-checkpoint-01/source.diff.original.patch",
+      "bytes": 3042,
+      "sha256": "acc0212b08448a10d12eab1f7008243ff7ba0d2c4a4be115b5235558dc27c6b7"
+    },
+    {
+      "path": "workflow-connector-publication-01/after-head.stderr.original.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "workflow-connector-publication-01/after-head.stdout.original.bin",
+      "bytes": 41,
+      "sha256": "01120eb5bd2e0890250c26c7bc1f29d9621c26774641b2ec4b842757de223bf4"
+    },
+    {
+      "path": "workflow-connector-publication-01/after-parents.stderr.original.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "workflow-connector-publication-01/after-parents.stdout.original.bin",
+      "bytes": 82,
+      "sha256": "70039fc6b7f79390e2cfcf66af2f35f0b608c7aa155b4f351552609a90c2606b"
+    },
+    {
+      "path": "workflow-connector-publication-01/after-status.stderr.original.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "workflow-connector-publication-01/after-status.stdout.original.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "workflow-connector-publication-01/after-tree.stderr.original.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "workflow-connector-publication-01/after-tree.stdout.original.bin",
+      "bytes": 41,
+      "sha256": "e15013c75e0f3c4a8413efccdb9e7777c841518edb8549ba8b78fbbb9953863b"
+    },
+    {
+      "path": "workflow-connector-publication-01/api-files.stderr.original.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "workflow-connector-publication-01/api-files.stdout.original.bin",
+      "bytes": 38,
+      "sha256": "7c193b71fe6af0e287791214a08fb189c62af5600f03d216844e1b36ee396a7a"
+    },
+    {
+      "path": "workflow-connector-publication-01/api-parent.stderr.original.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "workflow-connector-publication-01/api-parent.stdout.original.bin",
+      "bytes": 41,
+      "sha256": "aebc45a2ae4134384e4c1a05127948534cc590a5c67e1fc0dd9cc6354564644f"
+    },
+    {
+      "path": "workflow-connector-publication-01/api-workflow.stderr.original.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "workflow-connector-publication-01/api-workflow.stdout.original.bin",
+      "bytes": 4141,
+      "sha256": "3a6a3379cb1aee58f24376544e9cc3ed1c3b720bb431d6f9fa368b181dc8b242"
+    },
+    {
+      "path": "workflow-connector-publication-01/before-head.stderr.original.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "workflow-connector-publication-01/before-head.stdout.original.bin",
+      "bytes": 41,
+      "sha256": "f06ceb1aa87d3babbfc5ece0c08d1887207773c9adf0059c382cef728250c54f"
+    },
+    {
+      "path": "workflow-connector-publication-01/before-status.stderr.original.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "workflow-connector-publication-01/before-status.stdout.original.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "workflow-connector-publication-01/before-tree.stderr.original.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "workflow-connector-publication-01/before-tree.stdout.original.bin",
+      "bytes": 41,
+      "sha256": "e15013c75e0f3c4a8413efccdb9e7777c841518edb8549ba8b78fbbb9953863b"
+    },
+    {
+      "path": "workflow-connector-publication-01/connector-before.original.json",
+      "bytes": 4607,
+      "sha256": "a1625c3f157567e91aff5ecb9e2421eafb124a8ada0399b5b674b24e68f93116"
+    },
+    {
+      "path": "workflow-connector-publication-01/connector-update.original.json",
+      "bytes": 265,
+      "sha256": "eccc661e4ae5526d9acdd4916daabfdbffaff7abe3b111e1b223418a3584afd0"
+    },
+    {
+      "path": "workflow-connector-publication-01/fetch.stderr.original.bin",
+      "bytes": 269,
+      "sha256": "aa00be136ded3eccf8d3d82b73f8a6b07beb0bc7674b0c65296a09e829294336"
+    },
+    {
+      "path": "workflow-connector-publication-01/fetch.stdout.original.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "workflow-connector-publication-01/fetched-head.stderr.original.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "workflow-connector-publication-01/fetched-head.stdout.original.bin",
+      "bytes": 41,
+      "sha256": "7135fc8625d4cc14ed29279682b79999ffb8aa4d6183db036f4ff253774b6c41"
+    },
+    {
+      "path": "workflow-connector-publication-01/merge.stderr.original.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "workflow-connector-publication-01/merge.stdout.original.bin",
+      "bytes": 34,
+      "sha256": "3932df71ce6b1a5831ef19ca12435553ca183f6a79d507a66511b5e43f1bb3ba"
+    },
+    {
+      "path": "workflow-connector-publication-01/owner.original.py",
+      "bytes": 8626,
+      "sha256": "059baa94a58b65ccb0921138f39f8bc95615404430bb97b5ac026c574b063d42"
+    },
+    {
+      "path": "workflow-connector-publication-01/push.stderr.original.bin",
+      "bytes": 179,
+      "sha256": "95d08426dfc20c83c8a8c23a5a42f0f7bf753636d39bfabaefbac7667a222bd2"
+    },
+    {
+      "path": "workflow-connector-publication-01/push.stdout.original.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "workflow-connector-publication-01/remote.stderr.original.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "workflow-connector-publication-01/remote.stdout.original.bin",
+      "bytes": 102,
+      "sha256": "cb0532e9a3cd45fe87b7ae6b94b7d011309de0428bf2e5a22a9e128f94bbb625"
+    },
+    {
+      "path": "workflow-connector-publication-01/result.original.json",
+      "bytes": 5900,
+      "sha256": "5c542f2de337e08739986b472e6e31e0d89377d38ee74b18ecf39ce106b82866"
+    },
+    {
+      "path": "reference-contract-independent-intake-01/owner.original.py",
+      "bytes": 5376,
+      "sha256": "1202bb981607b6e3efca74ec2ac2a96faa466f3d50cf5a286146c47786bd1d92"
+    },
+    {
+      "path": "reference-contract-independent-intake-01/result.original.json",
+      "bytes": 2153,
+      "sha256": "48ada5b8571d9e1329fe1c906aa18fa1383c676e3855d3f1853fe337aba695a4"
+    }
+  ],
+  "scope": "Original six-method Python RED/GREEN and exact16 inventory controls; no new generation, site publication or native acceptance."
+}

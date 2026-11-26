@@ -92,3 +92,9 @@ Older completed/superseded items that still have historical value.
 - Keep imported-edit instructions aligned with the original-hash-bound scalar allowed-delta comparison gate. AEA1 is a container-format check, separate from Apple execution.
 
 - Actual component validation: all 46 examples (43 runnable, 3 exact negative) passed against the existing clean-5f8 binary; all prior 40 executed sources remain. Independent stream/native-plist intake passed. [The source-bound component proof](docs/ai-team/consumer-alignment-20261126.md) preserves failed setup/intake attempts and keeps final pins/site/consumer promotion pending.
+
+
+## 2026-11-26 — Exact generated-reference contract
+
+- Repair the stale 15-macro verifier to bind all 16 canonical macro identities and 505 native actions with complete three-way byte equality and original frontmatter. Six Python methods passed with 12 causal corruption controls; the actual RED remains preserved.
+- Add the fixed Python control step to the existing docs CI. [Original source and process proof](docs/ai-team/reference-contract-20261126.md) is published. Compiler/reference pins, generator freshness, full site CI and deployment remain pending the coherent final tuple.
