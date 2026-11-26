@@ -84,3 +84,9 @@ Older completed/superseded items that still have historical value.
 - Pin snippet smoke and generated-reference verification together to compiler S `627c3e7eb4a54a0364b5a5563db89291fa953b97`.
 - Describe the bounded local List/Optional result flow and exact typed mutable aliases. Add one executable immutable-snapshot example while preserving the existing unsupported-shape diagnostic fixture.
 - Source compiler qualification, all five fresh S4 records, generated reference, snippet checks and site CI must be observed before main promotion. No publication or complete F04/runtime acceptance is claimed by this source edit.
+
+## 2026-11-26 — Consumer alignment for the integrated compiler candidate
+
+- Update local List/Optional mutable-flow guidance and add executable source examples for typed absence, Boolean require, measure value/Void, scalar cache and page callbacks. Preserve explicit native/runtime limitations and the original negative source until its actual result is assessed.
+- Qualify these examples with the actual 5f8 compiler binary as a source component. Do not relabel D16/S627 evidence or publish a new site before the final compiler pin, generated reference, original cache/snippet/site gates and synchronized consumer tuple are ready.
+- Keep imported-edit instructions aligned with the original-hash-bound scalar allowed-delta comparison gate. AEA1 is a container-format check, separate from Apple execution.

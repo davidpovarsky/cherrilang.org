@@ -133,6 +133,24 @@ Native Apple Shortcuts content items:
 - **Optional:** `T?`, e.g., `Text?` or `Number?`. Represented by `none` when absent.
 - **Union:** Small type unions `Text | Number`.
 
+### Absence, null and present empty values
+
+`Optional<T>` and `T?` express the same optional type. `none` means absence;
+it is distinct from present `false`, zero, empty text, empty List/Map, and JSON
+`null`. The compiler preserves those distinctions in supported typed local
+containers, without inventing a native plist null:
+
+```cherri
+let values: List<List<Optional<Bool>>> = [[false, none], [], [true]]
+let snapshot = values
+return count(snapshot)
+```
+
+Use typed operations to access these values. Private container storage is not an
+arbitrary native action input or a persistence format. A diagnostic at such a
+boundary must be resolved without flattening the value or replacing absence
+with a sentinel.
+
 ---
 
 ## 5. Functions & Actions
@@ -211,11 +229,9 @@ for (index, item) in names {
 
 ### Local list-valued loop results
 
-V2 supports a bounded local flow for loops that yield Lists or Optional values.
-Keep each producer in an immutable `let` binding, then consume its result with
-`count`, checked indexing, or a `for` loop. A mutable alias requires an explicit,
-exact `List<T>` type and may be reassigned in straight-line code from an immutable
-producer or snapshot of that same type:
+V2 preserves supported local nested List and Optional loop results through typed
+storage and consumers such as `count`, checked indexing and `for`. Immutable
+bindings retain their source-point snapshot:
 
 ```cherri
 let first = repeat 2 { yield ["first", "second"] }
@@ -226,28 +242,41 @@ current = replacement
 return count(snapshot) * 10 + count(current)
 ```
 
-The immutable `snapshot` retains the earlier sequence; later reads of `current`
-use the replacement. Each reaching producer version must have a supported
-consumer. The documentation suite checks this source and compiles its native
-workflow graph; Apple execution of this nested-value flow remains a separate
-runtime qualification.
+Mutable declarations also support branch and loop writes, matching mutable
+right-hand-side values, direct loop producers and `+=`. The compiler tracks the
+actual lexical declaration, including zero-iteration paths and shadowing.
+Inference uses agreeing concrete sources; it does not invent an element type for
+an otherwise unknown empty result.
 
-This support does not yet include writes to these aliases inside branches or
-loops, inferred mutable alias types, mutable right-hand-side aliases, direct
-mutable loop producers, compound assignment, or arbitrary joins between native
-representations. Ordinary scalar variables and statement loops remain available.
+```cherri
+var current = repeat 1 { yield ["initial"] }
+let snapshot = current
+if true {
+    current = repeat 1 { yield ["replacement"] }
+}
+repeat 2 {
+    current += snapshot
+}
+return count(snapshot) * 10 + count(current)
+```
 
-A List-valued loop result outside the supported local flow is rejected with
-`E_TARGET_VALUE_SHAPE` and emits no shortcut, including this unconsumed result:
+A later write changes `current`, while `snapshot` retains the earlier sequence.
+No artificial consumer is needed merely to justify an overwritten mutable
+version. Ordinary native values and private structured-value storage still need
+a supported representation at every boundary.
+
+The following source retains an unsupported mixed payload shape:
 
 <!-- cherri-test: diagnostic E_TARGET_VALUE_SHAPE -->
 ```cherri
 let values = for item in [1, 2] { yield [item, "tail"] }
 ```
 
-Native Repeat Results can flatten nested Lists: an earlier runtime probe produced
-four items from two two-item results. Giving a result the broad `AnyContent` type
-does not establish that its hierarchy or Optional presence survives execution.
+Private container carriers are not a public Dictionary format. Passing them to
+an arbitrary native action, through implicit Previous, or through an unsupported
+function/import boundary must remain an error. Widening to `AnyContent` does
+not prove preservation. Native Repeat Results can flatten nested Lists; these
+source and native-graph checks remain separate from signed Apple execution.
 
 ### Menus (`menu`)
 ```cherri
@@ -346,3 +375,99 @@ The migration tool:
 2. Strips legacy `#include` statements
 3. Converts string interpolation `"Count {count}"` to `f"Count {count}"`
 4. Formats code canonically.
+
+---
+
+## 11. Scoped macros and build profiles
+
+The generated Actions Reference gives the canonical signatures. The examples
+below describe the supported source behavior; compilation does not execute a
+network request, a cache operation or Apple's Shortcuts runtime.
+
+### Boolean conditions and presence guards
+
+With no `type` or `nonEmpty` guard, `require` expects an actual Bool,
+evaluates it once, and emits Alert followed by Stop This Shortcut on false.
+Success preserves the value. Release keeps this semantic check.
+
+```cherri
+let ready = true
+let checked = require(ready, message: "The operation is not ready")
+return checked
+```
+
+This condition form differs from a presence guard:
+`require(false, nonEmpty: true)` preserves present false, while
+`require(false)` takes the failure path. Number, Text, Optional and AnyContent
+do not acquire Boolean truthiness.
+
+### Measuring values and effects
+
+`measure` runs its body once. Debug emits timing diagnostics; Release retains
+the authored body and its effects. Value bodies preserve their actual result,
+and Void bodies cannot be used as a value.
+
+```cherri
+measure("preparation") {
+    wait(0)
+}
+let answer = measure("calculation") {
+    6 * 7
+}
+return answer
+```
+
+A native stop or error may prevent timer completion. This construct does not
+provide try/finally or cancellation cleanup.
+
+### Scalar cache and TTL
+
+The implemented cache archive supports present Text, Number and Bool. The
+literal TTL is a finite nonnegative number of seconds. A hit skips the body;
+a miss runs it once. TTL zero bypasses storage and clocks.
+
+```cherri
+shortcut "Scalar cache" { version: "27" }
+let cached = cache(key: "docs.scalar", ttl: 60) {
+    yield "example"
+}
+return cached
+```
+
+Positive TTL uses version-27 Stored Content actions. Their missing-key,
+persistence, clock and device behavior require native qualification. The scalar
+archive does not implement complex-object or File/Date persistence, atomic
+concurrent updates or catchable storage errors. Sensitive values require explicit
+author marking and opt-in; the compiler does not discover secrets automatically.
+
+### Bounded pagination and a page callback
+
+`paginate` supports URL, cursor, page and offset next markers, request headers,
+page/item limits and origin/cycle checks. Its optional trailing body receives
+one immutable validated page as `Map<Text, AnyContent>`. It executes once per
+validated page, after item validation and before next-marker processing.
+The page is also Previous on entry; an authored action inside the body can
+supply a later Previous.
+
+```cherri
+var pageCount = 0
+let rows = paginate(
+    "https://example.invalid/items.json", "items", "next", 3, 20, {}, "cursor"
+) { page in
+    pageCount += 1
+    getVariable(page)
+    wait(0)
+}
+return count(rows)
+```
+
+Replace the illustrative endpoint and field names with the real API before
+execution. The callback is Void; yielded, returned or implicit final values are
+rejected instead of silently discarded. Its parameter is lexical, captured
+writes retain zero-or-many behavior, and zero budgets execute no callback.
+
+Typed item selectors/returned callback items, Link/response-status recovery,
+redirect policy and generic cancellation remain separate work. General
+`retry` is not an implemented exception handler for arbitrary native actions.
+Neither these source examples nor unsigned output establish complete pagination
+or signed Apple runtime acceptance.
