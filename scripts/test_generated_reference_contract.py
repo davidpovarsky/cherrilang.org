@@ -122,8 +122,7 @@ class GeneratedReferenceContractTests(unittest.TestCase):
 
 
 class GeneratedGoInventoryTests(unittest.TestCase):
-    """Consume the actual S708 process stream; never derive admission from output."""
-    SOURCE = "708ed78eda1cad0f1f453559afce100edc59b8a9"
+    """Exercise sealed historical S708 streams independently of active compiler pins."""
     PACKAGE = "github.com/electrikmilk/cherri/tools/language-docs"
     PARENT = "TestP15D01CheckGateProducesAndRejectsFaults"
     SCOPED = ("scoped_dialect", "scoped_void_result")
@@ -159,7 +158,10 @@ class GeneratedGoInventoryTests(unittest.TestCase):
         return self.PARENT + "/" + name
 
     def test_actual_fourteen_source_bound_identities(self):
-        self.assertEqual(verifier.COMPILER_SHA, self.SOURCE)
+        # Bind this historical fixture to its original process receipt. Fresh
+        # compiler/source identity is enforced by verifier.main in the CI step.
+        self.assertEqual(self.process["stdout"]["sha256"],
+                         hashlib.sha256(self.raw).hexdigest())
         result = verifier.verify_go_events(self.raw, self.process)
         original = {
             "TestGeneratedReferenceIncludesSeparateMacroContracts",
