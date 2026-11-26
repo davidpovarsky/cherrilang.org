@@ -26,7 +26,7 @@ Cherri v2.0 is an expressive, safe, strongly-typed language for authoring native
 ## Key Sections
 
 - [Language Guide]({{ '/fork-language/guide' | relative_url }}) - Comprehensive language reference, syntax, types, control flow, functions, and diagnostics.
-- [Actions Reference]({{ '/fork-language/actions' | relative_url }}) - Generated reference for 505 canonical definitions: 497 callable entries and 8 compiler constructs. The 15 compiler macros are listed separately; catalog membership does not certify Apple runtime behavior.
+- [Actions Reference]({{ '/fork-language/actions' | relative_url }}) - Generated canonical definitions and compiler macros, listed separately and bound to their recorded source fingerprints. Catalog membership does not certify Apple runtime behavior.
 - [Migration Guide]({{ '/fork-language/migration' | relative_url }}) - Guide for migrating existing Cherri v1 shortcuts to v2.0.
 
 {: .note }
